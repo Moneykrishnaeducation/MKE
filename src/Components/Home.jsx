@@ -12,7 +12,7 @@ const Home = () => {
       try {
         const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
         const data = await response.json()
-        const eurPrice = data.rates.EUR
+        const eurPrice = data.rates.INR
         setUsdPrice(eurPrice.toFixed(4))
       } catch (error) {
         console.log('Error fetching price:', error)
