@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight } from 'lucide-react'
 import bgImg from '../assets/bg_img.jpg'
 
 const Home = () => {
   const [usdPrice, setUsdPrice] = useState('1.0850')
+  const reviewsScrollRef = useRef(null)
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -23,6 +24,17 @@ const Home = () => {
     const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
     return () => clearInterval(interval)
   }, [])
+
+  const scrollReviews = (direction) => {
+    if (reviewsScrollRef.current) {
+      const scrollAmount = 400
+      if (direction === 'left') {
+        reviewsScrollRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+      } else {
+        reviewsScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+      }
+    }
+  }
 
 
   return (
@@ -144,6 +156,13 @@ const Home = () => {
           -webkit-text-stroke: 0.5px white;
           text-stroke: 0.5px white;
           paint-order: stroke fill;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
 
@@ -276,13 +295,160 @@ const Home = () => {
               <div className="w-full aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
                 <iframe 
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&si=M1txMgIEVcjR9o__" 
+                  src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&loop=1&playlist=6xxB3LsMhRI&si=M1txMgIEVcjR9o__" 
                   title="YouTube video player" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                   referrerPolicy="strict-origin-when-cross-origin" 
                   allowFullScreen>
                 </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Customer Reviews Section */}
+        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-slate-900 mb-2 text-center">What Our Students Say</h2>
+            <p className="text-center text-slate-600 mb-12 text-lg">Join thousands of successful traders who have transformed their trading journey with us</p>
+            
+            <div className="relative">
+              {/* Scroll Arrows */}
+              <button
+                onClick={() => scrollReviews('left')}
+                className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 z-20 bg-green-600 hover:bg-green-700 text-white p-2 rounded-full shadow-lg transition-all sm:-ml-6"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+              
+              <button
+                onClick={() => scrollReviews('right')}
+                className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 z-20 bg-green-600 hover:bg-green-700 text-white p-2 rounded-full shadow-lg transition-all sm:-mr-6"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Reviews Scroll Container */}
+              <div 
+                ref={reviewsScrollRef}
+                className="flex gap-8 overflow-x-auto scroll-smooth pb-4 hide-scrollbar"
+                style={{ scrollBehavior: 'smooth' }}
+              >
+                {/* Review 1 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The courses are exceptionally well-structured. I went from complete beginner to consistently profitable in just 3 months. The live webinars with experts are invaluable!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Rahul Sharma</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Forex Trader • India</p>
+                  </div>
+                </div>
+
+                {/* Review 2 */}
+                {/* Review 2 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"MoneyKrishna Education completely changed my approach to trading. The risk management strategies taught here are game-changing. Best investment I've made in my trading career!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Priya Patel</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Stock Market Investor • UK</p>
+                  </div>
+                </div>
+
+                {/* Review 3 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The mentorship program is outstanding. Having access to experienced traders who review your trades and provide personalized guidance is worth every penny!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Arun Verma</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Day Trader • Dubai</p>
+                  </div>
+                </div>
+
+                {/* Review 4 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"Finally found a platform where education meets practical application. The demo trading zone helped me practice without any risk. Highly recommended!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Neha Singh</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Options Trader • Singapore</p>
+                  </div>
+                </div>
+
+                {/* Review 5 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The community here is amazing. Learning alongside other traders and sharing experiences has been game-changing. I doubled my profits this year!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Vikram Kumar</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Crypto Trader • USA</p>
+                  </div>
+                </div>
+
+                {/* Review 6 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The strategy courses are incredibly detailed and backed by real-world examples. I've implemented these strategies and seen consistent results. Worth every rupee!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Deepak Malhotra</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Swing Trader • Canada</p>
+                  </div>
+                </div>
+
+                {/* Review 7 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"Switched from another platform and never looked back. The support team is responsive, the curriculum is comprehensive, and the results speak for themselves!"</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Anjali Desai</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Futures Trader • Australia</p>
+                  </div>
+                </div>
+
+                {/* Review 8 */}
+                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The live trading sessions are a goldmine of information. Watching experienced traders make decisions in real-time has taught me more than any textbook ever could."</p>
+                  <div className="border-t border-slate-200 pt-4">
+                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Arjun Prabhu</p>
+                    <p className="text-slate-600 text-xs sm:text-sm">Intraday Trader • Malaysia</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
