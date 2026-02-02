@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail } from 'lucide-react'
+import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, ChevronDown, Menu, X } from 'lucide-react'
 import logo from '../assets/logo of MKE.webp'
 
-const TopNav = () => (
-  <>
+const TopNav = () => {
+  const [openDropdown, setOpenDropdown] = useState(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false)
+
+  return (
+    <>
     <style>{`
       @keyframes slideDown {
         0% { opacity: 0; transform: translateY(-10px); }
@@ -27,6 +32,76 @@ const TopNav = () => (
       }
       .logo-container:hover {
         transform: scale(1.05);
+      }
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+        z-index: 50;
+      }
+      .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        color: #334155;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .dropdown-item:hover {
+        background-color: #f1f5f9;
+        color: #16a34a;
+        padding-left: 1.25rem;
+      }
+      .mobile-menu {
+        animation: slideDown 0.3s ease-out;
+        max-height: 100vh;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      }
+      .mobile-menu-enter {
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+      }
+      .mobile-courses-dropdown {
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        max-height: 0;
+        opacity: 0;
+        display: block;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        z-index: 40;
+      }
+      .mobile-courses-dropdown.open {
+        max-height: 500px;
+        opacity: 1;
+      }
+      .mobile-courses-dropdown .dropdown-item {
+        padding-left: 2rem;
+        background: #f8fafc;
+      }
+      .mobile-courses-dropdown .dropdown-item:hover {
+        background-color: #e2e8f0;
+      }
+      .mobile-nav-link {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: #334155;
+        text-decoration: none;
+        border-bottom: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+      .mobile-nav-link:hover {
+        background-color: #f1f5f9;
+        color: #16a34a;
+        padding-left: 1.25rem;
       }
     `}</style>
 
@@ -98,8 +173,8 @@ const TopNav = () => (
             />
           </Link>
 
-          {/* Navigation Links */}
-          <nav className="flex items-center space-x-8 nav-group">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-8 nav-group">
             <Link 
               to="/" 
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
@@ -107,39 +182,168 @@ const TopNav = () => (
               Home
             </Link>
             <Link 
+              to="/about" 
+              className="text-slate-700 font-medium hover:text-green-600 transition-colors"
+            >
+              About
+            </Link>
+
+            {/* Courses Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setOpenDropdown('courses')}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className="text-slate-700 font-medium hover:text-green-600 transition-colors flex items-center gap-1">
+                Courses
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              {openDropdown === 'courses' && (
+                <div className="dropdown-menu">
+                  <Link to="/courses/beginner" className="dropdown-item">
+                    Beginner
+                  </Link>
+                  <Link to="/courses/intermediate" className="dropdown-item">
+                    Intermediate
+                  </Link>
+                  <Link to="/courses/advanced" className="dropdown-item">
+                    Advanced
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link 
               to="/blog" 
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
             >
               Blog
             </Link>
             <Link 
-              to="/mt5-education" 
+              to="/contact" 
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
             >
-              Courses
+              Contact
+            </Link>
+            <Link 
+              to="/disclaimer" 
+              className="text-slate-700 font-medium hover:text-green-600 transition-colors"
+            >
+              Policies
+            </Link>
+            
+          </nav>
+
+          {/* Desktop Auth Button */}
+          <Link 
+            to="/login"
+            className="hidden md:flex px-6 h-10 items-center rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
+          >
+            Login
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-slate-700"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`md:hidden bg-white border-t border-slate-200 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+            <Link 
+              to="/" 
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
             </Link>
             <Link 
               to="/about" 
-              className="text-slate-700 font-medium hover:text-green-600 transition-colors"
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              Teachers
+              About
             </Link>
-            <button className="text-slate-700 font-medium hover:text-green-600 transition-colors">
-              Testimonial
-            </button>
-          </nav>
 
-          {/* Contact Button */}
-          <Link 
-            to="/contact"
-            className="px-6 h-10 flex items-center rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
-          >
-            Contact Us
-          </Link>
-        </div>
+            {/* Mobile Courses Dropdown */}
+            <div className="mobile-courses-button">
+              <button 
+                className="w-full text-left mobile-nav-link !flex items-center gap-1 whitespace-nowrap"
+                onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
+              >
+                Courses
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 flex-shrink-0 ${mobileCoursesOpen ? 'rotate-90' : ''}`} />
+              </button>
+              <div className={`mobile-courses-dropdown ${mobileCoursesOpen ? 'open' : ''}`}>
+                  <Link 
+                    to="/courses/beginner" 
+                    className="dropdown-item"
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      setMobileCoursesOpen(false)
+                    }}
+                  >
+                    Beginner
+                  </Link>
+                  <Link 
+                    to="/courses/intermediate" 
+                    className="dropdown-item"
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      setMobileCoursesOpen(false)
+                    }}
+                  >
+                    Intermediate
+                  </Link>
+                  <Link 
+                    to="/courses/advanced" 
+                    className="dropdown-item"
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      setMobileCoursesOpen(false)
+                    }}
+                  >
+                    Advanced
+                  </Link>
+              </div>
+            </div>
+
+            <Link 
+              to="/blog" 
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
+            </Link>
+            <Link 
+              to="/contact" 
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
+            </Link>
+            <Link 
+              to="/disclaimer" 
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Policies
+            </Link>
+            <Link 
+              to="/login" 
+              className="mobile-nav-link bg-green-50 text-green-600 font-semibold"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Login
+            </Link>
+          </div>
       </div>
     </header>
-  </>
-)
+    </>
+  )
+}
 
 export default TopNav

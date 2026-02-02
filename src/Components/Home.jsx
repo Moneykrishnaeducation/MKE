@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import bgImg from '../assets/bg_img.jpg'
 
 const Home = () => {
   const [usdPrice, setUsdPrice] = useState('1.0850')
@@ -22,6 +23,8 @@ const Home = () => {
     const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
     return () => clearInterval(interval)
   }, [])
+
+
   return (
     <>
       <style>{`
@@ -61,6 +64,46 @@ const Home = () => {
           0% { opacity: 0; transform: scale(0.8); }
           100% { opacity: 1; transform: scale(1); }
         }
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        @keyframes bubbleRise {
+          0% { 
+            transform: translateY(0) translateX(0); 
+            opacity: 1;
+          }
+          100% { 
+            transform: translateY(-100vh) translateX(100px); 
+            opacity: 0;
+          }
+        }
+        .bubble-container {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        .bubble {
+          position: absolute;
+          bottom: 0;
+          background: radial-gradient(circle at 30% 30%, rgba(22, 163, 74, 0.3), rgba(22, 163, 74, 0.05));
+          border: 2px solid rgba(22, 163, 74, 0.2);
+          border-radius: 50%;
+          animation: bubbleRise linear infinite;
+        }
+        .bubble:nth-child(1) { width: 20px; height: 20px; left: 10%; animation-duration: 4s; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 30px; height: 30px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+        .bubble:nth-child(3) { width: 15px; height: 15px; left: 30%; animation-duration: 4.5s; animation-delay: 0.5s; }
+        .bubble:nth-child(4) { width: 25px; height: 25px; left: 40%; animation-duration: 5.5s; animation-delay: 1.5s; }
+        .bubble:nth-child(5) { width: 22px; height: 22px; left: 50%; animation-duration: 4.8s; animation-delay: 0.8s; }
+        .bubble:nth-child(6) { width: 18px; height: 18px; left: 60%; animation-duration: 5.2s; animation-delay: 1.2s; }
+        .bubble:nth-child(7) { width: 28px; height: 28px; left: 70%; animation-duration: 4.5s; animation-delay: 0.3s; }
+        .bubble:nth-child(8) { width: 24px; height: 24px; left: 80%; animation-duration: 5.5s; animation-delay: 1.8s; }
+        .bubble:nth-child(9) { width: 16px; height: 16px; left: 90%; animation-duration: 4.2s; animation-delay: 0.6s; }
         .float-slow {
           animation: float 6s ease-in-out infinite;
         }
@@ -91,39 +134,38 @@ const Home = () => {
         .animate-scale-in {
           animation: scaleIn 0.6s ease-out;
         }
-        @keyframes float-gentle {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
-        }
-        .animate-float {
-          animation: float-gentle 3s ease-in-out infinite;
+        .gradient-text {
+          background: linear-gradient(135deg, #16a34a, #0ea5e9, #16a34a, #0ea5e9);
+          background-size: 300% 300%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 8s ease-in-out infinite;
+          -webkit-text-stroke: 0.5px white;
+          text-stroke: 0.5px white;
+          paint-order: stroke fill;
         }
       `}</style>
 
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-cyan-50 relative overflow-hidden">
+      <div className="min-h-[200vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+        {/* Overlay for better text visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
         {/* Live USD Price */}
         <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/EUR</p>
           <p className="text-green-600 text-sm font-bold">{usdPrice}</p>
         </div>
 
-        {/* Animated background shapes */}
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-green-500 rounded-full opacity-5 float-slow"></div>
-        <div className="absolute top-1/3 -left-10 w-32 h-32 bg-blue-400 rounded-full opacity-5 float-medium"></div>
-        <div className="absolute -bottom-10 right-1/4 w-48 h-48 bg-green-400 rounded-full opacity-5 move-left pulse-slow"></div>
-        <div className="absolute top-1/2 -right-20 w-56 h-56 bg-blue-300 rounded-full opacity-5 move-right rotate-slow"></div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyan-300 rounded-full opacity-5"></div>
-
         {/* Content */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-32 h-full flex items-center relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center w-full">
             {/* Left Content */}
             <div className="text-center animate-slide-in-left">
-              <h1 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+              <h1 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight gradient-text">
                 Welcome to Moneykrishna Education
               </h1>
               
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-md mx-auto animate-fade-in-up">
+              <p className="text-lg text-white mb-8 leading-relaxed max-w-md mx-auto animate-fade-in-up">
                 Learn MT5 trading and master financial markets with our comprehensive education platform.
               </p>
 
@@ -134,92 +176,118 @@ const Home = () => {
                 >
                   Join 
                 </Link>
-                <Link
-                  to="/mt5-education"
+                <a
+                  href="https://youtu.be/kEI9B1ISUTY?si=ZfEU6uDeyHirgpmh"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Watch Introduction <ArrowRight className="w-5 h-5" />
-                </Link>
+                </a>
               </div>
             </div>
 
-            {/* Right Image - Trading Chart */}
+            {/* Right Image - Trading Image */}
             <div className="flex justify-center items-center w-full animate-slide-in-right">
-              <svg className="w-full h-auto max-w-2xl" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                {/* Background */}
-                <rect width="400" height="300" fill="#f0f9ff" opacity="0.5" rx="10"/>
-                
-                {/* Chart Title */}
-                <text x="20" y="30" fontSize="18" fontWeight="bold" fill="#1e293b">Trading Growth</text>
-                
-                {/* Y-axis */}
-                <line x1="50" y1="50" x2="50" y2="250" stroke="#cbd5e1" strokeWidth="2"/>
-                
-                {/* X-axis */}
-                <line x1="50" y1="250" x2="380" y2="250" stroke="#cbd5e1" strokeWidth="2"/>
-                
-                {/* Y-axis labels */}
-                <text x="25" y="260" fontSize="12" fill="#64748b">0</text>
-                <text x="15" y="155" fontSize="12" fill="#64748b">50%</text>
-                <text x="15" y="55" fontSize="12" fill="#64748b">100%</text>
-                
-                {/* Grid lines */}
-                <line x1="50" y1="150" x2="380" y2="150" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="5,5"/>
-                
-                {/* Upward trending line - Green */}
-                <polyline points="70,220 120,200 170,160 220,140 270,100 320,80 370,60" 
-                  fill="none" stroke="#16a34a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                
-                {/* Gradient fill under line */}
-                <defs>
-                  <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style={{stopColor: '#16a34a', stopOpacity: 0.3}} />
-                    <stop offset="100%" style={{stopColor: '#16a34a', stopOpacity: 0}} />
-                  </linearGradient>
-                </defs>
-                <polygon points="70,220 120,200 170,160 220,140 270,100 320,80 370,60 370,250 320,250 270,250 220,250 170,250 120,250 70,250" 
-                  fill="url(#chartGradient)"/>
-                
-                {/* Data points - Green circles */}
-                <circle cx="70" cy="220" r="4" fill="#16a34a"/>
-                <circle cx="120" cy="200" r="4" fill="#16a34a"/>
-                <circle cx="170" cy="160" r="4" fill="#16a34a"/>
-                <circle cx="220" cy="140" r="4" fill="#16a34a"/>
-                <circle cx="270" cy="100" r="4" fill="#16a34a"/>
-                <circle cx="320" cy="80" r="4" fill="#16a34a"/>
-                <circle cx="370" cy="60" r="4" fill="#16a34a"/>
-                
-                {/* X-axis labels */}
-                <text x="60" y="275" fontSize="12" fill="#64748b">Jan</text>
-                <text x="160" y="275" fontSize="12" fill="#64748b">Apr</text>
-                <text x="260" y="275" fontSize="12" fill="#64748b">Jul</text>
-                <text x="350" y="275" fontSize="12" fill="#64748b">Dec</text>
-                
-                {/* Decorative elements */}
-                <circle cx="370" cy="60" r="8" fill="#16a34a" opacity="0.2"/>
-              </svg>
+              <img 
+                src="https://images.unsplash.com/photo-1611974891405-8f5f59aae4d2?w=800&q=80" 
+                alt="Trading Chart" 
+                className="w-full h-auto max-w-2xl rounded-lg shadow-lg"
+              />
             </div>
           </div>
+        </div>
 
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mt-20">
-            <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Comprehensive Courses</h3>
-              <p className="text-slate-600">Learn MT5 trading from basics to advanced strategies.</p>
-            </div>
+        {/* Features Grid - Full Width Background */}
+        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Why Choose Us</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div className="text-4xl mb-4">📚</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Comprehensive Courses</h3>
+                <p className="text-slate-600">Learn MT5 trading from basics to advanced strategies.</p>
+              </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">👥</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Expert Community</h3>
-              <p className="text-slate-600">Connect with experienced traders and industry experts.</p>
-            </div>
+              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div className="text-4xl mb-4">👥</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Expert Community</h3>
+                <p className="text-slate-600">Connect with experienced traders and industry experts.</p>
+              </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">💡</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Practical Knowledge</h3>
-              <p className="text-slate-600">Real-world trading strategies and practical insights.</p>
+              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+                <div className="text-4xl mb-4">💡</div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Practical Knowledge</h3>
+                <p className="text-slate-600">Real-world trading strategies and practical insights.</p>
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* Contact Form Section */}
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="mt-20 bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Get In Touch</h2>
+            <form className="space-y-6" onSubmit={(e) => {
+              e.preventDefault()
+              alert('Thank you for your message! We will get back to you soon.')
+            }}>
+              <div>
+                <label className="block text-slate-700 font-semibold mb-2">Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Your Name" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-2">Email</label>
+                <input 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-2">Phone (Optional)</label>
+                <input 
+                  type="tel" 
+                  placeholder="+1 (555) 000-0000" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-2">Subject</label>
+                <input 
+                  type="text" 
+                  placeholder="How can we help?" 
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-700 font-semibold mb-2">Message</label>
+                <textarea 
+                  placeholder="Your message here..." 
+                  rows="5"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors resize-none"
+                  required
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit"
+                className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </div>
