@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users } from 'lucide-react'
 import bgImg from '../assets/bg_img.jpg'
 
 const Home = () => {
@@ -171,7 +171,7 @@ const Home = () => {
 
               <div className="flex gap-4 justify-center">
                 <Link
-                  to="/blog"
+                  to="/course"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Join 
@@ -202,88 +202,100 @@ const Home = () => {
         <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10">
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Why Choose Us</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
               <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">📚</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Comprehensive Courses</h3>
-                <p className="text-slate-600">Learn MT5 trading from basics to advanced strategies.</p>
+                <BookOpen className="w-10 h-10 text-green-600 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Structured Learning Paths</h3>
+                <p className="text-sm text-slate-600">Beginner to advanced forex & stock market courses with step-by-step guidance.</p>
               </div>
 
               <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">👥</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Expert Community</h3>
-                <p className="text-slate-600">Connect with experienced traders and industry experts.</p>
+                <TrendingUp className="w-10 h-10 text-blue-600 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Live Trading & Webinars</h3>
+                <p className="text-sm text-slate-600">Real-time market sessions with expert analysis and live Q&A.</p>
               </div>
 
               <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">💡</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">Practical Knowledge</h3>
-                <p className="text-slate-600">Real-world trading strategies and practical insights.</p>
+                <Zap className="w-10 h-10 text-yellow-600 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Practice Trading Zone</h3>
+                <p className="text-sm text-slate-600">Trade in a risk-free environment and test proven strategies.</p>
+              </div>
+
+              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+                <Lightbulb className="w-10 h-10 text-orange-600 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Smart Investment Hub</h3>
+                <p className="text-sm text-slate-600">Tools, insights, and tips to make better trading decisions.</p>
+              </div>
+
+              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+                <Users className="w-10 h-10 text-purple-600 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Community & Mentorship</h3>
+                <p className="text-sm text-slate-600">Learn with a global trader community and expert mentorship.</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Contact Form Section */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="mt-20 bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Get In Touch</h2>
-            <form className="space-y-6" onSubmit={(e) => {
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10">
+          <div>
+            <h2 className="text-4xl font-bold text-white mb-6 text-center">Get In Touch</h2>
+            <form className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" onSubmit={(e) => {
               e.preventDefault()
               alert('Thank you for your message! We will get back to you soon.')
             }}>
               <div>
-                <label className="block text-slate-700 font-semibold mb-2">Name</label>
+                <label className="block text-white font-semibold mb-2">Name</label>
                 <input 
                   type="text" 
                   placeholder="Your Name" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-slate-700 font-semibold mb-2">Email</label>
+                <label className="block text-white font-semibold mb-2">Email</label>
                 <input 
                   type="email" 
                   placeholder="your@email.com" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-slate-700 font-semibold mb-2">Phone (Optional)</label>
+                <label className="block text-white font-semibold mb-2">Phone (Optional)</label>
                 <input 
                   type="tel" 
                   placeholder="+1 (555) 000-0000" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-700 font-semibold mb-2">Subject</label>
+                <label className="block text-white font-semibold mb-2">Subject</label>
                 <input 
                   type="text" 
                   placeholder="How can we help?" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                   required
                 />
               </div>
 
-              <div>
-                <label className="block text-slate-700 font-semibold mb-2">Message</label>
+              <div className="md:col-span-2">
+                <label className="block text-white font-semibold mb-2">Message</label>
                 <textarea 
                   placeholder="Your message here..." 
-                  rows="5"
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-green-600 transition-colors resize-none"
+                  rows="4"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors resize-none"
                   required
                 ></textarea>
               </div>
 
               <button 
                 type="submit"
-                className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
+                className="md:col-span-2 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
               >
                 Send Message
               </button>
