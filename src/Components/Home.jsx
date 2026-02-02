@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 const Home = () => {
+  const [usdPrice, setUsdPrice] = useState('1.0850')
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
+        const data = await response.json()
+        const eurPrice = data.rates.EUR
+        setUsdPrice(eurPrice.toFixed(4))
+      } catch (error) {
+        console.log('Error fetching price:', error)
+        setUsdPrice('1.0850')
+      }
+    }
+
+    fetchPrice()
+    const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
+    return () => clearInterval(interval)
+  }, [])
   return (
     <>
       <style>{`
@@ -72,9 +91,22 @@ const Home = () => {
         .animate-scale-in {
           animation: scaleIn 0.6s ease-out;
         }
+        @keyframes float-gentle {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+          animation: float-gentle 3s ease-in-out infinite;
+        }
       `}</style>
 
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-cyan-50 relative overflow-hidden">
+        {/* Live USD Price */}
+        <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
+          <p className="text-slate-600 text-xs font-medium">USD/EUR</p>
+          <p className="text-green-600 text-sm font-bold">{usdPrice}</p>
+        </div>
+
         {/* Animated background shapes */}
         <div className="absolute -top-20 -left-20 w-40 h-40 bg-green-500 rounded-full opacity-5 float-slow"></div>
         <div className="absolute top-1/3 -left-10 w-32 h-32 bg-blue-400 rounded-full opacity-5 float-medium"></div>
@@ -95,12 +127,20 @@ const Home = () => {
                 Learn MT5 trading and master financial markets with our comprehensive education platform.
               </p>
 
-              <Link
-                to="/mt5-education"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
-              >
-                Get Started <ArrowRight className="w-5 h-5" />
-              </Link>
+              <div className="flex gap-4 justify-center">
+                <Link
+                  to="/blog"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                >
+                  Join 
+                </Link>
+                <Link
+                  to="/mt5-education"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                >
+                  Watch Introduction <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
             </div>
 
             {/* Right Image - Trading Chart */}

@@ -40,7 +40,9 @@ const TopNav = () => (
           </div>
           <div className="flex items-center gap-4">
             <a 
-              href="#" 
+              href="https://www.facebook.com/moneykrishna.education/" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-icon hover:text-green-400 transition-colors"
               title="Facebook"
             >
@@ -61,14 +63,18 @@ const TopNav = () => (
               <Linkedin className="w-5 h-5" />
             </a>
             <a 
-              href="#" 
+              href="https://www.instagram.com/moneykrishnaeducation/" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-icon hover:text-green-400 transition-colors"
               title="Instagram"
             >
               <Instagram className="w-5 h-5" />
             </a>
             <a 
-              href="#" 
+              href="https://www.youtube.com/@money_krishna" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-icon hover:text-green-400 transition-colors"
               title="YouTube"
             >
@@ -82,7 +88,7 @@ const TopNav = () => (
     {/* Main Navigation */}
     <header className="sticky top-0 z-50 bg-white shadow-md navbar-animate">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-12 items-center">
+        <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <Link to="/" className="logo-container flex items-center gap-2">
             <img 
@@ -126,7 +132,7 @@ const TopNav = () => (
           {/* Contact Button */}
           <Link 
             to="/contact"
-            className="px-6 py-2 rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
+            className="px-6 h-10 flex items-center rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
           >
             Contact Us
           </Link>
