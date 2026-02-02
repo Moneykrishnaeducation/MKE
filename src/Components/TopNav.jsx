@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, ChevronDown, Menu, X } from 'lucide-react'
 import logo from '../assets/logo of MKE.webp'
 
@@ -7,6 +7,34 @@ const TopNav = () => {
   const [openDropdown, setOpenDropdown] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const scrollToContactOnPage = () => {
+    const el = document.getElementById('contact')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return true
+    }
+    return false
+  }
+
+  const handleContactClick = (e) => {
+    e.preventDefault()
+    // If already on home page, scroll to contact
+    if (location.pathname === '/' ) {
+      if (!scrollToContactOnPage()) {
+        // fallback: navigate to home to ensure element exists
+        navigate('/')
+      }
+      setMobileMenuOpen(false)
+      return
+    }
+
+    // Otherwise navigate to home and instruct it to scroll
+    navigate('/', { state: { scrollToContact: true } })
+    setMobileMenuOpen(false)
+  }
 
   return (
     <>
@@ -161,7 +189,7 @@ const TopNav = () => {
     </div>
 
     {/* Main Navigation */}
-    <header className="sticky top-0 z-50 bg-white shadow-md navbar-animate">
+    <header className="sticky top-0 h-[8vh] z-50 bg-white shadow-md navbar-animate">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
@@ -219,12 +247,13 @@ const TopNav = () => {
             >
               Blog
             </Link>
-            <Link 
-              to="/contact" 
+            <a
+              href="/#contact"
+              onClick={handleContactClick}
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
             >
               Contact
-            </Link>
+            </a>
             <Link 
               to="/disclaimer" 
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
@@ -235,12 +264,12 @@ const TopNav = () => {
           </nav>
 
           {/* Desktop Auth Button */}
-          <Link 
-            to="/login"
-            className="hidden md:flex px-6 h-10 items-center rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
+          <button
+            onClick={handleContactClick}
+            className="hidden md:flex px-6 h-10 items-center rounded-full border-2 hover:border-none border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
           >
-            Login
-          </Link>
+            Contact Us
+          </button>
 
           {/* Mobile Menu Button */}
           <button 
@@ -318,13 +347,12 @@ const TopNav = () => {
             >
               Blog
             </Link>
-            <Link 
-              to="/contact" 
-              className="mobile-nav-link"
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              className="mobile-nav-link text-left"
+              onClick={() => { handleContactClick(); setMobileMenuOpen(false) }}
             >
               Contact
-            </Link>
+            </button>
             <Link 
               to="/disclaimer" 
               className="mobile-nav-link"

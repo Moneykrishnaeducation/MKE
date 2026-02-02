@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight } from 'lucide-react'
 import bgImg from '../assets/bg_img.jpg'
@@ -6,6 +7,7 @@ import bgImg from '../assets/bg_img.jpg'
 const Home = () => {
   const [usdPrice, setUsdPrice] = useState('1.0850')
   const reviewsScrollRef = useRef(null)
+  const location = useLocation()
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -13,7 +15,7 @@ const Home = () => {
         const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
         const data = await response.json()
         const eurPrice = data.rates.INR
-        setUsdPrice(eurPrice.toFixed(4))
+        setUsdPrice(eurPrice.toFixed(2))
       } catch (error) {
         console.log('Error fetching price:', error)
         setUsdPrice('1.0850')
@@ -24,6 +26,20 @@ const Home = () => {
     const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
     return () => clearInterval(interval)
   }, [])
+
+  // Scroll to contact section when navigated with state{scrollToContact: true}
+  useEffect(() => {
+    if (location && location.state && location.state.scrollToContact) {
+      setTimeout(() => {
+        const el = document.getElementById('contact')
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // clear history state to avoid repeat
+        try {
+          window.history.replaceState({}, document.title)
+        } catch (e) {}
+      }, 80)
+    }
+  }, [location])
 
   const scrollReviews = (direction) => {
     if (reviewsScrollRef.current) {
@@ -171,12 +187,12 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
         {/* Live USD Price */}
         <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
-          <p className="text-slate-600 text-xs font-medium">USD/EUR</p>
-          <p className="text-green-600 text-sm font-bold">{usdPrice}</p>
+          <p className="text-slate-600 text-xs font-medium">USD/INR</p>
+          <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
         </div>
 
         {/* Content */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-32 h-full flex items-center relative z-10">
+        <div className="max-w-screen-2xl h-[calc(100vh-8vh)] mx-auto px-4 sm:px-6 lg:px-8 py-32 h-full flex items-center relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center w-full">
             {/* Left Content */}
             <div className="text-center animate-slide-in-left">
@@ -455,7 +471,7 @@ const Home = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10" id="contact">
           <div>
             <h2 className="text-4xl font-bold text-white mb-6 text-center">Get In Touch</h2>
             <form className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" onSubmit={(e) => {
