@@ -1,0 +1,32 @@
+<svg viewBox="0 0 750 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <!-- Chart bars with curved line -->
+  <g>
+    <!-- Bar 1 -->
+    <rect x="25" y="120" width="25" height="50" fill="#22c55e" rx="3"/>
+    
+    <!-- Bar 2 -->
+    <rect x="55" y="90" width="25" height="80" fill="#22c55e" rx="3"/>
+    
+    <!-- Bar 3 -->
+    <rect x="85" y="50" width="25" height="120" fill="#22c55e" rx="3"/>
+    
+    <!-- Bar 4 -->
+    <rect x="115" y="85" width="25" height="85" fill="#22c55e" rx="3"/>
+    
+    <!-- Curved line connecting from bars -->
+    <path d="M 30 120 Q 80 60 140 80" stroke="#22c55e" stroke-width="8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Arrow head -->
+    <polygon points="150,75 140,50 135,70" fill="#22c55e"/>
+  </g>
+  
+  <!-- Text: Moneykrishna (Blue) -->
+  <text x="180" y="140" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#0284c7" letter-spacing="-2">
+    Moneykrishna
+  </text>
+  
+  <!-- Text: Education (Green) -->
+  <text x="520" y="140" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#22c55e" letter-spacing="-2">
+    Education
+  </text>
+</svg>
