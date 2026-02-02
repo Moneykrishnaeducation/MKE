@@ -236,6 +236,58 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Video Section with Content */}
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-6">
+              <h2 className="text-4xl font-bold text-white leading-tight">Master Trading with Expert Guidance</h2>
+              <p className="text-lg text-white/90">
+                Watch our comprehensive trading masterclass where experienced traders share proven strategies and market insights. Learn how to analyze charts, identify opportunities, and execute trades with confidence.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3 text-white">
+                  <span className="text-green-400 font-bold">✓</span>
+                  <span>Advanced charting techniques and pattern recognition</span>
+                </li>
+                <li className="flex items-start gap-3 text-white">
+                  <span className="text-green-400 font-bold">✓</span>
+                  <span>Risk management and position sizing strategies</span>
+                </li>
+                <li className="flex items-start gap-3 text-white">
+                  <span className="text-green-400 font-bold">✓</span>
+                  <span>Real-time trading scenarios and live examples</span>
+                </li>
+                <li className="flex items-start gap-3 text-white">
+                  <span className="text-green-400 font-bold">✓</span>
+                  <span>Professional trading psychology and discipline</span>
+                </li>
+              </ul>
+              <Link 
+                to="/blog"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                Learn More <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+
+            {/* Right Content - Video */}
+            <div className="flex justify-center">
+              <div className="w-full aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
+                <iframe 
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&si=M1txMgIEVcjR9o__" 
+                  title="YouTube video player" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerPolicy="strict-origin-when-cross-origin" 
+                  allowFullScreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Contact Form Section */}
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10">
           <div>

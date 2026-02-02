@@ -111,7 +111,7 @@ const TopNav = () => {
         <div className="flex justify-between items-center text-xs gap-4">
           <div className="flex items-center gap-4">
             <Mail className="w-4 h-4" />
-            <span className="text-xs">support@moneykrishna.com</span>
+            <span className="text-xs">moneykrishnaeducation@gmail.com</span>
           </div>
           <div className="flex items-center gap-4">
             <a 
