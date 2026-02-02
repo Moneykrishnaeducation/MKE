@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import bgImg from '../assets/bg_img.jpg';
 
 const About = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -19,19 +20,19 @@ const About = () => {
     setLoading(false);
   };
   return (
-    <div className="relative min-h-screen text-white font-sans">
+   <div className="min-h-[200vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
       {/* Chat Icon Floating Button */}
-      <button
+      {/* <button
         type="button"
         className="fixed bottom-8 right-8 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-transform duration-300 hover:scale-110"
         title="Chat with us or Book Now"
         onClick={() => setShowChatForm(true)}
       >
-        {/* Simple chat icon SVG */}
+       
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 15.75a2.25 2.25 0 01-2.25 2.25H6.18l-3.43 2.74A.75.75 0 012 20.25v-15A2.25 2.25 0 014.25 3h15.25a2.25 2.25 0 012.25 2.25v10.5z" />
         </svg>
-      </button>
+      </button> */}
 
       {/* Chat Form Modal */}
       {showChatForm && (
@@ -44,7 +45,7 @@ const About = () => {
             >
               &times;
             </button>
-            <h3 className="text-xl font-bold text-green-400 mb-4 text-center">Book Now for Free Trading Class</h3>
+            <h3 className="text-xl font-bold mb-4 text-center" style={{ color: '#1cb152' }}>Book Now for Free Trading Class</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <input type="text" placeholder="Your Name" className="w-full px-4 py-2 rounded  text-gray-500 border border-gray-700 focus:outline-none focus:border-green-400" required />
               <input type="email" placeholder="Your Email" className="w-full px-4 py-2 rounded  text-gray-500 border border-gray-700 focus:outline-none focus:border-green-400" required />
@@ -54,7 +55,7 @@ const About = () => {
                 {loading ? 'Booking...' : 'Book Free Class'}
               </button>
               {submitted && (
-                <div className="text-green-400 text-center font-semibold mt-2">Thank you! We received your request.</div>
+                <div className="text-center font-semibold mt-2" style={{ color: '#1cb152' }}>Thank you! We received your request.</div>
               )}
               {error && (
                 <div className="text-red-400 text-center font-semibold mt-2">{error}</div>
@@ -64,9 +65,7 @@ const About = () => {
         </div>
       )}
       {/* Background image, no overlay */}
-      <div className="absolute inset-0 -z-10">
-        {/* <img src="/trading.jpg" alt="Trading background" className="w-full h-full object-cover" /> */}
-      </div>
+      {/* Removed old background image div, now using CSS background */}
       <section className="max-w-5xl mx-auto px-4 py-12">
         <div className="mb-10">
           <h1 className="text-4xl sm:text-5xl font-bold text-green-400 mb-6">About Us</h1>
@@ -99,14 +98,14 @@ const About = () => {
               )}
             </div>
             <div className="border border-green-300 rounded-xl shadow-md transition-transform duration-300 hover:scale-105 hover:border-green-500 hover:shadow-xl p-6 bg-white">
-              <h2 className="text-xl sm:text-2xl font-semibold text-green-300 mb-4">Who We Are</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4" style={{ color: '#1cb152' }}>Who We Are</h2>
               <p className="text-black mb-6 max-w-2xl text-justify">Money Krishna Education is a leading platform dedicated to educating traders and investors about the stock market, forex, crypto, and options trading. Whether you're a beginner or an experienced trader, our goal is to help you make informed trading decisions through expert insights, strategies, and market analysis.</p>
             </div>
           </div>
           {/* 2nd row: What We Offer (left) + image right */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div className="border border-green-300 rounded-xl shadow-md transition-transform duration-300 hover:scale-105 hover:border-green-500 hover:shadow-xl p-6 bg-white">
-              <h3 className="text-lg font-semibold text-green-300 mb-2">What We Offer</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1cb152' }}>What We Offer</h3>
               <ul className="list-disc pl-6 text-black mb-6 space-y-1 text-justify">
                 <li>Comprehensive Trading Courses – Learn stock market basics, technical analysis, and advanced trading strategies.</li>
                 <li>Live Market Analysis – Stay updated with real-time insights on stocks, forex, and cryptocurrencies.</li>
@@ -118,7 +117,7 @@ const About = () => {
               <img
                 src="/trade.png"
                 alt="Stock Market Growth"
-                className="w-100 h-70 object-cover rounded-xl shadow-lg shadow-green-200/40 cursor-pointer transition-transform duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-green-200/70 animate-fadein"
+                className="w-100 h-70 object-cover bg-white rounded-xl shadow-lg shadow-green-200/40 cursor-pointer transition-transform duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-green-200/70 animate-fadein"
                 style={{ animation: 'popUp 0.6s cubic-bezier(.17,.67,.83,.67)' }}
                 onClick={() => setShowImageModal(true)}
               />
@@ -168,14 +167,14 @@ const About = () => {
               )}
             </div>
             <div className="border border-green-300 rounded-xl shadow-md transition-transform duration-300 hover:scale-105 hover:border-green-500 hover:shadow-xl p-6 bg-white">
-              <h3 className="text-lg font-semibold text-green-300 mb-2">Our Mission</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1cb152' }}>Our Mission</h3>
               <p className="text-black mb-6 max-w-2xl text-justify">We strive to provide high-quality trading education that empowers individuals to achieve financial freedom through smart investing. Our team of experienced traders and analysts offers real-time market updates, technical analysis, and trading strategies to help you succeed.</p>
             </div>
           </div>
           {/* 4th row: Why Choose Us? (left) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div className="border border-green-300 rounded-xl shadow-md transition-transform duration-300 hover:scale-105 hover:border-green-500 hover:shadow-xl p-6 bg-white">
-              <h3 className="text-lg font-semibold text-green-300 mb-2">Why Choose Us?</h3>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1cb152' }}>Why Choose Us?</h3>
               <ul className="list-disc pl-6 text-black mb-6 space-y-1 text-justify">
                 <li>Expert-Led Content – Our trading experts have years of experience in the financial markets.</li>
                 <li>Actionable Insights – Practical strategies that help you trade confidently.</li>
@@ -218,8 +217,8 @@ const About = () => {
             <div></div>
           </div>
         </div>
-        <div className="border-2 border-green-300 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 mb-4 transition duration-300 hover:border-green-500 hover:shadow-xl hover:scale-105">
-          <p className="font-semibold text-lg text-black">Take Control of Your Financial Future! Enroll Now and Start Your Journey to Consistent Trading Success!</p>
+        <div className="border-2 border-green-300 bg-white rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 mb-4 transition duration-300 hover:border-green-500 hover:shadow-xl hover:scale-105">
+          <p className="font-semibold text-sm text-black">Take Control of Your Financial Future! Enroll Now and Start Your Journey to Consistent Trading Success!</p>
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=naveen143mca@gmail.com&su=Book%20Free%20Class"
             target="_blank"
@@ -227,24 +226,7 @@ const About = () => {
             className="inline-block bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition animate-bounce text-base hover:[animation-play-state:paused]"
           >🚀 Book a free Class</a>
         </div>
-        {/* Contact & Book Now Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8  rounded-2xl p-8 shadow-lg">
-          {/* Left: Contact Info */}
-          <div className="flex flex-col justify-between">
-            {/* <div>
-              <h2 className="text-2xl font-bold text-green-300 mb-2">Trade Smart. Trade Confidently.</h2>
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">Contact Us:</h3>
-              <p className="text-lg font-semibold text-gray-600 mb-1">Get in Touch with Us</p>
-              <p className="text-gray-600 mb-4">Have questions about our trading courses, market analysis, or strategies? We’d love to hear from you!</p>
-              
-            </div> */}
-            {/* Social links removed */}
-          </div>
-          {/* Right: Book Now Form */}
-          {/* <div className="rounded-xl p-6 flex flex-col justify-center shadow-md" id="book-now-form">
-            The Book Now form is now shown as a modal via the chat button
-          </div> */}
-        </div>
+      
       
       </section>
     </div>
