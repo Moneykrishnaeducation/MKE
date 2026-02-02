@@ -20,7 +20,7 @@ const About = () => {
     setLoading(false);
   };
   return (
-   <div className="min-h-[200vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+   <div className="min-h-[200vh] relative bg-opacity-40" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
       {/* Chat Icon Floating Button */}
       {/* <button
         type="button"
