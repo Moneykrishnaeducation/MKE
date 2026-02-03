@@ -9,7 +9,7 @@ const Icon = ({ children }) => (
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-200 text-slate-800">
+    <footer className="fixed bottom-0 left-0 w-full bg-gray-200 text-slate-800 z-10">
       <div className="max-w-screen-xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           <div className="md:col-span-4">
