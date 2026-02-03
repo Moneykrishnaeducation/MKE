@@ -73,31 +73,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* Navigation Tabs */}
-      <div className="w-full shadow-sm border-b bg-gradient-to-r from-green-600 to-blue-500">
-        <div className="max-w-screen-xl mx-auto flex flex-wrap gap-8 px-4 py-4 font-bold text-white text-sm md:text-base">
-          {navItems.map((item) => (
-            <span
-              key={item}
-              className={`cursor-pointer transition px-2 py-1 rounded ${activeTab === item ? 'bg-white/20 text-white' : 'hover:text-blue-200'}`}
-              onClick={(e) => {
-                setActiveTab(item);
-                if (item === 'CONTACT US') {
-                  handleContactClick(e);
-                } else if (item === 'OUR COMPANY') {
-                  // Scroll to About section
-                  const aboutSection = document.getElementById('about-section');
-                  if (aboutSection) {
-                    aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }
-              }}
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* Main Section with Home.jsx overlay style */}
       <div id="about-section" className="min-h-[120vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
