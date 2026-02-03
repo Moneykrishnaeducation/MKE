@@ -11,23 +11,34 @@ import Blog1 from './Components/Blog1'
 import Blog2 from './Components/Blog2'
 import Blog3 from './Components/Blog3'
 import GoUpButton from './Components/GoUpButton'
-
+import BeginnerCourse from './Components/BeginnerCourse'
+import Intermediate from './Components/Intermediate'
+import AdvanceCourse from './Components/AdvanceCourse'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <TopNav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/mt5-education" element={<MT5Education />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/strategies" element={<Blog1 />} />
-        <Route path="/blog/ai" element={<Blog2 />} />
-        <Route path="/blog/become-trader" element={<Blog3 />} />
-      </Routes>
-      <Footer />
-      <GoUpButton />
+      <div className="min-h-screen flex flex-col">
+        <TopNav />
+
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/mt5-education" element={<MT5Education />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/strategies" element={<Blog1 />} />
+            <Route path="/blog/ai" element={<Blog2 />} />
+            <Route path="/blog/become-trader" element={<Blog3 />} />
+            <Route path="/courses/beginner" element={<BeginnerCourse />} />
+            <Route path="/courses/intermediate" element={<Intermediate />} />
+            <Route path="/courses/advanced" element={<AdvanceCourse />} />
+          </Routes>
+        </main>
+
+        <Footer />
+        <GoUpButton />
+      </div>
     </BrowserRouter>
   )
 }
