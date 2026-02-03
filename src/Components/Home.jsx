@@ -263,7 +263,7 @@ const Home = () => {
               <div className="flex gap-4 justify-center">
                 <Link
                   to="/course"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Join 
                 </Link>
