@@ -14,6 +14,7 @@ import GoUpButton from './Components/GoUpButton'
 import BeginnerCourse from './Components/BeginnerCourse'
 import Intermediate from './Components/Intermediate'
 import AdvanceCourse from './Components/AdvanceCourse'
+import Careers from './Components/Careers'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/mt5-education" element={<MT5Education />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/strategies" element={<Blog1 />} />
             <Route path="/blog/ai" element={<Blog2 />} />

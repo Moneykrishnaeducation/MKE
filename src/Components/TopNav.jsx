@@ -260,6 +260,12 @@ const TopNav = () => {
             >
               Policies
             </Link>
+             <Link 
+              to="/careers" 
+              className="text-slate-700 font-medium hover:text-green-600 transition-colors"
+            >
+              Careers
+            </Link>
             
           </nav>
 
