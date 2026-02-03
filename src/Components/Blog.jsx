@@ -33,7 +33,13 @@ const Blog = () => {
             {/* Cards */}
             <div className="grid gap-8 sm:grid-cols-2 mx-5 lg:grid-cols-3">
                 {blogSections.map(({ img, link, content, description }) => (
-                <div className="relative rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300" key={content}>
+                    <Link
+                        key={content}
+                        to={link}
+                        aria-label={`Read ${content}`}
+                        className="group cursor-pointer flex flex-col items-center gap-4 rounded-2xl bg-white/70 backdrop-blur border border-emerald-100 p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                    >
+                        <div className="relative rounded-2xl overflow-hidden bg-white">
 
                             {/* Image */}
                             <img
@@ -44,20 +50,11 @@ const Blog = () => {
                        group-hover:scale-105"
                             />
 
-                            <div className="p-6 flex flex-col items-start gap-3">
-                                <h3 className="text-lg font-semibold text-gray-900">{content}</h3>
-                                <p className="mt-2 text-sm text-gray-600">{description}</p>
-                                
-                                <Link
-                                    to={link}
-                                    aria-label={`Read ${content}`}
-                                    className="mt-4 self-start group cursor-pointer rounded-md bg-gradient-to-r from-blue-600 to-green-500 text-white backdrop-blur border border-emerald-100 px-4 py-2 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-300"
-                                >
-                                    Read More
-                                </Link>
-                            </div>
-
                         </div>
+
+                        <h3 className="text-lg font-semibold text-gray-900">{content}</h3>
+                        <p className="mt-2 text-sm text-gray-600">{description} <span className="text-emerald-600 font-medium underline decoration-emerald-500">Read More...</span></p> 
+                    </Link>
 
                 ))}
             </div>
