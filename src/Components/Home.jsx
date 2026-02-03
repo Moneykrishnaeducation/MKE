@@ -7,9 +7,6 @@ import sirImg from '../assets/sir.png'
 
 const Home = () => {
   const [usdPrice, setUsdPrice] = useState('1.0850')
-  const prevUsdRef = useRef(usdPrice)
-  const [priceUpdated, setPriceUpdated] = useState(false)
-  const [lastUpdated, setLastUpdated] = useState(null)
   const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
@@ -38,50 +35,19 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPrice = async () => {
-      // Try primary source, then fallback if necessary
-      const tryPrimary = async () => {
-        const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
-        if (!res.ok) throw new Error(`Primary API failed: ${res.status}`)
-        const data = await res.json()
-        if (!data || !data.rates || !data.rates.INR) throw new Error('Primary API missing INR rate')
-        return Number(data.rates.INR)
-      }
-
-      const tryFallback = async () => {
-        // exchangerate.host is free and supports CORS
-        const res = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=INR')
-        if (!res.ok) throw new Error(`Fallback API failed: ${res.status}`)
-        const data = await res.json()
-        if (!data || !data.rates || !data.rates.INR) throw new Error('Fallback API missing INR rate')
-        return Number(data.rates.INR)
-      }
-
       try {
-        let rate = null
-        try {
-          rate = await tryPrimary()
-        } catch (primaryErr) {
-          console.warn('Primary exchange API failed, trying fallback:', primaryErr)
-          rate = await tryFallback()
-        }
-
-        const formatted = rate ? rate.toFixed(2) : usdPrice
-
-        if (formatted !== prevUsdRef.current) {
-          prevUsdRef.current = formatted
-          setUsdPrice(formatted)
-          setPriceUpdated(true)
-          setTimeout(() => setPriceUpdated(false), 1400)
-        }
-        setLastUpdated(new Date().toISOString())
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
+        const data = await response.json()
+        const eurPrice = data.rates.INR
+        setUsdPrice(eurPrice.toFixed(2))
       } catch (error) {
-        console.error('All exchange API attempts failed:', error)
+        console.log('Error fetching price:', error)
+        setUsdPrice('1.0850')
       }
     }
 
-    // initial fetch + interval
     fetchPrice()
-    const interval = setInterval(fetchPrice, 10000) // Update every 10 seconds
+    const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
     return () => clearInterval(interval)
   }, [])
 
@@ -273,10 +239,6 @@ const Home = () => {
         .animate-scale-in {
           animation: scaleIn 0.6s ease-out;
         }
-        .price-flash {
-          box-shadow: 0 8px 20px rgba(16,185,129,0.18);
-          transform: translateY(-2px);
-        }
         .scroll-animate {
           opacity: 0;
           transform: translateY(30px);
@@ -331,7 +293,7 @@ const Home = () => {
         {/* Live USD Price */}
         <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/INR</p>
-          <p aria-live="polite" className={`text-green-600 text-sm text-center font-bold transition-all ${priceUpdated ? 'price-flash' : ''}`}>{usdPrice}</p>
+          <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
         </div>
 
         {/* Content */}
