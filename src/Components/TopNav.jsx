@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, ChevronDown, Menu, X } from 'lucide-react'
 import logo from '../assets/logo of MKE.webp'
@@ -9,6 +9,8 @@ const TopNav = () => {
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const dropdownRef = useRef(null)
+  const mobileRef = useRef(null)
 
   const scrollToContactOnPage = () => {
     const el = document.getElementById('contact')
@@ -34,6 +36,43 @@ const TopNav = () => {
     // Otherwise navigate to home and instruct it to scroll
     navigate('/', { state: { scrollToContact: true } })
     setMobileMenuOpen(false)
+  }
+
+  // Close menus on outside click or Escape
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpenDropdown(null)
+      }
+      if (mobileRef.current && !mobileRef.current.contains(e.target)) {
+        // don't automatically close mobile menu when clicking inside it
+      }
+    }
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setOpenDropdown(null)
+        setMobileMenuOpen(false)
+        setMobileCoursesOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', onDocClick)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onDocClick)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
+
+  // Close any open dropdown when navigating
+  useEffect(() => {
+    setOpenDropdown(null)
+  }, [location.pathname])
+
+  const isActive = (path) => {
+    if (path === '/courses') return location.pathname.startsWith('/courses')
+    return location.pathname === path
   }
 
   return (
@@ -202,16 +241,16 @@ const TopNav = () => {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-8 nav-group">
+          <nav className="hidden md:flex items-center space-x-8 nav-group" role="navigation" aria-label="Main Navigation">
             <Link 
               to="/" 
-              className="text-slate-700 font-medium hover:text-green-600 transition-colors"
+              className={`text-slate-700 font-medium hover:text-green-600 transition-colors ${isActive('/') ? 'text-green-600' : ''}`}
             >
               Home
             </Link>
             <Link 
               to="/about" 
-              className="text-slate-700 font-medium hover:text-green-600 transition-colors"
+              className={`text-slate-700 font-medium hover:text-green-600 transition-colors ${isActive('/about') ? 'text-green-600' : ''}`}
             >
               About
             </Link>
@@ -219,22 +258,29 @@ const TopNav = () => {
             {/* Courses Dropdown */}
             <div 
               className="relative"
+              ref={dropdownRef}
               onMouseEnter={() => setOpenDropdown('courses')}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <button className="text-slate-700 font-medium hover:text-green-600 transition-colors flex items-center gap-1">
+              <button
+                className={`text-slate-700 font-medium hover:text-green-600 transition-colors flex items-center gap-1 ${isActive('/courses') ? 'text-green-600' : ''}`}
+                aria-haspopup="menu"
+                aria-expanded={openDropdown === 'courses'}
+                aria-controls="courses-menu"
+                onClick={() => setOpenDropdown(openDropdown === 'courses' ? null : 'courses')}
+              >
                 Courses
                 <ChevronDown className="w-4 h-4" />
               </button>
               {openDropdown === 'courses' && (
-                <div className="dropdown-menu">
-                  <Link to="/courses/beginner" className="dropdown-item">
+                <div id="courses-menu" role="menu" className="dropdown-menu" aria-label="Courses">
+                  <Link to="/courses/beginner" className="dropdown-item" role="menuitem" tabIndex="0">
                     Beginner
                   </Link>
-                  <Link to="/courses/intermediate" className="dropdown-item">
+                  <Link to="/courses/intermediate" className="dropdown-item" role="menuitem" tabIndex="0">
                     Intermediate
                   </Link>
-                  <Link to="/courses/advanced" className="dropdown-item">
+                  <Link to="/courses/advanced" className="dropdown-item" role="menuitem" tabIndex="0">
                     Advanced
                   </Link>
                 </div>
@@ -273,6 +319,7 @@ const TopNav = () => {
           <button
             onClick={handleContactClick}
             className="hidden md:flex px-6 h-10 items-center rounded-full border-2 hover:border-none border-green-600 text-green-600 font-semibold hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 hover:text-white hover:border-transparent transition-all"
+            aria-label="Contact us"
           >
             Contact Us
           </button>
@@ -281,13 +328,16 @@ const TopNav = () => {
           <button 
             className="md:hidden text-slate-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-controls="mobile-menu"
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden bg-white border-t border-slate-200 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div id="mobile-menu" ref={mobileRef} className={`md:hidden bg-white border-t border-slate-200 overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
             <Link 
               to="/" 
               className="mobile-nav-link"
@@ -310,7 +360,7 @@ const TopNav = () => {
                 onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
               >
                 Courses
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 flex-shrink-0 ${mobileCoursesOpen ? 'rotate-90' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 flex-shrink-0 ${mobileCoursesOpen ? 'rotate-180' : ''}`} />
               </button>
               <div className={`mobile-courses-dropdown ${mobileCoursesOpen ? 'open' : ''}`}>
                   <Link 
@@ -366,13 +416,13 @@ const TopNav = () => {
             >
               Policies
             </Link>
-            <Link 
+            {/* <Link 
               to="/login" 
               className="mobile-nav-link bg-green-50 text-green-600 font-semibold"
               onClick={() => setMobileMenuOpen(false)}
             >
               Login
-            </Link>
+            </Link> */}
           </div>
       </div>
     </header>
