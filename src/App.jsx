@@ -10,6 +10,7 @@ import Footer from './Components/Footer'
 import Blog1 from './Components/Blog1'
 import Blog2 from './Components/Blog2'
 import Blog3 from './Components/Blog3'
+import GoUpButton from './Components/GoUpButton'
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/blog/become-trader" element={<Blog3 />} />
       </Routes>
       <Footer />
+      <GoUpButton />
     </BrowserRouter>
   )
 }

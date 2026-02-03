@@ -11,3 +11,76 @@ html, body {
   width: 100%;
   overflow-x: hidden;
 }
+
+/* Go Up Button styles */
+.go-up-button {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.2);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 9999;
+}
+.go-up-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.go-up-button:hover {
+  filter: brightness(0.9);
+}
+
+@media (max-width: 480px) {
+  .go-up-button { right: 14px; bottom: 18px; width:44px; height:44px }
+}
+
+/* Improved Go Up Button visuals & accessibility */
+.go-up-button {
+  position: fixed;
+  right: 22px;
+  bottom: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(14,165,233,0.18), 0 2px 6px rgba(2,6,23,0.08);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  transition: opacity 200ms cubic-bezier(.2,.9,.3,1), transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 120ms;
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.go-up-button svg { width: 20px; height: 20px; transform: translateY(1px); }
+.go-up-button.visible { opacity: 1; transform: translateY(0) scale(1); }
+.go-up-button:hover { transform: translateY(-4px) scale(1.06); box-shadow: 0 18px 40px rgba(14,165,233,0.24); }
+.go-up-button:focus { outline: none; box-shadow: 0 0 0 4px rgba(14,165,233,0.12); }
+
+@media (max-width: 480px) {
+  .go-up-button { right: 14px; bottom: 18px; width:48px; height:48px }
+  .go-up-button svg { width:18px; height:18px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .go-up-button, .go-up-button.visible, .go-up-button:hover { transition: none; transform: none; }
+}
+
+/* Fallback screen-reader helper if tailwind's `sr-only` isn't available */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
