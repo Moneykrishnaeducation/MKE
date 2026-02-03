@@ -79,7 +79,34 @@ const Home = () => {
       }
     }
   }
+  const [status, setStatus] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    const formData = new FormData(e.target);
+    formData.append(
+      "access_key","088ae8ac-3c2c-4bdc-a1f4-e0b3fe96b4e7"
+    );
+    formData.append("from_name", "Website Contact Form");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      setStatus("Message sent successfully ✅");
+      e.target.reset();
+    } else {
+      console.error(result);
+      setStatus("Something went wrong ❌");
+    }
+  };
+  
 
   return (
     <>
@@ -525,19 +552,29 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Contact Form Section */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10" id="contact" data-animate>
+         {/* Contact Form Section */}
+        <div
+          className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10"
+          id="contact"
+        >
           <div>
-            <h2 className={`text-4xl font-bold text-white mb-6 text-center ${visibleSections['contact'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Get In Touch</h2>
-            <form className={`grid md:grid-cols-2 gap-6 max-w-4xl mx-auto ${visibleSections['contact'] ? 'scroll-animate visible' : 'scroll-animate'}`} onSubmit={(e) => {
-              e.preventDefault()
-              alert('Thank you for your message! We will get back to you soon.')
-            }}>
+            <h2 className="text-4xl font-bold text-white mb-6 text-center">
+              Get In Touch
+            </h2>
+
+            <form
+              className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+              onSubmit={handleSubmit}
+            >
+              {/* Hidden spam protection */}
+              <input type="checkbox" name="botcheck" className="hidden" />
+
               <div>
                 <label className="block text-white font-semibold mb-2">Name</label>
-                <input 
-                  type="text" 
-                  placeholder="Your Name" 
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                   required
                 />
@@ -545,49 +582,63 @@ const Home = () => {
 
               <div>
                 <label className="block text-white font-semibold mb-2">Email</label>
-                <input 
-                  type="email" 
-                  placeholder="your@email.com" 
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="your@email.com"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-white font-semibold mb-2">Phone (Optional)</label>
-                <input 
-                  type="tel" 
-                  placeholder="+1 (555) 000-0000" 
+                <label className="block text-white font-semibold mb-2">
+                  Phone (Optional)
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+1 (555) 000-0000"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-white font-semibold mb-2">Subject</label>
-                <input 
-                  type="text" 
-                  placeholder="How can we help?" 
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="How can we help?"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
                   required
                 />
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-white font-semibold mb-2">Message</label>
-                <textarea 
-                  placeholder="Your message here..." 
+                <label className="block text-white font-semibold mb-2">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  placeholder="Your message here..."
                   rows="4"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors resize-none"
                   required
                 ></textarea>
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="md:col-span-2 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
               >
                 Send Message
               </button>
+
+              {status && (
+                <p className="md:col-span-2 text-center text-white mt-2">
+                  {status}
+                </p>
+              )}
             </form>
           </div>
         </div>
