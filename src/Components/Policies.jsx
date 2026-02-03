@@ -2,7 +2,7 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-sky-50 to-white">
+    <div className="min-h-screen bg-[url('/src/assets/bg_img.jpg')] bg-cover bg-center bg-fixed ">
       <div className="w-full px-6 sm:px-10 lg:px-16 py-12">
 
 <h1
@@ -78,7 +78,7 @@ const PrivacyPolicy = () => {
               key={index}
               className="
                 group relative rounded-2xl
-                bg-white/70 backdrop-blur-xl
+                bg-white backdrop-blur-xl
                 border border-white/50
                 p-7
                 shadow-[0_8px_30px_rgba(0,0,0,0.05)]
@@ -151,13 +151,6 @@ const PrivacyPolicy = () => {
           ))}
         </div>
 
-        {/* Footer Disclaimer */}
-<div className="mt-16 flex justify-center">
-  <p className="text-xs sm:text-sm text-slate-600 bg-white/60 backdrop-blur-md
-    px-6 py-2 rounded-full border border-white/50 shadow-sm text-center whitespace-nowrap">
-    This Privacy Policy is provided for informational purposes only and does not constitute legal advice. Please consult a qualified legal professional to ensure compliance with applicable laws.
-  </p>
-</div>
       </div>
     </div>
   );

@@ -37,11 +37,8 @@ const App = () => {
             <Route path="/courses/beginner" element={<BeginnerCourse />} />
             <Route path="/courses/intermediate" element={<Intermediate />} />
             <Route path="/courses/advanced" element={<AdvanceCourse />} />
-<<<<<<< HEAD
             <Route path="/terms" element={<Term />} />
-=======
             <Route path="/disclaimer" element={<Policies />} />
->>>>>>> c9b31a1577214ff9c0563927337da4bff1ac3f87
           </Routes>
         </main>
 
