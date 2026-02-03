@@ -3,9 +3,11 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight } from 'lucide-react'
 import bgImg from '../assets/bg_img.jpg'
+import sirImg from '../assets/sir.png'
 
 const Home = () => {
   const [usdPrice, setUsdPrice] = useState('1.0850')
+  const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
 
@@ -25,6 +27,32 @@ const Home = () => {
     fetchPrice()
     const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
     return () => clearInterval(interval)
+  }, [])
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setVisibleSections((prev) => ({
+            ...prev,
+            [entry.target.id]: true
+          }))
+          observer.unobserve(entry.target)
+        }
+      })
+    }, observerOptions)
+
+    // Observe all sections
+    const sections = document.querySelectorAll('[data-animate]')
+    sections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
   }, [])
 
   // Scroll to contact section when navigated with state{scrollToContact: true}
@@ -162,6 +190,34 @@ const Home = () => {
         .animate-scale-in {
           animation: scaleIn 0.6s ease-out;
         }
+        .scroll-animate {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        .scroll-animate.visible {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .scroll-animate-left {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        .scroll-animate-left.visible {
+          animation: slideInLeft 0.8s ease-out forwards;
+        }
+        .scroll-animate-right {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        .scroll-animate-right.visible {
+          animation: slideInRight 0.8s ease-out forwards;
+        }
+        .scroll-animate-scale {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        .scroll-animate-scale.visible {
+          animation: scaleIn 0.8s ease-out forwards;
+        }
         .gradient-text {
           background: linear-gradient(135deg, #16a34a, #0ea5e9, #16a34a, #0ea5e9);
           background-size: 300% 300%;
@@ -192,10 +248,10 @@ const Home = () => {
         </div>
 
         {/* Content */}
-        <div className="max-w-screen-2xl h-[calc(100vh-8vh)] mx-auto px-4 sm:px-6 lg:px-8 py-32 h-full flex items-center relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center w-full">
+        <div className="max-w-screen-2xl h-screen (100vh) mx-auto px-4 sm:px-6 lg:px-8 py-32 h-full flex items-center relative z-10" data-animate id="hero-section">
+          <div className="grid md:grid-cols-[1fr_0.67fr] gap-12 items-center justify-items-center w-full">
             {/* Left Content */}
-            <div className="text-center animate-slide-in-left">
+            <div className={`text-center ${visibleSections['hero-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
               <h1 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight gradient-text">
                 Welcome to Moneykrishna Education
               </h1>
@@ -207,7 +263,7 @@ const Home = () => {
               <div className="flex gap-4 justify-center">
                 <Link
                   to="/course"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Join 
                 </Link>
@@ -223,46 +279,46 @@ const Home = () => {
             </div>
 
             {/* Right Image - Trading Image */}
-            <div className="flex justify-center items-center w-full animate-slide-in-right">
+            <div className={`flex justify-center items-center w-full h-[580px] ${visibleSections['hero-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
               <img 
-                src="https://images.unsplash.com/photo-1611974891405-8f5f59aae4d2?w=800&q=80" 
+                src={sirImg}
                 alt="Trading Chart" 
-                className="w-full h-auto max-w-2xl rounded-lg shadow-lg"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
         </div>
 
         {/* Features Grid - Full Width Background */}
-        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10">
+        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10" data-animate id="features-section">
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Why Choose Us</h2>
+            <h2 className={`text-3xl font-bold text-slate-900 mb-12 text-center ${visibleSections['features-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Why Choose Us</h2>
             <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
-              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.1s'}}>
                 <BookOpen className="w-10 h-10 text-green-600 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-slate-900 mb-3">Structured Learning Paths</h3>
                 <p className="text-sm text-slate-600">Beginner to advanced forex & stock market courses with step-by-step guidance.</p>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.2s'}}>
                 <TrendingUp className="w-10 h-10 text-blue-600 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-slate-900 mb-3">Live Trading & Webinars</h3>
                 <p className="text-sm text-slate-600">Real-time market sessions with expert analysis and live Q&A.</p>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.3s'}}>
                 <Zap className="w-10 h-10 text-yellow-600 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-slate-900 mb-3">Practice Trading Zone</h3>
                 <p className="text-sm text-slate-600">Trade in a risk-free environment and test proven strategies.</p>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.4s'}}>
                 <Lightbulb className="w-10 h-10 text-orange-600 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-slate-900 mb-3">Smart Investment Hub</h3>
                 <p className="text-sm text-slate-600">Tools, insights, and tips to make better trading decisions.</p>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
+              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.5s'}}>
                 <Users className="w-10 h-10 text-purple-600 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-slate-900 mb-3">Community & Mentorship</h3>
                 <p className="text-sm text-slate-600">Learn with a global trader community and expert mentorship.</p>
@@ -272,10 +328,10 @@ const Home = () => {
         </div>
 
         {/* Video Section with Content */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20" data-animate id="video-section">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="space-y-6">
+            <div className={`space-y-6 ${visibleSections['video-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
               <h2 className="text-4xl font-bold text-white leading-tight">Master Trading with Expert Guidance</h2>
               <p className="text-lg text-white/90">
                 Watch our comprehensive trading masterclass where experienced traders share proven strategies and market insights. Learn how to analyze charts, identify opportunities, and execute trades with confidence.
@@ -307,7 +363,7 @@ const Home = () => {
             </div>
 
             {/* Right Content - Video */}
-            <div className="flex justify-center">
+            <div className={`flex justify-center ${visibleSections['video-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
               <div className="w-full aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
                 <iframe 
                   className="w-full h-full"
@@ -324,10 +380,10 @@ const Home = () => {
         </div>
 
         {/* Customer Reviews Section */}
-        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10">
+        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10" data-animate id="reviews-section">
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-slate-900 mb-2 text-center">What Our Students Say</h2>
-            <p className="text-center text-slate-600 mb-12 text-lg">Join thousands of successful traders who have transformed their trading journey with us</p>
+            <h2 className={`text-4xl font-bold text-slate-900 mb-2 text-center ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>What Our Students Say</h2>
+            <p className={`text-center text-slate-600 mb-12 text-lg ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Join thousands of successful traders who have transformed their trading journey with us</p>
             
             <div className="relative">
               {/* Scroll Arrows */}
@@ -354,7 +410,7 @@ const Home = () => {
                 style={{ scrollBehavior: 'smooth' }}
               >
                 {/* Review 1 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.1s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -368,8 +424,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 2 */}
-                {/* Review 2 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.2s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -383,7 +438,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 3 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.3s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -397,7 +452,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 4 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.4s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -411,7 +466,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 5 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.5s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -425,7 +480,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 6 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.6s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -439,7 +494,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 7 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.7s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -453,7 +508,7 @@ const Home = () => {
                 </div>
 
                 {/* Review 8 */}
-                <div className="bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96">
+                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.8s'}}>
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <span key={i} className="text-yellow-400 text-xl">★</span>
@@ -471,10 +526,10 @@ const Home = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10" id="contact">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10" id="contact" data-animate>
           <div>
-            <h2 className="text-4xl font-bold text-white mb-6 text-center">Get In Touch</h2>
-            <form className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto" onSubmit={(e) => {
+            <h2 className={`text-4xl font-bold text-white mb-6 text-center ${visibleSections['contact'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Get In Touch</h2>
+            <form className={`grid md:grid-cols-2 gap-6 max-w-4xl mx-auto ${visibleSections['contact'] ? 'scroll-animate visible' : 'scroll-animate'}`} onSubmit={(e) => {
               e.preventDefault()
               alert('Thank you for your message! We will get back to you soon.')
             }}>
