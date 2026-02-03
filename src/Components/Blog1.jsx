@@ -50,15 +50,30 @@ const Blog1 = () => {
   ]
 
   return (
-    <main className="bg-gradient-to-b from-blue-50 to-green-50">
+    <main className="bg-[url('/src/assets/bg_img.jpg')] bg-cover bg-center bg-fixed from-blue-50 to-green-50">
       <section className="container mx-auto max-w-6xl px-6 py-14">
-
+          <div className=" hidden lg:block">
+            <a
+              href="/blog"
+                className="absolute right-10 top-30 z-100 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-green-500 px-6 py-3 font-semibold text-white shadow hover:opacity-90"
+              >
+              Explore Blog
+            </a>
+          </div>
+          <div className=" lg:hidden block">
+            <a
+              href="/blog"
+                className="absolute right-10 top-30 z-100 pb-2 rounded-full text-2xl inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-green-500 px-3 py-1/2 font-semibold text-white shadow hover:opacity-90"
+              >
+              &times;
+            </a>
+          </div>
         {/* Hero */}
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-extrabold text-blue-700">
+          <h1 className="text-4xl font-extrabold text-white">
             Top Trading Strategies for Consistent Profits
           </h1>
-          <p className="mt-3 max-w-3xl mx-auto text-gray-700">
+          <p className="mt-3 max-w-3xl mx-auto text-gray-300">
             Discover proven strategies like scalping, swing trading, day trading,
             long-term investing, and algorithmic trading to match your trading goals.
           </p>

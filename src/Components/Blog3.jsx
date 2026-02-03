@@ -32,8 +32,23 @@ const Blog3 = () => {
     ]
 
     return (
-        <main className="bg-gradient-to-b from-white via-emerald-50 to-blue-50">
-
+        <main className="bg-[url('/src/assets/bg_img.jpg')] bg-cover bg-center bg-fixed">
+            <div className=" hidden lg:block">
+            <a
+              href="/blog"
+                className="absolute right-10 top-30 z-100 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-green-500 px-6 py-3 font-semibold text-white shadow hover:opacity-90"
+              >
+              Explore Blog
+            </a>
+          </div>
+          <div className=" lg:hidden block">
+            <a
+              href="/blog"
+                className="absolute right-10 top-30 z-100 pb-2 rounded-full text-2xl inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-green-500 px-3 py-1/2 font-semibold text-white shadow hover:opacity-90"
+              >
+              &times;
+            </a>
+          </div>
             {/* Hero */}
             <section className="relative bg-gradient-to-r from-emerald-600 to-blue-600 py-20">
                 <div className="container mx-auto max-w-6xl px-6 text-white">
@@ -117,13 +132,13 @@ const Blog3 = () => {
 
                         <div className="mt-6 flex flex-wrap gap-4">
                             <a
-                                href="#"
+                                href=""
                                 className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-emerald-600 hover:bg-emerald-50"
                             >
                                 View Courses
                             </a>
                             <a
-                                href="#"
+                                href=""
                                 className="rounded-md border border-white px-6 py-3 text-sm font-semibold hover:bg-white/10"
                             >
                                 Join Webinar
