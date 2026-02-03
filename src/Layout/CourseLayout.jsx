@@ -2,7 +2,7 @@ import React from "react"
 
 const CourseLayout = ({ title, level, children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black text-white">
+    <div className="min-h-screen bg-[url('/src/assets/bg_img.jpg')] bg-cover bg-center bg-fixed text-white">
       <div className="max-w-6xl mx-auto px-6 py-12">
         
         <div className="mb-10">

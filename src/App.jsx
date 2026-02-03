@@ -5,6 +5,7 @@ import Home from './Components/Home'
 import About from './Components/About'
 import MT5Education from './Components/MT5Education'
 import Blog from './Components/Blog'
+import Policies from './Components/Policies'
 
 import Footer from './Components/Footer'
 import Blog1 from './Components/Blog1'
@@ -36,7 +37,11 @@ const App = () => {
             <Route path="/courses/beginner" element={<BeginnerCourse />} />
             <Route path="/courses/intermediate" element={<Intermediate />} />
             <Route path="/courses/advanced" element={<AdvanceCourse />} />
+<<<<<<< HEAD
             <Route path="/terms" element={<Term />} />
+=======
+            <Route path="/disclaimer" element={<Policies />} />
+>>>>>>> c9b31a1577214ff9c0563927337da4bff1ac3f87
           </Routes>
         </main>
 
