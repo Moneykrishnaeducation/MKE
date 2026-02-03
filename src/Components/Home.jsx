@@ -279,11 +279,11 @@ const Home = () => {
             </div>
 
             {/* Right Image - Trading Image */}
-            <div className={`flex justify-center items-center w-full h-[500px] ${visibleSections['hero-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+            <div className={`flex justify-center items-center w-full h-[580px] ${visibleSections['hero-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
               <img 
                 src={sirImg}
                 alt="Trading Chart" 
-                className="w-full h-full object-cover rounded-lg shadow-2xl drop-shadow-2xl"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
