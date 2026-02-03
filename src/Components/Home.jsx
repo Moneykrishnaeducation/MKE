@@ -7,25 +7,81 @@ import sirImg from '../assets/sir.png'
 
 const Home = () => {
   const [usdPrice, setUsdPrice] = useState('1.0850')
+  const prevUsdRef = useRef(usdPrice)
+  const [priceUpdated, setPriceUpdated] = useState(false)
+  const [lastUpdated, setLastUpdated] = useState(null)
   const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
+  const [heroMinHeight, setHeroMinHeight] = useState(null)
 
   useEffect(() => {
-    const fetchPrice = async () => {
+    // Calculate header + topbar height and set hero min-height so hero fills visible viewport
+    const updateHeroHeight = () => {
       try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
-        const data = await response.json()
-        const eurPrice = data.rates.INR
-        setUsdPrice(eurPrice.toFixed(2))
-      } catch (error) {
-        console.log('Error fetching price:', error)
-        setUsdPrice('1.0850')
+        const header = document.querySelector('header')
+        const topbar = document.querySelector('div.bg-gradient-to-r')
+        const headerHeight = header ? header.offsetHeight : 0
+        const topbarHeight = topbar ? topbar.offsetHeight : 0
+        const total = headerHeight + topbarHeight
+        // Use calc with px offset to ensure hero occupies remaining viewport
+        setHeroMinHeight(`calc(100vh - ${total}px)`)
+      } catch (e) {
+        setHeroMinHeight(null)
       }
     }
 
+    updateHeroHeight()
+    window.addEventListener('resize', updateHeroHeight)
+    return () => window.removeEventListener('resize', updateHeroHeight)
+  }, [])
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      // Try primary source, then fallback if necessary
+      const tryPrimary = async () => {
+        const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
+        if (!res.ok) throw new Error(`Primary API failed: ${res.status}`)
+        const data = await res.json()
+        if (!data || !data.rates || !data.rates.INR) throw new Error('Primary API missing INR rate')
+        return Number(data.rates.INR)
+      }
+
+      const tryFallback = async () => {
+        // exchangerate.host is free and supports CORS
+        const res = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=INR')
+        if (!res.ok) throw new Error(`Fallback API failed: ${res.status}`)
+        const data = await res.json()
+        if (!data || !data.rates || !data.rates.INR) throw new Error('Fallback API missing INR rate')
+        return Number(data.rates.INR)
+      }
+
+      try {
+        let rate = null
+        try {
+          rate = await tryPrimary()
+        } catch (primaryErr) {
+          console.warn('Primary exchange API failed, trying fallback:', primaryErr)
+          rate = await tryFallback()
+        }
+
+        const formatted = rate ? rate.toFixed(2) : usdPrice
+
+        if (formatted !== prevUsdRef.current) {
+          prevUsdRef.current = formatted
+          setUsdPrice(formatted)
+          setPriceUpdated(true)
+          setTimeout(() => setPriceUpdated(false), 1400)
+        }
+        setLastUpdated(new Date().toISOString())
+      } catch (error) {
+        console.error('All exchange API attempts failed:', error)
+      }
+    }
+
+    // initial fetch + interval
     fetchPrice()
-    const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
+    const interval = setInterval(fetchPrice, 10000) // Update every 10 seconds
     return () => clearInterval(interval)
   }, [])
 
@@ -217,6 +273,10 @@ const Home = () => {
         .animate-scale-in {
           animation: scaleIn 0.6s ease-out;
         }
+        .price-flash {
+          box-shadow: 0 8px 20px rgba(16,185,129,0.18);
+          transform: translateY(-2px);
+        }
         .scroll-animate {
           opacity: 0;
           transform: translateY(30px);
@@ -271,46 +331,65 @@ const Home = () => {
         {/* Live USD Price */}
         <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/INR</p>
-          <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
+          <p aria-live="polite" className={`text-green-600 text-sm text-center font-bold transition-all ${priceUpdated ? 'price-flash' : ''}`}>{usdPrice}</p>
         </div>
 
         {/* Content */}
-        <div className="max-w-screen-2xl h-screen (100vh) mx-auto px-4 sm:px-6 lg:px-8 py-32 h-full flex items-center relative z-10" data-animate id="hero-section">
-          <div className="grid md:grid-cols-[1fr_0.67fr] gap-12 items-center justify-items-center w-full">
+        <div className="max-w-screen-2xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-28 flex items-center relative z-10" data-animate id="hero-section" role="banner" aria-labelledby="hero-heading" aria-describedby="hero-subheading" style={{ minHeight: heroMinHeight || '100vh' }}>
+          <div className="grid md:grid-cols-[1fr_0.9fr] gap-12 items-center justify-items-center w-full relative z-10">
             {/* Left Content */}
-            <div className={`text-center ${visibleSections['hero-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
-              <h1 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight gradient-text">
-                Welcome to Moneykrishna Education
+            <div className={`text-center md:text-left ${visibleSections['hero-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
+              <h1 id="hero-heading" className="text-3xl lg:text-5xl font-extrabold mb-4 leading-tight text-white">
+                Trade Confidently. Learn Practically.
               </h1>
               
-              <p className="text-lg text-white mb-8 leading-relaxed max-w-md mx-auto animate-fade-in-up">
-                Learn MT5 trading and master financial markets with our comprehensive education platform.
+              <p id="hero-subheading" className="text-lg text-white/90 mb-6 leading-relaxed max-w-xl mx-auto md:mx-0 animate-fade-in-up">
+                Practical MT5 trading courses, live sessions, and hands-on mentorship — designed to move you from theory to consistent results.
               </p>
 
-              <div className="flex gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
                 <Link
                   to="/course"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  aria-label="Join course - start learning with MoneyKrishna"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
-                  Join 
+                  Start Free Trial
                 </Link>
                 <a
                   href="https://youtu.be/kEI9B1ISUTY?si=ZfEU6uDeyHirgpmh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  aria-label="Watch introduction video"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
-                  Watch Introduction <ArrowRight className="w-5 h-5" />
+                  Watch Intro <ArrowRight className="w-4 h-4" />
                 </a>
+              </div>
+
+              <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 text-sm text-white/90">
+                <div className="flex items-center gap-2">
+                  <span className="inline-block bg-white/10 text-white px-2 py-1 rounded-full">⭐ 4.9/5</span>
+                  <span>Trusted by 10k+ students</span>
+                </div>
+                <div className="hidden sm:block border-l border-white/20 h-4"></div>
+                <div className="flex items-center gap-2 text-white/80">
+                  <span className="font-medium">Live classes</span>
+                  <span className="text-sm text-white/70">•</span>
+                  <span className="font-medium">Mentorship</span>
+                </div>
               </div>
             </div>
 
             {/* Right Image - Trading Image */}
-            <div className={`flex justify-center items-center w-full h-[580px] ${visibleSections['hero-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+            <div className={`flex justify-center items-end w-full h-[580px] overflow-hidden ${visibleSections['hero-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
               <img 
                 src={sirImg}
                 alt="Trading Chart" 
                 className="w-full h-full object-cover"
+                style={{
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
+                  maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
+                }}
               />
             </div>
           </div>
