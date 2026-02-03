@@ -15,6 +15,7 @@ import BeginnerCourse from './Components/BeginnerCourse'
 import Intermediate from './Components/Intermediate'
 import AdvanceCourse from './Components/AdvanceCourse'
 import Careers from './Components/Careers'
+import Term from './Components/Term'
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/courses/beginner" element={<BeginnerCourse />} />
             <Route path="/courses/intermediate" element={<Intermediate />} />
             <Route path="/courses/advanced" element={<AdvanceCourse />} />
+            <Route path="/terms" element={<Term />} />
           </Routes>
         </main>
 

@@ -110,7 +110,7 @@ const Footer = () => {
         <div className="max-w-screen-xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between text-gray-400">
           <div className='text-gray-800'>©2024 - {new Date().getFullYear()} Moneykrishna Education</div>
           <div className="mt-3 md:mt-0">
-            <a href="#" className="text-gray-800 hover:underline  rounded">Terms &amp; Conditions</a>
+            <Link to="/terms" className="text-gray-800 hover:underline  rounded">Terms &amp; Conditions</Link>
             <span className="mx-2">·</span>
             <a href="#" className="text-gray-800 hover:underline  rounded">Privacy Policy</a>
           </div>
