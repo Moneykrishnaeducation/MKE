@@ -23,15 +23,17 @@ const careerAreas = [
     ],
   },
   {
-    title: 'Technology & Platform Roles',
-    icon: '💻',
-    roles: [
-      'Android App Developer',
-      'Web Developer (Frontend / Backend)',
-      'UI/UX Designer',
-      'LMS Administrator',
-    ],
-  },
+  title: 'Education & Learning Roles',
+  icon: '📚',
+  roles: [
+    'Trading Education Instructor',
+    'Financial Literacy Trainer',
+    'Course Curriculum Developer',
+    'Online Class Coordinator',
+    'Learning Content Reviewer',
+    'Student Learning Support Mentor',
+  ],
+},
   {
     title: 'Marketing & Community Growth',
     icon: '📢',
@@ -59,10 +61,10 @@ export default function Careers() {
       <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
 
       {/* Content */}
-      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-16">
+      <div className="relative mx-0 z-10 w-full p-4 sm:px-6 lg:px-8 py-16">
 
         {/* HERO */}
-        <div className="max-w-5xl mx-auto text-center mb-20">
+        <div className="w-full mx-0 text-center mb-20">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4">
             Careers at Money Krishna
           </h1>
@@ -88,7 +90,7 @@ export default function Careers() {
         </div>
 
         {/* WHY WORK WITH US */}
-        <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur rounded-3xl shadow-xl p-8 md:p-12 mb-20">
+        <div className="w-full mx-0 bg-white/90 backdrop-blur rounded-3xl shadow-xl p-8 md:p-12 mb-20">
           <h2 className="text-2xl font-bold text-emerald-700 mb-4">
             Why Work With Money Krishna?
           </h2>
@@ -126,7 +128,7 @@ export default function Careers() {
         </div>
 
         {/* WHO CAN APPLY */}
-        <div className="max-w-6xl mx-auto bg-white/90 backdrop-blur rounded-3xl shadow-xl p-8 md:p-12 mb-16">
+        <div className="w-full mx-0 bg-white/90 backdrop-blur rounded-3xl shadow-xl p-8 md:p-12 mb-16">
           <h2 className="text-2xl font-bold text-purple-700 mb-4">
             Who Can Apply?
           </h2>
@@ -139,7 +141,7 @@ export default function Careers() {
         </div>
 
         {/* IMPORTANT NOTE */}
-        <div className="max-w-6xl mx-auto bg-blue-50 border-l-4 border-blue-400 p-5 rounded-xl">
+        <div className="w-full mx-0 bg-blue-50 border-l-4 border-blue-400 p-5 rounded-xl">
           <strong className="text-blue-700">Important Note:</strong>{' '}
           Money Krishna is an education-focused platform. We do not provide financial
           advisory or live trading services. All roles strictly support learning,

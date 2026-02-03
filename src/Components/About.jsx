@@ -45,6 +45,22 @@ const About = () => {
     return false;
   }
 
+  // Scroll to main About section (Money Krishna Education)
+  function scrollToMainSection() {
+    const el = document.getElementById('about-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return true;
+    }
+    // fallback: navigate to about route if anchor not present
+    try {
+      navigate('/about');
+    } catch (e) {
+      // ignore
+    }
+    return false;
+  }
+
   // Handler for CONTACT US navigation
   const handleContactClick = (e) => {
     if (e) e.preventDefault();
@@ -64,28 +80,38 @@ const About = () => {
   return (
     <>
       {/* Hero Section with Home.jsx style */}
-      <div className="min-h-[80vh] relative flex items-center justify-center" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+      <div className="min-h-screen relative flex items-center justify-center" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
-        <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center justify-center text-center">
-          <h1 className="text-3xl md:text-5xl font-bold gradient-text mb-4 animate-fade-in-up">About Us</h1>
-          <p className="text-lg text-slate-700 max-w-2xl mx-auto animate-fade-in-up">Empowering traders and investors with expert education, actionable strategies, and a supportive community for financial success.</p>
+        <div className="relative z-10 w-full px-2 sm:px-10 lg:px-8 py-24 flex flex-col items-center justify-center text-center">
+          <h1
+            className="text-3xl md:text-5xl font-bold gradient-text mb-4 animate-fade-in-up cursor-pointer"
+            role="button"
+            tabIndex={0}
+            onClick={scrollToMainSection}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToMainSection(); } }}
+            aria-label="Go to Money Krishna Education section"
+          >
+            About Us
+          </h1>
+          <p className="text-lg text-white text-slate-700 max-w-5xl mx-auto animate-fade-in-up">Empowering traders and investors with expert education, actionable strategies, and a supportive community for financial success.</p>
         </div>
       </div>
 
 
       {/* Main Section with Home.jsx overlay style */}
-      <div id="about-section" className="min-h-[120vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+      <div id="about-section" className="min-h-screen relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
         {/* Overlay for better text visibility, like Home.jsx */}
 
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
+        <br></br><br></br>
         <h1 className="text-3xl md:text-4xl text-center font-bold gradient-text mb-2 animate-fade-in-up ">Money Krishna Education</h1>
-        <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="relative mx-0 z-5 w-full p-4 sm:px-6 lg:px-8 py-8">
           {/* About Grids */}
 
           {/* Individual Grids - Who We Are */}
           <div className="mb-10">
-            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up max-w-280 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <div className="bg-white rounded-lg shadow-xl p-4 animate-fade-in-up w-full transition-transform duration-150 hover:scale-[1.02] hover:shadow-lg">
               <h2 className="text-2xl font-bold text-green-700 mb-4">Who We Are</h2>
               <p className="text-slate-700 mb-4">Money Krishna Education is a leading platform dedicated to educating traders and investors about the stock market, forex, crypto, and options trading. Whether you're a beginner or an experienced trader, our goal is to help you make informed trading decisions through expert insights, strategies, and market analysis.</p>
               <ul className="list-disc pl-6 text-slate-700 space-y-1">
@@ -98,7 +124,7 @@ const About = () => {
 
           {/* Individual Grids - What We Offer */}
           <div className="mb-10">
-            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up max-w-280 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up w-full transition-transform duration-150 hover:scale-[1.02] hover:shadow-lg">
               <h2 className="text-2xl font-bold text-blue-700 mb-4">What We Offer</h2>
               <ul className="list-disc pl-6 text-slate-700 mb-4 space-y-1">
                 <li>Comprehensive trading courses: basics, technical analysis, advanced strategies</li>
@@ -111,7 +137,7 @@ const About = () => {
 
           {/* Individual Grids - Our Mission */}
           <div className="mb-10">
-            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up max-w-280 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up w-full transition-transform duration-150 hover:scale-[1.02] hover:shadow-lg">
               <h2 className="text-2xl font-bold text-purple-700 mb-4">Our Mission</h2>
               <p className="text-slate-700 mb-4">We strive to provide high-quality trading education that empowers individuals to achieve financial freedom through smart investing. Our team of experienced traders and analysts offers real-time market updates, technical analysis, and trading strategies to help you succeed.</p>
             </div>
@@ -119,7 +145,7 @@ const About = () => {
 
           {/* Individual Grids - Why Choose Us? */}
           <div className="mb-10">
-            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up max-w-280 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <div className="bg-white rounded-lg shadow-xl p-8 animate-fade-in-up w-full transition-transform duration-150 hover:scale-[1.02] hover:shadow-lg">
               <h2 className="text-2xl font-bold text-green-700 mb-4">Why Choose Us?</h2>
               <ul className="list-disc pl-6 text-slate-700 mb-4 space-y-1">
                 <li>Expert-led content with years of market experience</li>
@@ -128,7 +154,7 @@ const About = () => {
               </ul>
 
                {/* Call to Action */}
-          <div className="w-full bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl mb-8 animate-fade-in-up max-w-280 mx-auto">
+          {/* <div className="w-full bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl mb-8 animate-fade-in-up max-w-280 mx-auto">
             <p className="font-semibold text-white text-md">Take Control of Your Financial Future! Enroll Now and Start Your Journey to Consistent Trading Success!</p>
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=naveen143mca@gmail.com&su=Book%20Free%20Class"
@@ -136,7 +162,7 @@ const About = () => {
               rel="noopener noreferrer"
               className="inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-full shadow-lg transition hover:bg-green-100 text-base animate-bounce hover:[animation-play-state:paused]"
             >🚀 Book a free Class</a>
-          </div>
+          </div> */}
 
           {/* Chat Form Modal (optional, not shown by default) */}
           {showChatForm && (
