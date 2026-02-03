@@ -28,16 +28,16 @@ const Blog = () => {
     ]
 
     return (
-        <main className="bg-gradient-to-b from-white via-emerald-50 to-blue-50 p-5 space-y-10">
+        <main className="bg-[url('/src/assets/bg_img.jpg')]  bg-cover bg-center bg-fixed p-5 space-y-10">
 
             {/* Cards */}
-            <div className="grid gap-8 sm:grid-cols-2 mx-5 lg:grid-cols-3">
+            <div className="grid gap-20 md:grid-cols-2 mx-10 lg:grid-cols-3">
                 {blogSections.map(({ img, link, content, description }) => (
                     <Link
                         key={content}
                         to={link}
                         aria-label={`Read ${content}`}
-                        className="group cursor-pointer flex flex-col items-center gap-4 rounded-2xl bg-white/70 backdrop-blur border border-emerald-100 p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                        className="group cursor-pointer flex flex-col items-center gap-4 rounded-2xl bg-white backdrop-blur border border-emerald-100 p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-300"
                     >
                         <div className="relative rounded-2xl overflow-hidden bg-white">
 
