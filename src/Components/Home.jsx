@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight } from 'lucide-react'
-import bgImg from '../assets/bg_img.jpg'
+import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
 const Home = () => {
-  const [usdPrice, setUsdPrice] = useState('1.0850')
+  const [usdPrice, setUsdPrice] = useState(null)
+  const [loadingRate, setLoadingRate] = useState(false)
   const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
@@ -32,24 +33,58 @@ const Home = () => {
     window.addEventListener('resize', updateHeroHeight)
     return () => window.removeEventListener('resize', updateHeroHeight)
   }, [])
+useEffect(() => {
+  let isMounted = true;
+  const fetchUsdInrRate = async () => {
+    setLoadingRate(true);
+    try {
+      const url = "https://www.google.com/finance/quote/USD-INR";
+      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+      const res = await fetch(proxy);
+      if (!res.ok) throw new Error('Network response was not ok');
+      const html = await res.text();
 
-  useEffect(() => {
-    const fetchPrice = async () => {
-      try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
-        const data = await response.json()
-        const eurPrice = data.rates.INR
-        setUsdPrice(eurPrice.toFixed(2))
-      } catch (error) {
-        console.log('Error fetching price:', error)
-        setUsdPrice('1.0850')
+      const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
+      let parsed = null;
+      const m = html.match(rateRegex);
+      if (m && m[1]) {
+        const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
+        parsed = parseFloat(raw);
       }
+      if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
+        const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
+        if (loose && loose[1]) {
+          parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
+        }
+      }
+      if (parsed && !Number.isNaN(parsed) && parsed > 0) {
+        if (isMounted) setUsdPrice(parsed.toFixed(2));
+        return;
+      }
+    } catch (err) {
+      // Prefer using sharedUtils.showToast when available, otherwise log
+      try {
+        if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
+          sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
+        } else {
+          console.error('Failed to fetch USD-INR rate.', err);
+        }
+      } catch (e) {
+        console.error('Failed to fetch USD-INR rate.', err);
+      }
+    } finally {
+      setLoadingRate(false);
     }
+  };
 
-    fetchPrice()
-    const interval = setInterval(fetchPrice, 30000) // Update every 30 seconds
-    return () => clearInterval(interval)
-  }, [])
+  fetchUsdInrRate();
+  const interval = setInterval(fetchUsdInrRate, 30000);
+  return () => {
+    isMounted = false;
+    clearInterval(interval);
+  };
+}, [])
+
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -86,21 +121,11 @@ const Home = () => {
         // clear history state to avoid repeat
         try {
           window.history.replaceState({}, document.title)
-        } catch (e) {}
+        } catch (e) { }
       }, 80)
     }
   }, [location])
 
-  const scrollReviews = (direction) => {
-    if (reviewsScrollRef.current) {
-      const scrollAmount = 400
-      if (direction === 'left') {
-        reviewsScrollRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
-      } else {
-        reviewsScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
-      }
-    }
-  }
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
@@ -109,7 +134,7 @@ const Home = () => {
 
     const formData = new FormData(e.target);
     formData.append(
-      "access_key","088ae8ac-3c2c-4bdc-a1f4-e0b3fe96b4e7"
+      "access_key", "088ae8ac-3c2c-4bdc-a1f4-e0b3fe96b4e7"
     );
     formData.append("from_name", "Website Contact Form");
 
@@ -128,7 +153,17 @@ const Home = () => {
       setStatus("Something went wrong ❌");
     }
   };
-  
+  const reviews = [
+    { name: "Rahul Sharma", role: "Forex Trader • India", text: "The courses are exceptionally well-structured..." },
+    { name: "Priya Patel", role: "Stock Market Investor • UK", text: "MoneyKrishna Education completely changed..." },
+    { name: "Arun Verma", role: "Day Trader • Dubai", text: "The mentorship program is outstanding..." },
+    { name: "Neha Singh", role: "Options Trader • Singapore", text: "Finally found a platform where education meets..." },
+    { name: "Vikram Kumar", role: "Crypto Trader • USA", text: "The community here is amazing..." },
+    { name: "Deepak Malhotra", role: "Swing Trader • Canada", text: "The strategy courses are incredibly detailed..." },
+    { name: "Anjali Desai", role: "Futures Trader • Australia", text: "Switched from another platform..." },
+    { name: "Arjun Prabhu", role: "Intraday Trader • Malaysia", text: "The live trading sessions are a goldmine..." }
+  ];
+
 
   return (
     <>
@@ -287,7 +322,7 @@ const Home = () => {
         }
       `}</style>
 
-      <div className="min-h-[200vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+      <div className="min-h-[200vh] relative" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
         {/* Live USD Price */}
@@ -304,9 +339,9 @@ const Home = () => {
               <h1 id="hero-heading" className="text-3xl lg:text-5xl font-extrabold mb-4 leading-tight text-white">
                 Trade Confidently. Learn Practically.
               </h1>
-              
+
               <p id="hero-subheading" className="text-lg text-white/90 mb-6 leading-relaxed max-w-xl mx-auto md:mx-0 animate-fade-in-up">
-                Practical MT5 trading courses, live sessions, and hands-on mentorship — designed to move you from theory to consistent results.
+                Practical forex trading courses, live sessions, and hands-on mentorship — designed to move you from theory to consistent results.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
@@ -344,9 +379,9 @@ const Home = () => {
 
             {/* Right Image - Trading Image */}
             <div className={`flex justify-center items-end w-full h-[580px] overflow-hidden ${visibleSections['hero-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
-              <img 
+              <img
                 src={sirImg}
-                alt="Trading Chart" 
+                alt="Trading Chart"
                 className="w-full h-full object-cover"
                 style={{
                   WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
@@ -358,42 +393,141 @@ const Home = () => {
         </div>
 
         {/* Features Grid - Full Width Background */}
-        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10" data-animate id="features-section">
+        <div
+          className="w-full bg-gray-100 py-20 relative z-10"
+          data-animate
+          id="features-section"
+        >
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className={`text-3xl font-bold text-slate-900 mb-12 text-center ${visibleSections['features-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Why Choose Us</h2>
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
-              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.1s'}}>
-                <BookOpen className="w-10 h-10 text-green-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-slate-900 mb-3">Structured Learning Paths</h3>
-                <p className="text-sm text-slate-600">Beginner to advanced forex & stock market courses with step-by-step guidance.</p>
+
+            {/* Section Heading */}
+            <h2
+              className={`text-4xl font-extrabold text-blue-900 mb-14 text-center
+            ${visibleSections["features-section"]
+                  ? "scroll-animate visible"
+                  : "scroll-animate"
+                }`}
+            >
+              Why Choose Us
+            </h2>
+
+            {/* Features Grid */}
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+
+              {/* Feature Card 1 */}
+              <div
+                className={`bg-white border border-green-100 rounded-xl p-8 text-center
+              shadow-lg hover:shadow-2xl hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["features-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.1s" }}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                  <BookOpen className="w-9 h-9 text-green-600" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3">
+                  Structured Learning Paths
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Beginner to advanced forex & stock market courses with step-by-step guidance.
+                </p>
               </div>
 
-              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.2s'}}>
-                <TrendingUp className="w-10 h-10 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-slate-900 mb-3">Live Trading & Webinars</h3>
-                <p className="text-sm text-slate-600">Real-time market sessions with expert analysis and live Q&A.</p>
+              {/* Feature Card 2 */}
+              <div
+                className={`bg-white border border-blue-100 rounded-xl p-8 text-center
+              shadow-md hover:shadow-2xl hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["features-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.2s" }}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                  <TrendingUp className="w-9 h-9 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3">
+                  Live Trading & Webinars
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Real-time market sessions with expert analysis and live Q&A.
+                </p>
               </div>
 
-              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.3s'}}>
-                <Zap className="w-10 h-10 text-yellow-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-slate-900 mb-3">Practice Trading Zone</h3>
-                <p className="text-sm text-slate-600">Trade in a risk-free environment and test proven strategies.</p>
+              {/* Feature Card 3 */}
+              <div
+                className={`bg-white border border-green-100 rounded-xl p-8 text-center
+              shadow-md hover:shadow-2xl hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["features-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.3s" }}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                  <Zap className="w-9 h-9 text-green-500" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3">
+                  Practice Trading Zone
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Trade in a risk-free environment and test proven strategies.
+                </p>
               </div>
 
-              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.4s'}}>
-                <Lightbulb className="w-10 h-10 text-orange-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-slate-900 mb-3">Smart Investment Hub</h3>
-                <p className="text-sm text-slate-600">Tools, insights, and tips to make better trading decisions.</p>
+              {/* Feature Card 4 */}
+              <div
+                className={`bg-white border border-blue-100 rounded-xl p-8 text-center
+              shadow-md hover:shadow-2xl hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["features-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.4s" }}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                  <Lightbulb className="w-9 h-9 text-blue-500" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3">
+                  Smart Investment Hub
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Tools, insights, and tips to make better trading decisions.
+                </p>
               </div>
 
-              <div className={`bg-white rounded-lg p-8 shadow-lg text-center hover:shadow-xl transition-shadow ${visibleSections['features-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.5s'}}>
-                <Users className="w-10 h-10 text-purple-600 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-slate-900 mb-3">Community & Mentorship</h3>
-                <p className="text-sm text-slate-600">Learn with a global trader community and expert mentorship.</p>
+              {/* Feature Card 5 */}
+              <div
+                className={`bg-white border border-green-100 rounded-xl p-8 text-center
+              shadow-md hover:shadow-2xl hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["features-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.5s" }}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                  <Users className="w-9 h-9 text-green-700" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3">
+                  Community & Mentorship
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Learn with a global trader community and expert mentorship.
+                </p>
               </div>
+
             </div>
           </div>
         </div>
+
 
         {/* Video Section with Content */}
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20" data-animate id="video-section">
@@ -422,7 +556,7 @@ const Home = () => {
                   <span>Professional trading psychology and discipline</span>
                 </li>
               </ul>
-              <Link 
+              <Link
                 to="/blog"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
               >
@@ -433,13 +567,13 @@ const Home = () => {
             {/* Right Content - Video */}
             <div className={`flex justify-center ${visibleSections['video-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
               <div className="w-full aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
-                <iframe 
+                <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&loop=1&playlist=6xxB3LsMhRI&si=M1txMgIEVcjR9o__" 
-                  title="YouTube video player" 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerPolicy="strict-origin-when-cross-origin" 
+                  src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&loop=1&playlist=6xxB3LsMhRI&si=M1txMgIEVcjR9o__"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen>
                 </iframe>
               </div>
@@ -452,148 +586,55 @@ const Home = () => {
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className={`text-4xl font-bold text-slate-900 mb-2 text-center ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>What Our Students Say</h2>
             <p className={`text-center text-slate-600 mb-12 text-lg ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Join thousands of successful traders who have transformed their trading journey with us</p>
-            
-            <div className="relative">
-              {/* Scroll Arrows */}
-              <button
-                onClick={() => scrollReviews('left')}
-                className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 z-20 bg-green-600 hover:bg-green-700 text-white p-2 rounded-full shadow-lg transition-all sm:-ml-6"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-              
-              <button
-                onClick={() => scrollReviews('right')}
-                className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 z-20 bg-green-600 hover:bg-green-700 text-white p-2 rounded-full shadow-lg transition-all sm:-mr-6"
-                aria-label="Scroll right"
-              >
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-
-              {/* Reviews Scroll Container */}
-              <div 
+            <div className="relative overflow-hidden">
+              <div
                 ref={reviewsScrollRef}
-                className="flex gap-8 overflow-x-auto scroll-smooth pb-4 hide-scrollbar"
-                style={{ scrollBehavior: 'smooth' }}
+                className="flex gap-8 pb-4 marquee-track"
               >
-                {/* Review 1 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.1s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The courses are exceptionally well-structured. I went from complete beginner to consistently profitable in just 3 months. The live webinars with experts are invaluable!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Rahul Sharma</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Forex Trader • India</p>
-                  </div>
-                </div>
+                {[...reviews, ...reviews].map((review, index) => (
+                  <div
+                    key={index}
+                    className={`group bg-white/80 backdrop-blur-xl border border-slate-200/60 
+        rounded-2xl p-6 sm:p-8 w-80 sm:w-96 flex-shrink-0
+        shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)]
+        hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.25)]
+        transition-all duration-500
+        ${visibleSections['reviews-section']
+                        ? 'scroll-animate-scale visible'
+                        : 'scroll-animate-scale'
+                      }`}
+                  >
+                    {/* Stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-400 text-xl">★</span>
+                      ))}
+                    </div>
 
-                {/* Review 2 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.2s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"MoneyKrishna Education completely changed my approach to trading. The risk management strategies taught here are game-changing. Best investment I've made in my trading career!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Priya Patel</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Stock Market Investor • UK</p>
-                  </div>
-                </div>
+                    {/* Text */}
+                    <p className="text-slate-700 mb-6 italic text-sm sm:text-base leading-relaxed">
+                      “{review.text}”
+                    </p>
 
-                {/* Review 3 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.3s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
+                    {/* Footer */}
+                    <div className="border-t border-slate-200 pt-4">
+                      <p className="text-slate-900 font-semibold">
+                        {review.name}
+                      </p>
+                      <p className="text-slate-500 text-sm">
+                        {review.role}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The mentorship program is outstanding. Having access to experienced traders who review your trades and provide personalized guidance is worth every penny!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Arun Verma</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Day Trader • Dubai</p>
-                  </div>
-                </div>
-
-                {/* Review 4 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.4s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"Finally found a platform where education meets practical application. The demo trading zone helped me practice without any risk. Highly recommended!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Neha Singh</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Options Trader • Singapore</p>
-                  </div>
-                </div>
-
-                {/* Review 5 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.5s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The community here is amazing. Learning alongside other traders and sharing experiences has been game-changing. I doubled my profits this year!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Vikram Kumar</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Crypto Trader • USA</p>
-                  </div>
-                </div>
-
-                {/* Review 6 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.6s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The strategy courses are incredibly detailed and backed by real-world examples. I've implemented these strategies and seen consistent results. Worth every rupee!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Deepak Malhotra</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Swing Trader • Canada</p>
-                  </div>
-                </div>
-
-                {/* Review 7 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.7s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"Switched from another platform and never looked back. The support team is responsive, the curriculum is comprehensive, and the results speak for themselves!"</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Anjali Desai</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Futures Trader • Australia</p>
-                  </div>
-                </div>
-
-                {/* Review 8 */}
-                <div className={`bg-white rounded-lg p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-80 sm:w-96 ${visibleSections['reviews-section'] ? 'scroll-animate-scale visible' : 'scroll-animate-scale'}`} style={{transitionDelay: '0.8s'}}>
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                  <p className="text-slate-700 mb-6 italic text-sm sm:text-base">"The live trading sessions are a goldmine of information. Watching experienced traders make decisions in real-time has taught me more than any textbook ever could."</p>
-                  <div className="border-t border-slate-200 pt-4">
-                    <p className="text-slate-900 font-semibold text-sm sm:text-base">Arjun Prabhu</p>
-                    <p className="text-slate-600 text-xs sm:text-sm">Intraday Trader • Malaysia</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
+
+
           </div>
         </div>
 
-         {/* Contact Form Section */}
+        {/* Contact Form Section */}
         <div
           className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10"
           id="contact"
