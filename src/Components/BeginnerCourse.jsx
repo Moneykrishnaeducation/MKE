@@ -73,8 +73,7 @@ const BeginnerCourse = () => {
                   </div>
                   <div className="bg-gradient-to-r from-purple-50 to-purple-100 p-3 rounded-lg border-l-4 border-purple-500">
                     <p className="text-gray-600 text-[10px] mb-1 font-semibold uppercase tracking-wide">📅 Next Batch</p>
-                    <p className="text-base font-bold text-purple-700">31 DEC, 2025</p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">Course launch date</p>
+                    <p className="text-base font-bold text-purple-700 blink">Join Soon</p>
                   </div>
                 </div>
               </div>
@@ -227,8 +226,7 @@ const BeginnerCourse = () => {
                   </div>
                   <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 p-3 rounded-lg border-l-4 border-yellow-500">
                     <p className="text-gray-600 text-[10px] mb-1 font-semibold uppercase tracking-wide">📅 Next Batch</p>
-                    <p className="text-base font-bold text-yellow-700">15 MAR, 2026</p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">Course launch date</p>
+                    <p className="text-base font-bold text-yellow-700 blink">Join Soon</p>
                   </div>
                 </div>
               </div>
@@ -377,8 +375,7 @@ const BeginnerCourse = () => {
                   </div>
                   <div className="bg-gradient-to-r from-cyan-50 to-cyan-100 p-3 rounded-lg border-l-4 border-cyan-500">
                     <p className="text-gray-600 text-[10px] mb-1 font-semibold uppercase tracking-wide">📅 Next Batch</p>
-                    <p className="text-base font-bold text-cyan-700">20 APR, 2026</p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">Course launch date</p>
+                    <p className="text-base font-bold text-cyan-700 blink">Join Soon</p>
                   </div>
                 </div>
               </div>
@@ -527,8 +524,7 @@ const BeginnerCourse = () => {
                   </div>
                   <div className="bg-gradient-to-r from-orange-50 to-orange-100 p-3 rounded-lg border-l-4 border-orange-500">
                     <p className="text-gray-600 text-[10px] mb-1 font-semibold uppercase tracking-wide">📅 Next Batch</p>
-                    <p className="text-base font-bold text-orange-700">10 MAY, 2026</p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">Course launch date</p>
+                    <p className="text-base font-bold text-orange-700 blink">Join Soon</p>
                   </div>
                 </div>
               </div>
@@ -677,8 +673,7 @@ const BeginnerCourse = () => {
                   </div>
                   <div className="bg-gradient-to-r from-indigo-50 to-indigo-100 p-3 rounded-lg border-l-4 border-indigo-500">
                     <p className="text-gray-600 text-[10px] mb-1 font-semibold uppercase tracking-wide">📅 Next Batch</p>
-                    <p className="text-base font-bold text-indigo-700">25 MAY, 2026</p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">Course launch date</p>
+                    <p className="text-base font-bold text-indigo-700 blink">Join Soon</p>
                   </div>
                 </div>
               </div>
