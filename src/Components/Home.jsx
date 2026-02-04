@@ -389,7 +389,7 @@ useEffect(() => {
                     <Star className="w-8 h-8 text-yellow-300 fill-yellow-300" />
                   </div>
                   <p className="text-2xl sm:text-3xl font-bold text-white mb-1">4.9/5</p>
-                  <p className="text-xs sm:text-sm text-white/80">App Rating</p>
+                  <p className="text-xs sm:text-sm text-white/80">Rating</p>
                 </div>
               </div>
             </div>
