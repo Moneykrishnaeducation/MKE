@@ -222,24 +222,24 @@ const Blog3 = () => {
 
 
                     {/* CTA */}
-                    <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-green-500 p-12 text-white shadow-lg hover:shadow-xl transition">
+                    <div className="rounded-2xl bg-white p-12 text-black shadow-lg hover:shadow-xl transition">
                         <h3 className="text-3xl font-bold">
                             Ready to upgrade your trading skills?
                         </h3>
-                        <p className="mt-4 text-white/90 max-w-2xl text-lg">
+                        <p className="mt-4 text-slate-600 max-w-2xl text-lg">
                             Learn from experts with structured courses, live webinars, and proven strategies.
                         </p>
 
-                        <div className="mt-8 flex flex-wrap gap-4">
+                        <div className="mt-8 flex flex-wrap  gap-4">
                             <a
                                 href="/courses/beginner"
-                                className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-sm font-semibold text-blue-600 hover:bg-blue-50 shadow-md hover:shadow-lg transition"
+                                className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-green-500  px-8 py-4 text-sm font-semibold text-white hover:bg-blue-50 shadow-md hover:shadow-lg transition"
                             >
                                 View Courses
                             </a>
                             <a
                                 href="#"
-                                className="inline-flex items-center gap-2 rounded-lg border-2 border-white px-8 py-4 text-sm font-semibold text-white hover:bg-white/10 transition"
+                                className="inline-flex items-center gap-2 rounded-lg border-2 border-blue-500 px-8 py-4 text-sm font-semibold text-blue-500 hover:bg-blue-100 transition"
                             >
                                 Join Webinar
                             </a>
