@@ -277,9 +277,9 @@ const TopNav = () => {
                   <Link to="/courses/beginner" className="dropdown-item" role="menuitem" tabIndex="0">
                     Beginner
                   </Link>
-                  <Link to="/courses/intermediate" className="dropdown-item" role="menuitem" tabIndex="0">
+                  {/* <Link to="/courses/intermediate" className="dropdown-item" role="menuitem" tabIndex="0">
                     Intermediate
-                  </Link>
+                  </Link> */}
                   <Link to="/courses/advanced" className="dropdown-item" role="menuitem" tabIndex="0">
                     Advanced
                   </Link>
