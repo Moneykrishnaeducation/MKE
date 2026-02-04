@@ -41,10 +41,10 @@ const Blog2 = () => {
           </div>
         {/* Hero */}
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-extrabold text-white">
+          <h1 className="mt-6 text-5xl md:text-6xl font-extrabold leading-tight  text-lg text-slate-200">
             AI-Powered Trading in 2025
           </h1>
-          <p className="mt-3 max-w-3xl mx-auto text-gray-300">
+          <p className="mt-3 max-w-3xl mx-auto text-lg text-gray-300">
             Discover how machine learning, algorithmic models, and automation
             are redefining stock market trading, execution speed, and risk management.
           </p>
