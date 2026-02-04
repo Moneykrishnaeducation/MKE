@@ -34,11 +34,6 @@ const Term = () => {
     {
       title: "8. Governing Law",
       content: "These Terms & Conditions are governed by and construed in accordance with the laws of India, and you irrevocably submit to the exclusive jurisdiction of the courts located in Chennai."
-    },
-    {
-      title: "9. Contact Us",
-      content: null,
-      contact: true
     }
   ]
 
