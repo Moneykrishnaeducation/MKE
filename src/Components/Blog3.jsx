@@ -20,52 +20,101 @@ const Blog3 = () => {
         }
         meta.setAttribute("content", keywords.join(", "))
     }, [])
+const sections = [
+  {
+    title: "1. Build a Strong Foundation",
+    text: "Learn how financial markets work, understand different trading instruments, and study basic technical and fundamental concepts before putting real money at risk.",
+    Icon: BookOpen,
+  },
+  {
+    title: "2. Master Your Trading Strategy",
+    text: "Choose one or two strategies that match your personality, risk tolerance, and available time. Master them through backtesting and live market observation.",
+    Icon: Zap,
+  },
+  {
+    title: "3. Risk Management",
+    text: "Protect your capital by limiting risk per trade, using stop-losses, and avoiding over-trading. Surviving the market is more important than quick profits.",
+    Icon: ShieldCheck,
+  },
+  {
+    title: "4. Maintain a Trading Journal",
+    text: "Record every trade with entry reasons, emotions, outcomes, and mistakes. Reviewing your journal helps identify patterns and improve performance.",
+    Icon: FileText,
+  },
+  {
+    title: "5. Keep Learning & Adapting",
+    text: "Markets constantly evolve. Stay updated with market news, refine strategies, and adapt to changing volatility and trends.",
+    Icon: Clock,
+  },
+  {
+    title: "6. Discipline & Patience",
+    text: "Consistent execution, emotional control, and patience separate profitable traders from gamblers. Trust the process, not impulses.",
+    Icon: TrendingUp,
+  },
+]
 
-    const sections = [
-        { title: "1. Build a Strong Foundation", text: "Understand instruments, strategies, and market behavior before risking capital.", Icon: BookOpen },
-        { title: "2. Master Your Trading Strategy", text: "Pick strategies aligned with your psychology and schedule.", Icon: Zap },
-        { title: "3. Create a Trading Plan", text: "Plan entries, exits, position size, and routines.", Icon: List },
-        { title: "4. Risk Management", text: "Protect capital with strict risk rules.", Icon: ShieldCheck },
-        { title: "5. Trading Journal", text: "Track emotions, logic, and results.", Icon: FileText },
-        { title: "6. Keep Learning", text: "Markets evolve — traders must adapt.", Icon: Clock },
-        { title: "7. Discipline & Patience", text: "Consistency builds profitability.", Icon: TrendingUp },
-    ]
 
     return (
-        <main className="bg-[url('/src/assets/bg_img.jpg')] bg-cover bg-center bg-fixed">
-            <div className=" hidden lg:block">
-            <a
-              href="/blog"
-                className="absolute right-10 top-30 z-100 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-green-500 px-6 py-3 font-semibold text-white shadow hover:opacity-90"
-              >
-              Explore Blog
-            </a>
-          </div>
-          <div className=" lg:hidden block">
-            <a
-              href="/blog"
-                className="absolute right-10 top-30 z-100 pb-2 rounded-full text-2xl inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-green-500 px-3 py-1/2 font-semibold text-white shadow hover:opacity-90"
-              >
-              &times;
-            </a>
-          </div>
-            {/* Hero */}
-            <section className="relative bg-gradient-to-r from-emerald-600 to-blue-600 py-20">
-                <div className="container mx-auto max-w-6xl px-6 text-white">
-                    <span className="inline-block rounded-full bg-white/20 px-5 py-1 text-sm backdrop-blur">
+        <main className="relative bg-[url('/src/assets/bg_img.jpg')] bg-cover bg-center bg-fixed">
+            {/* Animated Background */}
+            <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+            </div>
+
+            <style>{`
+                @keyframes blob {
+                    0%, 100% { transform: translate(0, 0) scale(1); }
+                    33% { transform: translate(30px, -50px) scale(1.1); }
+                    66% { transform: translate(-20px, 20px) scale(0.9); }
+                }
+                .animate-blob {
+                    animation: blob 7s infinite;
+                }
+                .animation-delay-2000 {
+                    animation-delay: 2s;
+                }
+                .animation-delay-4000 {
+                    animation-delay: 4s;
+                }
+            `}</style>
+
+            {/* Close Button */}
+            <div className="hidden lg:block">
+                <a
+                    href="/blog"
+                    className="absolute right-10 top-10 z-100 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-green-500 px-6 py-3 font-semibold text-white shadow-lg hover:shadow-xl hover:opacity-90 transition-all"
+                >
+                    Explore Blog
+                </a>
+            </div>
+            <div className="lg:hidden block">
+                <a
+                    href="/blog"
+                    className="absolute right-6 top-6 z-100 pb-2 rounded-full text-3xl inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-green-500 px-3 py-1 font-semibold text-white shadow-lg hover:opacity-90 transition-all"
+                >
+                    &times;
+                </a>
+            </div>
+
+            {/* Hero Section */}
+            <section className="relative pt-20 z-10">
+                <div className="container mx-auto max-w-6xl px-6">
+                    <span className="inline-block rounded-full bg-blue-100 px-5 py-1 text-sm font-semibold text-blue-700 border border-blue-300">
                         Trading Education
                     </span>
 
-                    <h1 className="mt-6 text-4xl md:text-5xl font-extrabold leading-tight">
+                    <h1 className="mt-6 text-5xl md:text-6xl font-extrabold leading-tight text-slate-200">
                         Steps to Become a Successful Day Trader
                     </h1>
 
-                    <p className="mt-4 max-w-3xl text-lg text-white/90">
+                    <p className="mt-4 max-w-3xl text-lg text-slate-300">
                         A modern roadmap to master trading psychology, risk management, and consistency.
                     </p>
 
-                    <div className="mt-6 flex flex-wrap gap-4 text-sm text-white/80">
-                        <span><ClockIcon className="w-5 h-5 inline mr-1 mb-1"/> 6 min read</span>
+                    <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-200">
+                        <span><ClockIcon className="w-5 h-5 inline mr-1"/> 6 min read</span>
                         <span>• Updated 2026</span>
                         <span>• Beginner → Intermediate</span>
                     </div>
@@ -73,73 +122,107 @@ const Blog3 = () => {
             </section>
 
             {/* Content */}
-            <section className="container mx-auto max-w-6xl px-6 py-14">
-                <article className="space-y-14">
+            <section className="container mx-auto py-20 relative z-10">
+                <article className="space-y-16">
 
-                    {/* Cards */}
-                    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {sections.map(({ title, text, Icon }) => (
-                            <div
-                                key={title}
-                                className=" flex items-center gap-4 rounded-2xl bg-white/70 backdrop-blur border border-emerald-100 p-6 shadow-sm hover:shadow-lg transition"
-                            >
-                                <div className="flex h-14 min-w-14 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-blue-500 mb-4">
-                                    <Icon className="h-7 w-7 text-white" />
-                                </div>
+                    {/* Cards Grid */}
+                    <div className="flex flex-wrap gap-8 px-10  md:px-0 justify-center">
+                        {sections.map(({ title, text, Icon }, index) => {
+                            const colors = [
+                                'bg-blue-500',
+                                'bg-cyan-500',
+                                'bg-green-500',
+                                'bg-emerald-500',
+                                'bg-teal-500',
+                                'bg-blue-600',
+                                'bg-cyan-600'
+                            ];
+                            return (
+                                <div
+                                    key={title}
+                                    className="group rounded-xl bg-white md:w-[36vw] lg:w-[25vw] border border-slate-100 hover:border-blue-200 shadow-md hover:shadow-lg transition-all duration-300 p-6"
+                                >
+                                    <div className="flex gap-4 items-start">
+                                        {/* Icon Box */}
+                                        <div className={`flex-shrink-0 h-12 w-12 rounded-lg ${colors[index % 7]} flex items-center justify-center shadow-md group-hover:shadow-lg transition`}>
+                                            <Icon className="h-6 w-6 text-white" />
+                                        </div>
 
-                               <div> 
-                                <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-                                <p className="mt-2 text-sm text-gray-600">{text}</p>
+                                        {/* Content */}
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition">
+                                                {title}
+                                            </h3>
+                                            <p className="text-slate-600 text-sm leading-relaxed mt-2">
+                                                {text}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
 
+                    {/* Pro Tips & Key Takeaways */}
                     <div className="grid gap-8 md:grid-cols-2">
                         {/* Pro Tips */}
-                        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-6">
-                            <h3 className="font-semibold text-emerald-800">
+                        <div className="rounded-2xl bg-blue-50 border border-blue-200 p-8 shadow-sm hover:shadow-md transition">
+                            <h3 className="text-xl font-semibold text-blue-900 mb-6">
                                 Pro Trading Tips
                             </h3>
-                            <ul className="mt-4 space-y-2 text-sm text-emerald-700 list-disc pl-5">
-                                <li>Always use a stop-loss</li>
-                                <li>Risk less than 2% per trade</li>
-                                <li>Review trades weekly</li>
+                            <ul className="space-y-3">
+                                {[
+                                    'Always use a stop-loss',
+                                    'Risk less than 2% per trade',
+                                    'Review trades weekly'
+                                ].map((tip, idx) => (
+                                    <li key={idx} className="flex items-start gap-3 text-slate-700">
+                                        <span className="text-green-500 font-bold mt-0.5">✓</span>
+                                        <span className="text-sm">{tip}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
                         {/* Key Takeaways */}
-                        <div className="rounded-2xl bg-blue-50 border border-blue-200 p-6">
-                            <h3 className="font-semibold text-blue-800">
+                        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-8 shadow-sm hover:shadow-md transition">
+                            <h3 className="text-xl font-semibold text-emerald-900 mb-6">
                                 Key Takeaways
                             </h3>
-                            <ul className="mt-4 space-y-2 text-sm text-blue-700 list-disc pl-5">
-                                <li>Trading is a professional skill</li>
-                                <li>Risk management defines survival</li>
-                                <li>Consistency beats intensity</li>
+                            <ul className="space-y-3">
+                                {[
+                                    'Trading is a professional skill',
+                                    'Risk management defines survival',
+                                    'Consistency beats intensity'
+                                ].map((item, idx) => (
+                                    <li key={idx} className="flex items-start gap-3 text-slate-700">
+                                        <span className="text-blue-500 font-bold mt-0.5">•</span>
+                                        <span className="text-sm">{item}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
 
                     {/* CTA */}
-                    <div className="rounded-2xl bg-gradient-to-r from-emerald-600 to-blue-600 p-10 text-white shadow-lg">
-                        <h3 className="text-2xl font-bold">
+                    <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-green-500 p-12 text-white shadow-lg hover:shadow-xl transition">
+                        <h3 className="text-3xl font-bold">
                             Ready to upgrade your trading skills?
                         </h3>
-                        <p className="mt-3 text-white/90 max-w-xl">
+                        <p className="mt-4 text-white/90 max-w-2xl text-lg">
                             Learn from experts with structured courses, live webinars, and proven strategies.
                         </p>
 
-                        <div className="mt-6 flex flex-wrap gap-4">
+                        <div className="mt-8 flex flex-wrap gap-4">
                             <a
-                                href=""
-                                className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-emerald-600 hover:bg-emerald-50"
+                                href="/courses/beginner"
+                                className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-sm font-semibold text-blue-600 hover:bg-blue-50 shadow-md hover:shadow-lg transition"
                             >
                                 View Courses
                             </a>
                             <a
-                                href=""
-                                className="rounded-md border border-white px-6 py-3 text-sm font-semibold hover:bg-white/10"
+                                href="#"
+                                className="inline-flex items-center gap-2 rounded-lg border-2 border-white px-8 py-4 text-sm font-semibold text-white hover:bg-white/10 transition"
                             >
                                 Join Webinar
                             </a>
@@ -147,12 +230,6 @@ const Blog3 = () => {
                     </div>
 
                 </article>
-
-                    {/* Related Posts */}
-                   
-                    <div className="flex flex-wrap gap-4 pt-4">
-       
-          </div>
             </section>
         </main>
     )

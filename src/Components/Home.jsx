@@ -134,7 +134,7 @@ useEffect(() => {
 
     const formData = new FormData(e.target);
     formData.append(
-      "access_key", "088ae8ac-3c2c-4bdc-a1f4-e0b3fe96b4e7"
+      "access_key", "1b232d2c-8c7c-4bcc-8911-f679b71641d5"
     );
     formData.append("from_name", "Website Contact Form");
 
@@ -153,16 +153,49 @@ useEffect(() => {
       setStatus("Something went wrong ❌");
     }
   };
-  const reviews = [
-    { name: "Rahul Sharma", role: "Forex Trader • India", text: "The courses are exceptionally well-structured..." },
-    { name: "Priya Patel", role: "Stock Market Investor • UK", text: "MoneyKrishna Education completely changed..." },
-    { name: "Arun Verma", role: "Day Trader • Dubai", text: "The mentorship program is outstanding..." },
-    { name: "Neha Singh", role: "Options Trader • Singapore", text: "Finally found a platform where education meets..." },
-    { name: "Vikram Kumar", role: "Crypto Trader • USA", text: "The community here is amazing..." },
-    { name: "Deepak Malhotra", role: "Swing Trader • Canada", text: "The strategy courses are incredibly detailed..." },
-    { name: "Anjali Desai", role: "Futures Trader • Australia", text: "Switched from another platform..." },
-    { name: "Arjun Prabhu", role: "Intraday Trader • Malaysia", text: "The live trading sessions are a goldmine..." }
-  ];
+const reviews = [
+  {
+    name: "Arun Kumar",
+    role: "Student · Chennai",
+    text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
+  },
+  {
+    name: "Priya Sharma",
+    role: "Student · Coimbatore",
+    text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
+  },
+  {
+    name: "Vignesh R",
+    role: "Student · Madurai",
+    text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
+  },
+  {
+    name: "Sneha Patel",
+    role: "Student · Salem",
+    text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
+  },
+  {
+    name: "Rahul Verma",
+    role: "Student · Trichy",
+    text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
+  },
+  {
+    name: "Anitha S",
+    role: "Student · Tirunelveli",
+    text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
+  },
+  {
+    name: "Karthik M",
+    role: "Student · Erode",
+    text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
+  },
+  {
+    name: "Divya Lakshmi",
+    role: "Student · Thanjavur",
+    text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
+  }
+]
+
 
 
   return (
@@ -346,7 +379,7 @@ useEffect(() => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
                 <Link
-                  to="/course"
+                  to="/courses/beginner"
                   aria-label="Join course - start learning with MoneyKrishna"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
@@ -389,7 +422,7 @@ useEffect(() => {
                     <Star className="w-8 h-8 text-yellow-300 fill-yellow-300" />
                   </div>
                   <p className="text-2xl sm:text-3xl font-bold text-white mb-1">4.9/5</p>
-                  <p className="text-xs sm:text-sm text-white/80">App Rating</p>
+                  <p className="text-xs sm:text-sm text-white/80">Rating</p>
                 </div>
               </div>
             </div>
