@@ -44,7 +44,7 @@ const BeginnerCourse = () => {
       content: (
         <div className="w-full h-full flex flex-col justify-between">
           {/* Breadcrumb */}
-          <p className="text-xs text-gray-600 mb-3">Home > Courses > Forex Trading</p>
+          <p className="text-xs text-gray-600 mb-3">Home &gt; Courses &gt; Forex Trading</p>
 
           {/* Main Content Layout - Image and Content Side by Side */}
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 flex-1 overflow-hidden">
@@ -198,7 +198,7 @@ const BeginnerCourse = () => {
       content: (
         <div className="w-full h-full flex flex-col justify-between">
           {/* Breadcrumb */}
-          <p className="text-xs text-gray-600 mb-3">Home > Courses > Precious Metals Trading</p>
+          <p className="text-xs text-gray-600 mb-3">Home &gt; Courses &gt; Precious Metals Trading</p>
 
           {/* Main Content Layout - Image and Content Side by Side */}
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 flex-1 overflow-hidden">
@@ -348,7 +348,7 @@ const BeginnerCourse = () => {
       content: (
         <div className="w-full h-full flex flex-col justify-between">
           {/* Breadcrumb */}
-          <p className="text-xs text-gray-600 mb-3">Home > Courses > Indices Trading</p>
+          <p className="text-xs text-gray-600 mb-3">Home &gt; Courses &gt; Indices Trading</p>
 
           {/* Main Content Layout - Image and Content Side by Side */}
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 flex-1 overflow-hidden">
@@ -498,7 +498,7 @@ const BeginnerCourse = () => {
       content: (
         <div className="w-full h-full flex flex-col justify-between">
           {/* Breadcrumb */}
-          <p className="text-xs text-gray-600 mb-3">Home > Courses > Commodities Trading</p>
+          <p className="text-xs text-gray-600 mb-3">Home &gt; Courses &gt; Commodities Trading</p>
 
           {/* Main Content Layout - Image and Content Side by Side */}
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 flex-1 overflow-hidden">
@@ -648,7 +648,7 @@ const BeginnerCourse = () => {
       content: (
         <div className="w-full h-full flex flex-col justify-between">
           {/* Breadcrumb */}
-          <p className="text-xs text-gray-600 mb-3">Home > Courses > Cryptocurrency Trading</p>
+          <p className="text-xs text-gray-600 mb-3">Home &gt; Courses &gt; Cryptocurrency Trading</p>
 
           {/* Main Content Layout - Image and Content Side by Side */}
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 flex-1 overflow-hidden">
