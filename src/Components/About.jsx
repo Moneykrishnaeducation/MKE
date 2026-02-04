@@ -7,7 +7,7 @@ import { BookOpen, TrendingUp, ShieldCheck, Users, Layers, LifeBuoy } from 'luci
 const testimonials = [
   {
     id: 1,
-    name: "Varun",
+    name: "Vivek",
     program: "Trading Mentorship Program",
     image: "/public/user1.jpg",
     text: `I did the TMP course from Elearnmarkets in 2021, almost 3.5 years back, and it has been a life-changing experience. Before that, I used to be like "I'll never look towards the stock market," but TMP has changed my mindset...`,
@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Sayantan Bhattacharya",
+    name: "Shivam",
     program: "Trading Mentorship Program",
     image: "/public/user2.jpg",
     text: `I learned investing and trading in all the assets including equity and MCX. The journey was awesome. Before I enrolled for TMP, I used to invest or trade based on assumptions...`,
@@ -23,7 +23,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Gautam Garg",
+    name: "Sharmila",
     program: "Trading Mentorship Program",
     image: "/public/user3.jpg",
     text: `Before joining TMP, there was a big struggle in my life related to stock market trading and investment. But this TMP program has helped me a lot...`,
@@ -31,9 +31,9 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "Rahul Sharma",
+    name: "Rahul",
     program: "Trading Mentorship Program",
-    image: "/public/user4.jpg",
+    image: "/public/user4.png",
     text: `Before joining TMP, there was a big struggle in my life related to stock market trading and investment. But this TMP program has helped me a lot...`,
     rating: 4.5,
   },
@@ -45,21 +45,21 @@ const About = () => {
   return (
     <>
       {/* Hero Section with Home.jsx style */}
-      <div className="relative flex items-center justify-center" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
-        <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'none', WebkitBackdropFilter: 'none', transform: 'scale(1.02)'}} aria-hidden="true"></div>
-        {/* Overlay for better text visibility (gradient + btc image) */}
+      <div className="relative flex items-center py-28 w-full justify-center" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+        {/* <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'none', WebkitBackdropFilter: 'none', transform: 'scale(1.02)'}} aria-hidden="true"></div>
+        Overlay for better text visibility (gradient + btc image)
         <div
           className="absolute inset-0 z-10 bg-cover bg-center"
           style={{backgroundImage: `linear-gradient(135deg, rgba(192, 228, 205, 0.22), rgba(187, 224, 241, 0.22)), url('/bg_img.jpg')`, filter: 'none', WebkitFilter: 'none', transform: 'scale(1.02)'}}
           aria-hidden="true"
         ></div>
-        <div className="relative z-20 w-full px-2 sm:px-10 lg:px-8 py-50 flex flex-col items-center justify-center text-center">
-          <h1 className="text-8xl md:text-10xl font-bold gradient-text mb-4 animate-fade-in-up cursor-pointer">
+        <div className="relative z-20 w-full sm:px-10 lg:px-4 py-25 flex flex-col items-center justify-center text-center"> */}
+          <h1 className="text-8xl md:text-10xl font-bold text-white mb-4 animate-fade-in-up cursor-pointer">
   About
 </h1>
 
-          <p className="text-lg text-white text-xl max-w-5xl mx-auto animate-fade-in-up">Empowering traders and investors with expert education, actionable strategies, and a supportive community for financial success.</p>
-        </div>
+          {/* <p className=" text-white text-2xl max-w-5xl mx-auto animate-fade-in-up">Empowering traders and investors with expert education, actionable strategies, and a supportive community for financial success.</p>
+        </div> */}
       </div>
 
 
@@ -258,7 +258,7 @@ const About = () => {
           </div>
               <section className="mt-12">
     <div className="bg-white max-w-14xl z-1000 mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{position: 'relative', zIndex: 60, filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none'}}>
-      <h2 className="text-4xl font-semibold text-center mb-2">Elearnmarkets Success Stories</h2>
+      <h2 className="text-4xl font-semibold text-center mb-2">MoneyKrishna Education Success Stories</h2>
       <p className="text-center text-xl text-black w-full mb-8">Discover what our Client's have to say about their learning experience and why they trust our platform.</p>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -279,10 +279,6 @@ const About = () => {
             </div>
           </article>
         ))}
-      </div>
-
-      <div className="flex justify-center mt-8">
-        <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg">VIEW MORE</button>
       </div>
     </div>
   </section>
