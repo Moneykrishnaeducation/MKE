@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight } from 'lucide-react'
-import bgImg from '../assets/bg_img.jpg'
+import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
 const Home = () => {
