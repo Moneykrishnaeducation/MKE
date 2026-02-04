@@ -62,11 +62,11 @@ const About = () => {
     <>
       {/* Hero Section with Home.jsx style */}
       <div className="relative flex items-center justify-center" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
-        <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', transform: 'scale(1.02)'}} aria-hidden="true"></div>
+        <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)', transform: 'scale(1.02)'}} aria-hidden="true"></div>
         {/* Overlay for better text visibility (gradient + btc image) */}
         <div
           className="absolute inset-0 z-10 bg-cover bg-center"
-          style={{backgroundImage: `linear-gradient(135deg, rgba(22,163,74,0.22), rgba(14,165,233,0.22)), url('/bg_img.jpg')`, filter: 'blur(6px)', WebkitFilter: 'blur(6px)', transform: 'scale(1.02)'}}
+          style={{backgroundImage: `linear-gradient(135deg, rgba(192, 228, 205, 0.22), rgba(187, 224, 241, 0.22)), url('/bg_img.jpg')`, filter: 'blur(6px)', WebkitFilter: 'blur(6px)', transform: 'scale(1.02)'}}
           aria-hidden="true"
         ></div>
         <div className="relative z-20 w-full px-2 sm:px-10 lg:px-8 py-24 flex flex-col items-center justify-center text-center">
@@ -87,7 +87,7 @@ const About = () => {
 
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-10"></div>
         <div className="relative mx-0 z-20 w-full p-4 sm:px-6 lg:px-8 py-8">
-          <div className="absolute inset-0 z-0 rounded-lg pointer-events-none" style={{background: 'linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)'}} aria-hidden="true" />
+          <div className="absolute inset-0 z-0 rounded-lg pointer-events-none" style={{background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(243, 242, 242, 0.02))', backdropFilter: 'blur(2px)', WebkitBackdropFilter: 'blur(2px)'}} aria-hidden="true" />
           <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* About Grids */}
 
@@ -250,8 +250,18 @@ const About = () => {
                 <div>
                 <p className="text-slate-300 mb-4 text-justify"><span className="text-amber-300 font-semibold shadow-animate">MoneyKrishna Education</span> proudly supports learners from across the globe, delivering high-quality financial and professional education to students worldwide. We follow strict ethical and data-protection standards because safeguarding our students’ information and learning journey is our top priority. We are committed to providing a trusted, transparent, and reliable educational environment for every learner.</p>
                 </div>
-
+                </div>
+                {/* <div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 ">
+                    {[ '/trader.png', '/trades.png', '/ai.png', '/Forex-Trading.jpg' ].map((src, i) => (
+                      <div key={i} className="overflow-hidden rounded-lg bg-black/5 hover:scale-105 transform transition-transform duration-200">
+                        <img src={src} alt={`gallery-${i}`} className="w-full h-28 sm:h-32 object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div> */}
               </div>
+
               </div>
             </div>
           </div>
@@ -319,7 +329,7 @@ const About = () => {
           `}</style>
         </div>
       </div>
-      </div>
+      
     </>
   );
 };
