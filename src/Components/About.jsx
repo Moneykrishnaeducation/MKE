@@ -1,18 +1,11 @@
 
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import carouselImg0 from '../assets/bg_img.jpg';
 import bgImg from '../assets/bg_img.jpg'
 import { BookOpen, TrendingUp, ShieldCheck, Users, Layers, LifeBuoy } from 'lucide-react';
 
 // Remove imports for missing images. Only use images that exist.
 
-const navItems = [
-  'OUR COMPANY',
-  // 'OUR PERSPECTIVES',
-  'CAREERS',
-  'CONTACT US',
-];
 
 const About = () => {
 
@@ -21,16 +14,7 @@ const About = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Carousel images
-  // Only use images that exist. If only bg_img.jpg exists, use it for the carousel.
-  const carouselImages = [carouselImg0];
-  const [currentImage, setCurrentImage] = React.useState(0);
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % carouselImages.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [carouselImages.length]);
+
 
   // Scroll to contact section if on page
   function scrollToContactOnPage() {
@@ -78,9 +62,14 @@ const About = () => {
     <>
       {/* Hero Section with Home.jsx style */}
       <div className="relative flex items-center justify-center" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
-        {/* Overlay for better text visibility */}
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
-        <div className="relative z-10 w-full px-2 sm:px-10 lg:px-8 py-24 flex flex-col items-center justify-center text-center">
+        <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', transform: 'scale(1.02)'}} aria-hidden="true"></div>
+        {/* Overlay for better text visibility (gradient + btc image) */}
+        <div
+          className="absolute inset-0 z-10 bg-cover bg-center"
+          style={{backgroundImage: `linear-gradient(135deg, rgba(22,163,74,0.22), rgba(14,165,233,0.22)), url('/bg_img.jpg')`, filter: 'blur(6px)', WebkitFilter: 'blur(6px)', transform: 'scale(1.02)'}}
+          aria-hidden="true"
+        ></div>
+        <div className="relative z-20 w-full px-2 sm:px-10 lg:px-8 py-24 flex flex-col items-center justify-center text-center">
           <h1
             className="text-3xl md:text-5xl font-bold gradient-text mb-4 animate-fade-in-up cursor-pointer"
           >
@@ -93,15 +82,18 @@ const About = () => {
 
       {/* Main Section with Home.jsx overlay style */}
       <div id="about-section" className="relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+        <div className="absolute inset-0 z-0 bg-black/60"></div>
         {/* Overlay for better text visibility, like Home.jsx */}
 
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
-        <div className="relative mx-0 z-5 w-full p-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* About Grids */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-10"></div>
+        <div className="relative mx-0 z-20 w-full p-4 sm:px-6 lg:px-8 py-8">
+          <div className="absolute inset-0 z-0 rounded-lg pointer-events-none" style={{background: 'linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)'}} aria-hidden="true" />
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* About Grids */}
 
           {/* Individual Grids - Who We Are */}
           <div>
-            <div className="bg-white rounded-lg shadow-xl p-6 animate-fade-in-up w-full h-full flex flex-col justify-between transition-transform duration-150 hover:scale-[1.02] hover:shadow-lg">
+            <div className="bg-white rounded-lg shadow-xl p-6 animate-fade-in-up w-full h-full flex flex-col justify-between transition-transform duration-150 hover:scale-[1.02] hover:shadow-lg ">
               <h2 className="text-2xl font-bold text-green-700 mb-4">Company Overview</h2>
               <p className="text-slate-700 mb-4 text-justify">MoneyKrishna Education has been empowering traders and investors for over 4 years by delivering practical market knowledge, 
                 strategic insights, and hands-on learning in multi-asset 
@@ -137,28 +129,13 @@ const About = () => {
                 We strive to empower traders through structured education, advanced trading tools, and continuous learning opportunities—enabling them to make informed 
                 decisions and achieve long-term success in the financial markets.</p>
 
-               {/* Call to Action */}
-          {/* <div className="w-full bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-3 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl mb-8 animate-fade-in-up max-w-280 mx-auto">
-            <p className="font-semibold text-white text-md">Take Control of Your Financial Future! Enroll Now and Start Your Journey to Consistent Trading Success!</p>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=naveen143mca@gmail.com&su=Book%20Free%20Class"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-full shadow-lg transition hover:bg-green-100 text-base animate-bounce hover:[animation-play-state:paused]"
-            >🚀 Book a free Class</a>
-          </div> */}
-
-          {/* Chat Form Modal (optional, not shown by default) */}
-       
 
             </div>
             
           </div>
-          <div>
-            <br></br><br></br>
-          </div>
+       
           <div className="col-span-full flex justify-center items-center">
-            <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-fade-in-up truncate whitespace-nowrap">Why Money Krishna Education is Exceptional</h1>
+            <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-fade-in-up truncate whitespace-nowrap"></h1>
           </div>
 
           <div className="col-span-full">
@@ -167,7 +144,7 @@ const About = () => {
                 <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
                   <div className="flex flex-col items-center">
                     <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <BookOpen size={28} className="text-green-600" />
+                      <BookOpen size={28} className="text-yellow-500" />
                     </div>
                     <h3 className="text-white font-semibold">Practical Market Education</h3>
                   </div>
@@ -177,7 +154,7 @@ const About = () => {
                 <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
                   <div className="flex flex-col items-center">
                     <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <TrendingUp size={28} className="text-green-600" />
+                      <TrendingUp size={28} className="text-yellow-500" />
                     </div>
                     <h3 className="text-white font-semibold">Trader-Focused Learning</h3>
                   </div>
@@ -189,7 +166,7 @@ const About = () => {
                 <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
                   <div className="flex flex-col items-center">
                     <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <ShieldCheck size={28} className="text-green-600" />
+                      <ShieldCheck size={28} className="text-yellow-500" />
                     </div>
                     <h3 className="text-white font-semibold">Safe &amp; Transparent Learning</h3>
                   </div>
@@ -199,7 +176,7 @@ const About = () => {
                 <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
                   <div className="flex flex-col items-center">
                     <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Users size={28} className="text-green-600" />
+                      <Users size={28} className="text-yellow-500" />
                     </div>
                     <h3 className="text-white font-semibold">Expert-Led Mentorship</h3>
                   </div>
@@ -211,7 +188,7 @@ const About = () => {
                 <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
                   <div className="flex flex-col items-center">
                     <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Layers size={28} className="text-green-600" />
+                      <Layers size={28} className="text-yellow-500" />
                     </div>
                     <h3 className="text-white font-semibold">Structured &amp; Progressive Curriculum</h3>
                   </div>
@@ -221,7 +198,7 @@ const About = () => {
                 <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
                   <div className="flex flex-col items-center">
                     <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <LifeBuoy size={28} className="text-green-600" />
+                      <LifeBuoy size={28} className="text-yellow-500" />
                     </div>
                     <h3 className="text-white font-semibold">Continuous Support &amp; Growth</h3>
                   </div>
@@ -231,51 +208,50 @@ const About = () => {
             </div>
 
             <div className="col-span-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4 text-center">Security &amp; Trust</h2>
-                  <div>
-                  <p className="text-slate-300 mb-4 text-justify"><span className="text-amber-300 font-semibold shadow-animate">MoneyKrishna Education</span> proudly supports learners from across the globe, delivering high-quality financial and professional education to students worldwide. We follow strict ethical and data-protection standards because safeguarding our students’ information and learning journey is our top priority. We are committed to providing a trusted, transparent, and reliable educational environment for every learner.</p>
-                  </div>  
-                  
-                </div>
+              <div>
 
-                <div className="w-full  ">
-                  <br></br><br></br>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                    <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                      <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                        <ShieldCheck size={28} className="text-amber-400" />
-                      </div>
-                      <h5 className="text-white font-semibold">Institutional Credibility</h5>
-                      <p className="text-slate-300 text-sm mt-2">Registered and operating in compliance with applicable educational and business regulations.</p>
+                <br></br><br></br>
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 w-full">
+                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <ShieldCheck size={28} className="text-amber-400" />
                     </div>
+                    <h5 className="text-white font-semibold">Institutional Credibility</h5>
+                    <p className="text-slate-300 text-sm mt-2">Registered and operating in compliance with applicable educational and business regulations.</p>
+                  </div>
 
-                    <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                      <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                        <Layers size={28} className="text-amber-400" />
-                      </div>
-                      <h5 className="text-white font-semibold">Client Data Protection</h5>
-                      <p className="text-slate-300 text-sm mt-2">Clients' funds are kept separate from operational accounts for added protection.</p>
+                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <Layers size={28} className="text-amber-400" />
                     </div>
+                    <h5 className="text-white font-semibold">Client Data Protection</h5>
+                    <p className="text-slate-300 text-sm mt-2">Clients' funds are kept separate from operational accounts for added protection.</p>
+                  </div>
 
-                    <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                      <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                        <Users size={28} className="text-amber-400" />
-                      </div>
-                      <h5 className="text-white font-semibold">Trusted Payment Partners</h5>
-                      <p className="text-slate-300 text-sm mt-2">We maintain partnerships with tier-1 banks to secure payment and custody services.</p>
+                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <Users size={28} className="text-amber-400" />
                     </div>
+                    <h5 className="text-white font-semibold">Trusted Payment Partners</h5>
+                    <p className="text-slate-300 text-sm mt-2">We maintain partnerships with tier-1 banks to secure payment and custody services.</p>
+                  </div>
 
-                    <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                      <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                        <LifeBuoy size={28} className="text-amber-400" />
-                      </div>
-                      <h5 className="text-white font-semibold">Advanced Encryption</h5>
-                      <p className="text-slate-300 text-sm mt-2">Modern encryption protocols protect communications and transactions.</p>
+                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <LifeBuoy size={28} className="text-amber-400" />
                     </div>
+                    <h5 className="text-white font-semibold">Advanced Encryption</h5>
+                    <p className="text-slate-300 text-sm mt-2">Modern encryption protocols protect communications and transactions.</p>
                   </div>
                 </div>
+                <br></br>
+                <div>
+                <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4 text-center">Security &amp; Trust</h2>
+                <div>
+                <p className="text-slate-300 mb-4 text-justify"><span className="text-amber-300 font-semibold shadow-animate">MoneyKrishna Education</span> proudly supports learners from across the globe, delivering high-quality financial and professional education to students worldwide. We follow strict ethical and data-protection standards because safeguarding our students’ information and learning journey is our top priority. We are committed to providing a trusted, transparent, and reliable educational environment for every learner.</p>
+                </div>
+
+              </div>
               </div>
             </div>
           </div>
@@ -342,6 +318,7 @@ const About = () => {
             }
           `}</style>
         </div>
+      </div>
       </div>
     </>
   );
