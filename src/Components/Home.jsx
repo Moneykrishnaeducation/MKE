@@ -346,7 +346,7 @@ useEffect(() => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
                 <Link
-                  to="/course"
+                  to="/courses/beginner"
                   aria-label="Join course - start learning with MoneyKrishna"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
