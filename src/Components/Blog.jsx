@@ -78,9 +78,7 @@ const Blog = () => {
                                 <img
                                     src={img}
                                     alt={title}
-                                    className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
-                                        img.includes('TROFFY') ? 'object-contain' : 'object-cover'
-                                    }`}
+                                    className={`w-full h-full transition-transform duration-500 group-hover:scale-105 object-fill`}
                                 />
                             </div>
                             <h3 className="text-lg font-bold text-gray-900 text-center">{title}</h3>

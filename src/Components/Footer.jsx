@@ -22,7 +22,7 @@ const Footer = () => {
 
             <ul className="flex gap-3 mt-6" role="list" aria-label="Social links">
               <li>
-                <a href="https://www.facebook.com/moneykrishna.education/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="Facebook">
+                <a href="https://www.facebook.com/moneykrishna.education/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded " aria-label="Facebook">
                   <Icon>
                     <Facebook className="w-4 h-4" aria-hidden="true" />
                   </Icon>
@@ -30,7 +30,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/moneykrishnaeducation/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="Instagram">
+                <a href="https://www.instagram.com/moneykrishnaeducation/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded " aria-label="Instagram">
                   <Icon>
                     <Instagram className="w-4 h-4" aria-hidden="true" />
                   </Icon>
@@ -38,7 +38,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:opacity-90 rounded focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="Twitter">
+                <a href="#" className="hover:opacity-90 rounded " aria-label="Twitter">
                   <Icon>
                     <Twitter className="w-4 h-4" aria-hidden="true" />
                   </Icon>
@@ -46,7 +46,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://wa.me/919500074778" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="WhatsApp">
+                <a href="https://wa.me/919500074778" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded " aria-label="WhatsApp">
                   <Icon>
                     <Phone className="w-4 h-4" aria-hidden="true" />
                   </Icon>
@@ -69,7 +69,7 @@ const Footer = () => {
           <nav className="md:col-span-2" aria-label="Footer Services">
             <h4 className="font-semibold mb-4 text-gray-700">Our Services</h4>
             <ul className="space-y-3 text-gray-600">
-              <li><a href="#" className="hover:underline rounded">MT5 Training</a></li>
+              <li><a href="#" className="hover:underline rounded">Forex Training</a></li>
               <li><a href="#" className="hover:underline rounded">Live Trading</a></li>
               <li><a href="#" className="hover:underline rounded">Mentorship</a></li>
               <li><a href="#" className="hover:underline rounded">Workshops</a></li>
