@@ -306,12 +306,12 @@ const TopNav = () => {
             >
               Policies
             </Link>
-             <Link 
+             {/* <Link 
               to="/careers" 
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
             >
               Careers
-            </Link>
+            </Link> */}
             
           </nav>
 
@@ -417,13 +417,13 @@ const TopNav = () => {
               Policies
             </Link>
             
-             <Link 
+             {/* <Link 
               to="/careers" 
               className="mobile-nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
               Careers
-            </Link>
+            </Link> */}
             {/* <Link 
               to="/login" 
               className="mobile-nav-link bg-green-50 text-green-600 font-semibold"
