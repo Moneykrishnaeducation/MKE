@@ -173,7 +173,7 @@ const TopNav = () => {
     `}</style>
 
     {/* Social Media Top Bar */}
-    <div className="sticky top-0 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 text-white py-2 z-50 navbar-animate">
+    <div className="bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 text-white py-2 z-40 navbar-animate">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center text-xs gap-4">
           <div className="flex items-center gap-4">
