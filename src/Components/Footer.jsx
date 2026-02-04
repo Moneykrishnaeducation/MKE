@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo of MKE.webp'
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react'
+import { Facebook, Instagram,  Mail, Phone, MapPin, Linkedin } from 'lucide-react'
 
 const Icon = ({ children }) => (
   <span className="w-8 h-8 inline-flex items-center justify-center rounded-full bg-teal-600 text-white" aria-hidden="true" role="img">{children}</span>
@@ -38,11 +38,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:opacity-90 rounded " aria-label="Twitter">
+                <a href="https://www.linkedin.com/company/money-krishna-education/" className="hover:opacity-90 rounded " aria-label="Linkedin">
                   <Icon>
-                    <Twitter className="w-4 h-4" aria-hidden="true" />
+                    <Linkedin className="w-4 h-4" aria-hidden="true" />
                   </Icon>
-                  <span className="sr-only">Twitter</span>
+                  <span className="sr-only">Linkedin</span>
                 </a>
               </li>
               <li>

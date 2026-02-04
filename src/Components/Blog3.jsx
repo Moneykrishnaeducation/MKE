@@ -20,38 +20,38 @@ const Blog3 = () => {
         }
         meta.setAttribute("content", keywords.join(", "))
     }, [])
-const sections = [
-  {
-    title: "1. Build a Strong Foundation",
-    text: "Learn how financial markets work, understand different trading instruments, and study basic technical and fundamental concepts before putting real money at risk.",
-    Icon: BookOpen,
-  },
-  {
-    title: "2. Master Your Trading Strategy",
-    text: "Choose one or two strategies that match your personality, risk tolerance, and available time. Master them through backtesting and live market observation.",
-    Icon: Zap,
-  },
-  {
-    title: "3. Risk Management",
-    text: "Protect your capital by limiting risk per trade, using stop-losses, and avoiding over-trading. Surviving the market is more important than quick profits.",
-    Icon: ShieldCheck,
-  },
-  {
-    title: "4. Maintain a Trading Journal",
-    text: "Record every trade with entry reasons, emotions, outcomes, and mistakes. Reviewing your journal helps identify patterns and improve performance.",
-    Icon: FileText,
-  },
-  {
-    title: "5. Keep Learning & Adapting",
-    text: "Markets constantly evolve. Stay updated with market news, refine strategies, and adapt to changing volatility and trends.",
-    Icon: Clock,
-  },
-  {
-    title: "6. Discipline & Patience",
-    text: "Consistent execution, emotional control, and patience separate profitable traders from gamblers. Trust the process, not impulses.",
-    Icon: TrendingUp,
-  },
-]
+    const sections = [
+        {
+            title: "1. Build a Strong Foundation",
+            text: "Learn how financial markets work, understand different trading instruments, and study basic technical and fundamental concepts before putting real money at risk.",
+            Icon: BookOpen,
+        },
+        {
+            title: "2. Master Your Trading Strategy",
+            text: "Choose one or two strategies that match your personality, risk tolerance, and available time. Master them through backtesting and live market observation.",
+            Icon: Zap,
+        },
+        {
+            title: "3. Risk Management",
+            text: "Protect your capital by limiting risk per trade, using stop-losses, and avoiding over-trading. Surviving the market is more important than quick profits.",
+            Icon: ShieldCheck,
+        },
+        {
+            title: "4. Maintain a Trading Journal",
+            text: "Record every trade with entry reasons, emotions, outcomes, and mistakes. Reviewing your journal helps identify patterns and improve performance.",
+            Icon: FileText,
+        },
+        {
+            title: "5. Keep Learning & Adapting",
+            text: "Markets constantly evolve. Stay updated with market news, refine strategies, and adapt to changing volatility and trends.",
+            Icon: Clock,
+        },
+        {
+            title: "6. Discipline & Patience",
+            text: "Consistent execution, emotional control, and patience separate profitable traders from gamblers. Trust the process, not impulses.",
+            Icon: TrendingUp,
+        },
+    ]
 
 
     return (
@@ -101,7 +101,7 @@ const sections = [
             {/* Hero Section */}
             <section className="relative pt-20 z-10">
                 <div className="container mx-auto max-w-6xl px-6">
-                    <span className="inline-block rounded-full bg-blue-100 px-5 py-1 text-sm font-semibold text-blue-700 border border-blue-300">
+                    <span className="inline-block rounded-full bg-blue-100 px-6 py-3 text-xl font-semibold text-blue-700 border border-blue-300">
                         Trading Education
                     </span>
 
@@ -113,8 +113,8 @@ const sections = [
                         A modern roadmap to master trading psychology, risk management, and consistency.
                     </p>
 
-                    <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-200">
-                        <span><ClockIcon className="w-5 h-5 inline mr-1"/> 6 min read</span>
+                    <div className="mt-6 flex flex-wrap gap-4 text-sm bg-black/50 p-4 w-fit rounded-full text-slate-200">
+                        <span><ClockIcon className="w-5 h-5 inline mr-1" /> 6 min read</span>
                         <span>• Updated 2026</span>
                         <span>• Beginner → Intermediate</span>
                     </div>
@@ -126,7 +126,7 @@ const sections = [
                 <article className="space-y-16">
 
                     {/* Cards Grid */}
-                    <div className="flex flex-wrap gap-8 px-10  md:px-0 justify-center">
+                    <div className="flex flex-wrap gap-8 px-10 md:px-0 justify-center">
                         {sections.map(({ title, text, Icon }, index) => {
                             const colors = [
                                 'bg-blue-500',
@@ -149,11 +149,11 @@ const sections = [
                                         </div>
 
                                         {/* Content */}
-                                        <div className="flex-1">
-                                            <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition">
+                                        <div className="flex-1 ">
+                                            <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition">
                                                 {title}
                                             </h3>
-                                            <p className="text-slate-600 text-sm leading-relaxed mt-2">
+                                            <p className="text-slate-600 leading-relaxed mt-2">
                                                 {text}
                                             </p>
                                         </div>
@@ -165,44 +165,61 @@ const sections = [
 
                     {/* Pro Tips & Key Takeaways */}
                     <div className="grid gap-8 md:grid-cols-2">
-                        {/* Pro Tips */}
-                        <div className="rounded-2xl bg-blue-50 border border-blue-200 p-8 shadow-sm hover:shadow-md transition">
-                            <h3 className="text-xl font-semibold text-blue-900 mb-6">
-                                Pro Trading Tips
-                            </h3>
-                            <ul className="space-y-3">
-                                {[
-                                    'Always use a stop-loss',
-                                    'Risk less than 2% per trade',
-                                    'Review trades weekly'
-                                ].map((tip, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-slate-700">
-                                        <span className="text-green-500 font-bold mt-0.5">✓</span>
-                                        <span className="text-sm">{tip}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                        {/* Pro Trading Tips */}
+                        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden">
+                            {/* Header */}
+                            <div className="bg-gradient-to-r from-blue-500 to-blue-400 px-6 py-4">
+                                <h3 className="text-2xl font-semibold text-white">
+                                    Pro Trading Tips
+                                </h3>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-6">
+                                <ul className="space-y-4">
+                                    {[
+                                        'Always use a stop-loss',
+                                        'Risk less than 2% per trade',
+                                        'Review trades weekly',
+                                    ].map((tip, idx) => (
+                                        <li key={idx} className="flex items-start gap-3 text-xl text-slate-700">
+                                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-green-600 font-bold mt-2">
+                                                ✓
+                                            </span>
+                                            <span className="leading-relaxed">{tip}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
 
                         {/* Key Takeaways */}
-                        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-8 shadow-sm hover:shadow-md transition">
-                            <h3 className="text-xl font-semibold text-emerald-900 mb-6">
-                                Key Takeaways
-                            </h3>
-                            <ul className="space-y-3">
-                                {[
-                                    'Trading is a professional skill',
-                                    'Risk management defines survival',
-                                    'Consistency beats intensity'
-                                ].map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-slate-700">
-                                        <span className="text-blue-500 font-bold mt-0.5">•</span>
-                                        <span className="text-sm">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden">
+                            {/* Header */}
+                            <div className="bg-gradient-to-r from-emerald-500 to-emerald-400 px-6 py-4">
+                                <h3 className="text-2xl font-semibold text-white">
+                                    Key Takeaways
+                                </h3>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-6">
+                                <ul className="space-y-4">
+                                    {[
+                                        'Trading is a professional skill',
+                                        'Risk management defines survival',
+                                        'Consistency beats intensity',
+                                    ].map((item, idx) => (
+                                        <li key={idx} className="flex items-start gap-3 text-xl text-slate-700">
+                                            <span className="mt-3 h-2 w-2 rounded-full bg-blue-500"></span>
+                                            <span className="leading-relaxed">{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
+
 
                     {/* CTA */}
                     <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-green-500 p-12 text-white shadow-lg hover:shadow-xl transition">
