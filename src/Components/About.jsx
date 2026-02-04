@@ -45,7 +45,7 @@ const About = () => {
   return (
     <>
       {/* Hero Section with Home.jsx style */}
-      <div className="relative flex items-center py-28 w-full justify-center" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+      <div className="relative flex flex-col text-center items-center py-28 w-full justify-center" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         {/* <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'none', WebkitBackdropFilter: 'none', transform: 'scale(1.02)'}} aria-hidden="true"></div>
         Overlay for better text visibility (gradient + btc image)
         <div
