@@ -48,20 +48,12 @@ const careerAreas = [
 
 export default function Careers() {
   return (
-    <div
-      className="relative min-h-screen"
-      style={{
-        backgroundImage: `url(${bgImg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+    <div className="min-h-[200vh] relative" style={{backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed'}}>
+      {/* Overlay for better text visibility (match Home.jsx) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0" />
 
       {/* Content */}
-      <div className="relative mx-0 z-10 w-full p-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-screen-2xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
 
         {/* HERO */}
         <div className="w-full mx-0 text-center mb-20">
