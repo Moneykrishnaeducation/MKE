@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, ChevronDown, Menu, X } from 'lucide-react'
+import { Facebook, Linkedin, Instagram, Youtube, Mail, ChevronDown, Menu, X } from 'lucide-react'
 import logo from '../assets/logo of MKE.webp'
 
 const TopNav = () => {
@@ -173,7 +173,7 @@ const TopNav = () => {
     `}</style>
 
     {/* Social Media Top Bar */}
-    <div className="bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 text-white py-2 z-50 navbar-animate">
+    <div className="sticky top-0 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 text-white py-2 z-50 navbar-animate">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center text-xs gap-4">
           <div className="flex items-center gap-4">
@@ -190,15 +190,9 @@ const TopNav = () => {
             >
               <Facebook className="w-5 h-5" />
             </a>
+
             <a 
-              href="#" 
-              className="social-icon hover:text-green-400 transition-colors"
-              title="Twitter"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a 
-              href="#" 
+              href="https://www.linkedin.com/company/money-krishna-education/" 
               className="social-icon hover:text-green-400 transition-colors"
               title="LinkedIn"
             >
