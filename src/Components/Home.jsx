@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight, Star, GraduationCap } from 'lucide-react'
 import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
@@ -363,16 +363,33 @@ useEffect(() => {
                 </a>
               </div>
 
-              <div className="mt-6 flex flex-col sm:flex-row items-center gap-4 text-sm text-white/90">
-                <div className="flex items-center gap-2">
-                  <span className="inline-block bg-white/10 text-white px-2 py-1 rounded-full">⭐ 4.9/5</span>
-                  <span>Trusted by 10k+ students</span>
+              {/* Stats Cards */}
+              <div className="mt-8 grid grid-cols-3 gap-4 w-full max-w-2xl mx-auto md:mx-0">
+                {/* Card 1: Total Learners */}
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all">
+                  <div className="flex justify-center mb-3">
+                    <GraduationCap className="w-8 h-8 text-blue-300" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-bold text-white mb-1">10K+</p>
+                  <p className="text-xs sm:text-sm text-white/80">Total Learners</p>
                 </div>
-                <div className="hidden sm:block border-l border-white/20 h-4"></div>
-                <div className="flex items-center gap-2 text-white/80">
-                  <span className="font-medium">Live classes</span>
-                  <span className="text-sm text-white/70">•</span>
-                  <span className="font-medium">Mentorship</span>
+
+                {/* Card 2: Specialized Courses */}
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all">
+                  <div className="flex justify-center mb-3">
+                    <BookOpen className="w-8 h-8 text-green-300" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-bold text-white mb-1">10+</p>
+                  <p className="text-xs sm:text-sm text-white/80">Specialized Courses</p>
+                </div>
+
+                {/* Card 3: App Rating */}
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all">
+                  <div className="flex justify-center mb-3">
+                    <Star className="w-8 h-8 text-yellow-300 fill-yellow-300" />
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-bold text-white mb-1">4.9/5</p>
+                  <p className="text-xs sm:text-sm text-white/80">App Rating</p>
                 </div>
               </div>
             </div>
