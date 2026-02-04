@@ -153,16 +153,49 @@ useEffect(() => {
       setStatus("Something went wrong ❌");
     }
   };
-  const reviews = [
-    { name: "Rahul Sharma", role: "Forex Trader • India", text: "The courses are exceptionally well-structured..." },
-    { name: "Priya Patel", role: "Stock Market Investor • UK", text: "MoneyKrishna Education completely changed..." },
-    { name: "Arun Verma", role: "Day Trader • Dubai", text: "The mentorship program is outstanding..." },
-    { name: "Neha Singh", role: "Options Trader • Singapore", text: "Finally found a platform where education meets..." },
-    { name: "Vikram Kumar", role: "Crypto Trader • USA", text: "The community here is amazing..." },
-    { name: "Deepak Malhotra", role: "Swing Trader • Canada", text: "The strategy courses are incredibly detailed..." },
-    { name: "Anjali Desai", role: "Futures Trader • Australia", text: "Switched from another platform..." },
-    { name: "Arjun Prabhu", role: "Intraday Trader • Malaysia", text: "The live trading sessions are a goldmine..." }
-  ];
+const reviews = [
+  {
+    name: "Arun Kumar",
+    role: "Student · Chennai",
+    text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
+  },
+  {
+    name: "Priya Sharma",
+    role: "Student · Coimbatore",
+    text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
+  },
+  {
+    name: "Vignesh R",
+    role: "Student · Madurai",
+    text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
+  },
+  {
+    name: "Sneha Patel",
+    role: "Student · Salem",
+    text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
+  },
+  {
+    name: "Rahul Verma",
+    role: "Student · Trichy",
+    text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
+  },
+  {
+    name: "Anitha S",
+    role: "Student · Tirunelveli",
+    text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
+  },
+  {
+    name: "Karthik M",
+    role: "Student · Erode",
+    text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
+  },
+  {
+    name: "Divya Lakshmi",
+    role: "Student · Thanjavur",
+    text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
+  }
+]
+
 
 
   return (
