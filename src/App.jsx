@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import TopNav from './Components/TopNav'
 import Home from './Components/Home'
 import About from './Components/About'
-import MT5Education from './Components/MT5Education'
 import Blog from './Components/Blog'
 import Policies from './Components/Policies'
 
