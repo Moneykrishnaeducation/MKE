@@ -416,6 +416,14 @@ const TopNav = () => {
             >
               Policies
             </Link>
+            
+             <Link 
+              to="/careers" 
+              className="mobile-nav-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Careers
+            </Link>
             {/* <Link 
               to="/login" 
               className="mobile-nav-link bg-green-50 text-green-600 font-semibold"
