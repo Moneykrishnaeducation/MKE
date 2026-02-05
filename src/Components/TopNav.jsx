@@ -268,13 +268,13 @@ const TopNav = () => {
               </button>
               {openDropdown === 'courses' && (
                 <div id="courses-menu" role="menu" className="dropdown-menu" aria-label="Courses">
-                  <Link to="/courses/beginner" className="dropdown-item" role="menuitem" tabIndex="0">
+                  <Link to="/courses/beginnerintro" className="dropdown-item" role="menuitem" tabIndex="0">
                     Beginner
                   </Link>
                   {/* <Link to="/courses/intermediate" className="dropdown-item" role="menuitem" tabIndex="0">
                     Intermediate
                   </Link> */}
-                  <Link to="/courses/advanced" className="dropdown-item" role="menuitem" tabIndex="0">
+                  <Link to="/courses/advanceintro" className="dropdown-item" role="menuitem" tabIndex="0">
                     Advanced
                   </Link>
                 </div>
@@ -358,7 +358,7 @@ const TopNav = () => {
               </button>
               <div className={`mobile-courses-dropdown ${mobileCoursesOpen ? 'open' : ''}`}>
                   <Link 
-                    to="/courses/beginner" 
+                    to="/courses/beginnerintro" 
                     className="dropdown-item"
                     onClick={() => {
                       setMobileMenuOpen(false)
@@ -378,7 +378,7 @@ const TopNav = () => {
                     Intermediate
                   </Link>
                   <Link 
-                    to="/courses/advanced" 
+                    to="/courses/advanceintro" 
                     className="dropdown-item"
                     onClick={() => {
                       setMobileMenuOpen(false)

@@ -12,8 +12,10 @@ import Blog2 from './Components/Blog2'
 import Blog3 from './Components/Blog3'
 import GoUpButton from './Components/GoUpButton'
 import BeginnerCourse from './Components/BeginnerCourse'
+import BeginnerIntro from './Components/BeginnerIntro'
 import Intermediate from './Components/Intermediate'
 import AdvanceCourse from './Components/AdvanceCourse'
+import AdvanceIntro from './Components/AdvanceIntro'
 import Careers from './Components/Careers'
 import Term from './Components/Term'
 import ScrollToTop from './Components/ScrollToTop'
@@ -34,8 +36,10 @@ const App = () => {
             <Route path="/blog/strategies" element={<Blog1 />} />
             <Route path="/blog/ai" element={<Blog2 />} />
             <Route path="/blog/become-trader" element={<Blog3 />} />
+            <Route path="/courses/beginnerintro" element={<BeginnerIntro />} />
             <Route path="/courses/beginner" element={<BeginnerCourse />} />
             <Route path="/courses/intermediate" element={<Intermediate />} />
+            <Route path="/courses/advanceintro" element={<AdvanceIntro />} />
             <Route path="/courses/advanced" element={<AdvanceCourse />} />
             <Route path="/terms" element={<Term />} />
             <Route path="/disclaimer" element={<Policies />} />
