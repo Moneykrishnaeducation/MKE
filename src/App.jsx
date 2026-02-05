@@ -16,10 +16,12 @@ import Intermediate from './Components/Intermediate'
 import AdvanceCourse from './Components/AdvanceCourse'
 import Careers from './Components/Careers'
 import Term from './Components/Term'
+import ScrollToTop from './Components/ScrollToTop'
 
 const App = () => {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <TopNav />
 
