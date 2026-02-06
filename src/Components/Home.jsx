@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight, Star, GraduationCap } from 'lucide-react'
+import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight, Star, GraduationCap, Gift } from 'lucide-react'
 import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
@@ -241,6 +241,36 @@ const reviews = [
           0% { background-position: -1000px 0; }
           100% { background-position: 1000px 0; }
         }
+        @keyframes sparkle {
+          0%, 100% { opacity: 0; transform: scale(0) translate(0, 0); }
+          50% { opacity: 1; transform: scale(1) translate(var(--tx), var(--ty)); }
+        }
+        @keyframes floatingIcon {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(10px) rotate(5deg); }
+        }
+        @keyframes shimmerGlow {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        @keyframes pulseScale {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        .sparkle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: radial-gradient(circle, #fbbf24, #f59e0b);
+          border-radius: 50%;
+          pointer-events: none;
+        }
+        .floating-icon {
+          animation: floatingIcon 3s ease-in-out infinite;
+        }
+        .offer-badge-pulse {
+          animation: pulseScale 2s ease-in-out infinite;
+        }
         @keyframes bubbleRise {
           0% { 
             transform: translateY(0) translateX(0); 
@@ -397,9 +427,9 @@ const reviews = [
               </div>
 
               {/* Stats Cards */}
-              <div className="mt-8 grid grid-cols-3 gap-4 w-full max-w-2xl mx-auto md:mx-0">
+              <div className="mt-8 grid grid-cols-2 md:grid-cols-4 h-40 gap-4 w-full max-w-4xl mx-auto md:mx-0">
                 {/* Card 1: Total Learners */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all min-h-[160px] flex flex-col justify-center items-center">
                   <div className="flex justify-center mb-3">
                     <GraduationCap className="w-8 h-8 text-blue-300" />
                   </div>
@@ -408,7 +438,7 @@ const reviews = [
                 </div>
 
                 {/* Card 2: Specialized Courses */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all min-h-[160px] flex flex-col justify-center items-center">
                   <div className="flex justify-center mb-3">
                     <BookOpen className="w-8 h-8 text-green-300" />
                   </div>
@@ -417,12 +447,70 @@ const reviews = [
                 </div>
 
                 {/* Card 3: App Rating */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 hover:border-white/40 transition-all min-h-[160px] flex flex-col justify-center items-center">
                   <div className="flex justify-center mb-3">
                     <Star className="w-8 h-8 text-yellow-300 fill-yellow-300" />
                   </div>
                   <p className="text-2xl sm:text-3xl font-bold text-white mb-1">4.9/5</p>
                   <p className="text-xs sm:text-sm text-white/80">Rating</p>
+                </div>
+
+                {/* Card 4: Active Offers - Enhanced with Sparkles */}
+                <div className="relative group bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-md rounded-2xl p-6 text-center border border-pink-300/30 hover:border-pink-300/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-pink-500/40 hover:-translate-y-2 min-h-[160px] flex flex-col justify-center items-center">
+                  {/* Sparkle particles - top left */}
+                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.5s ease-in-out infinite'}}></div>
+                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2s ease-in-out infinite 0.3s'}}></div>
+                  
+                  {/* Sparkle particles - top right */}
+                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.8s ease-in-out infinite 0.2s'}}></div>
+                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2.2s ease-in-out infinite 0.5s'}}></div>
+                  
+                  {/* Animated gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400/0 via-pink-300/10 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Pulsing glow effect - enhanced */}
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}></div>
+                  
+                  {/* Rotating border on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" style={{
+                    background: 'conic-gradient(from 0deg, #fbbf24, #f59e0b, #fbbf24)',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                    padding: '1px',
+                    animation: 'rotate 4s linear infinite'
+                  }}></div>
+                  
+                  <div className="relative z-10">
+                    {/* Limited Time Badge - Enhanced */}
+                    <div className="inline-block min-w-5xl offer-badge-pulse">
+                      <span className="w-full text-[10px] font-bold text-pink-200 bg-gradient-to-r from-pink-500/40 to-rose-500/40 px-3 py-1 rounded-full border border-pink-300/70 backdrop-blur-sm shadow-lg shadow-pink-500/20">
+                        ⚡ LIMITED TIME
+                      </span>
+                    </div>
+
+                    {/* Icon with glow and floating animation */}
+                    <div className="flex justify-center">
+                      <div className="relative floating-icon">
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{width: '60px', height: '60px', margin: '-15px'}}></div>
+                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))'}} />
+                      </div>
+                    </div>
+                    
+                    {/* Main Value - Large and Bold */}
+                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{textShadow: '0 0 20px rgba(251, 191, 36, 0.3)'}}>60%+</p>
+                    
+                    {/* Subtext with emphasis */}
+                    <p className="text-sm text-pink-100/95 font-bold tracking-wide mb-1">ACTIVE OFFERS</p>
+                    
+                    {/* Button */}
+                    <Link
+                      to="/courses/beginner"
+                      className="inline-flex items-center gap-2 px-4 py-2  rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg hover:shadow-pink-500/50 hover:scale-110"
+                    >
+                      Claim Now
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
