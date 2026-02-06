@@ -114,15 +114,18 @@ const AdvanceIntro = () => {
 
               <div className="flex gap-4 justify-center">
                 <button
-                  onClick={handleEnrollNow}
+                  onClick={handleContact}
                   className="px-8 py-3 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold text-lg transition-all hover:shadow-lg hover:scale-105"
                 >
                   Enroll Now
                 </button>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <Phone className="w-5 h-5" />
-                  <span className="font-semibold">+1-800-123-6789</span>
-                </div>
+                <button
+                  onClick={() => navigate('/courses/advanced')}
+                  className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg transition-all hover:shadow-lg flex items-center gap-2"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                  Read More
+                </button>
               </div>
             </div>
           </div>
@@ -233,16 +236,16 @@ const AdvanceIntro = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={handleEnrollNow}
+              onClick={handleContact}
               className="px-12 py-4 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg hover:scale-105"
             >
               Enroll Now
             </button>
             <button
-              onClick={handleContact}
+              onClick={() => navigate('/courses/advanced')}
               className="px-12 py-4 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-lg transition-all hover:shadow-lg"
             >
-              Schedule a Call
+              Read More
             </button>
           </div>
         </div>

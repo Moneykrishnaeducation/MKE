@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CheckCircle, Phone, Mail, Download, GraduationCap, BarChart3, Users, Target, Laptop, Building2, TrendingUp, TrendingDown } from 'lucide-react'
+import { CheckCircle, Phone, Mail, Download, GraduationCap, BarChart3, Users, Target, Laptop, Building2, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react'
 
 const BeginnerIntro = () => {
   const navigate = useNavigate()
@@ -50,16 +50,17 @@ const BeginnerIntro = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={handleEnrollNow}
+                onClick={handleContact}
                 className="px-8 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg"
               >
                 Enroll Now
               </button>
               <button
+                onClick={() => navigate('/courses/beginner')}
                 className="px-8 py-3 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2"
               >
-                <Download className="w-5 h-5" />
-                Download Course Details
+                <ArrowRight className="w-5 h-5" />
+                Read More
               </button>
             </div>
           </div>
@@ -242,17 +243,16 @@ const BeginnerIntro = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={handleEnrollNow}
+              onClick={handleContact}
               className="px-12 py-4 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg"
             >
               Enroll Now
             </button>
             <button
-              onClick={handleContact}
-              className="px-12 py-4 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2"
+              onClick={() => navigate('/courses/beginner')}
+              className="px-12 py-4 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-lg transition-all hover:shadow-lg"
             >
-              Talk to Our Team
-              <span>›</span>
+              Read More
             </button>
           </div>
         </div>
