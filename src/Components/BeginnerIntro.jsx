@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CheckCircle, Phone, Mail, Download, GraduationCap, BarChart3, Users, Target, Laptop, Building2, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react'
+import { CheckCircle, Phone, Mail, Download, GraduationCap, BarChart3, Users, Target, Laptop, Building2, TrendingUp, TrendingDown, ArrowRight, JapaneseYen } from 'lucide-react'
 
 const BeginnerIntro = () => {
   const navigate = useNavigate()
@@ -104,21 +104,23 @@ const BeginnerIntro = () => {
 
           <div className="grid lg:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                <span className="inline-block mr-2"><Laptop className="w-6 h-6 text-green-500 inline" /></span> Live Online Classes
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                <span className="inline-block mr-2"><Building2 className="w-6 h-6 text-orange-500 inline" /></span> Offline Classroom Training
               </h3>
-              <div className="rounded-xl overflow-hidden shadow-lg h-64 bg-gray-200 flex items-center justify-center">
-                💻 Online Class Image
+              <div className="relative rounded-xl overflow-hidden shadow-lg bg-gray-200 flex items-center justify-center">
+                <img src="/trading.png" alt="Classroom Training" className="w-full h-full object-cover" />
+                {/* <p className='absolute top-10'><span className=''></span> Offline Trading classes</p> */}
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                <span className="inline-block mr-2"><Building2 className="w-6 h-6 text-orange-500 inline" /></span> Offline Classroom Training
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                <span className="inline-block mr-2"><Laptop className="w-6 h-6 text-green-500 inline" /></span> Live Online Classes
               </h3>
-              <div className="rounded-xl overflow-hidden shadow-lg h-64 bg-gray-200 flex items-center justify-center">
-                🏢 Classroom Training Image
+              <div className="rounded-xl overflow-hidden shadow-lg bg-gray-200 flex items-center justify-center">
+                <img src="/trading1.png" alt="Classroom Training" className="w-full h-full object-cover" />
               </div>
             </div>
+            
           </div>
         </div>
       </section>
@@ -182,8 +184,8 @@ const BeginnerIntro = () => {
             Hands-On Chart Learning
           </h2>
 
-          <div className="rounded-xl overflow-hidden shadow-lg h-64 bg-gray-300 flex items-center justify-center mb-8">
-            📊 Charts & Trading Screens
+          <div className="rounded-xl overflow-hidden h-64 flex items-center justify-center mb-8">
+           <img src="/Candestrick.png" alt="Classroom Training" className="rounded-lg shadow-2xl h-64 object-contain" />
           </div>
 
           <div className="flex flex-col md:flex-row gap-8 justify-center">
@@ -207,23 +209,23 @@ const BeginnerIntro = () => {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-800 text-white rounded-xl p-6">
+            <div className="bg-blue-600 text-white rounded-xl p-6">
               <p className="flex items-center gap-3 mb-3">
-                <CheckCircle className="w-6 h-6 text-green-400" />
+                <CheckCircle className="w-6 h-6 text-green-500" />
                 <span>Live Doubt-Clearing Sessions</span>
               </p>
               <p className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-green-400" />
+                <CheckCircle className="w-6 h-6 text-green-500" />
                 <span>Ask Questions & Get Answers</span>
               </p>
             </div>
-            <div className="bg-blue-700 text-white rounded-xl p-6">
+            <div className="bg-blue-600 text-white rounded-xl p-6">
               <p className="flex items-center gap-3 mb-3">
-                <CheckCircle className="w-6 h-6 text-white" />
+                <CheckCircle className="w-6 h-6 text-green-500" />
                 <span>Limited Students Per Batch</span>
               </p>
               <p className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-white" />
+                <CheckCircle className="w-6 h-6 text-green-500" />
                 <span>Personal Attention & Small Groups</span>
               </p>
             </div>
