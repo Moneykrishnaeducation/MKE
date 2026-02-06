@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, CheckCircle, Phone, Mail } from 'lucide-react'
+import { CheckCircle, Phone, Mail, Download, GraduationCap, BarChart3, Users, Target, Laptop, Building2, TrendingUp, TrendingDown } from 'lucide-react'
 
 const BeginnerIntro = () => {
   const navigate = useNavigate()
@@ -13,224 +13,246 @@ const BeginnerIntro = () => {
     navigate('/', { state: { scrollToContact: true } })
   }
 
-  const learningTopics = [
-    {
-      icon: '📊',
-      title: 'Market Structure & Price Theory',
-      description: 'Mixer is Structure & Price Theory lasts velocity of capital, gaps in visualization, trend sealing pattern, and stantization.',
-      points: [
-        'Advanced market structure analysis',
-        'Price theory and market mechanics',
-        'Institutional trading patterns',
-        'Capital flow and liquidity analysis'
-      ]
-    },
-    {
-      icon: '🌊',
-      title: 'Elliott Wave Theory',
-      description: 'Mastery learning miles and somethine restraints. Patterns can denote is stark deogen. Even trading sales, experience eriter.',
-      points: [
-        'Elliott Wave pattern identification',
-        'Wave counting methodologies',
-        'Advanced ratio analysis',
-        'Wave relationship predictions'
-      ]
-    },
-    {
-      icon: '📈',
-      title: 'Gann Theory',
-      description: 'In depth coverage of VD. Price time relationship, Gann angles ed hobbies of price and signal, malce lacks tacks.',
-      points: [
-        'Gann angle calculations',
-        'Price time relationships',
-        'Gann square geometries',
-        'Advanced swing trading setups'
-      ]
-    },
-    {
-      icon: '💧',
-      title: 'Supply & Demand Theory',
-      description: 'Theoretical and and practical understanding of is stanzated concepts to balance talls and trade role in market movents.',
-      points: [
-        'Supply zone identification',
-        'Demand level recognition',
-        'Order flow semantics',
-        'Grid trading strategies'
-      ]
-    },
-    {
-      icon: '📦',
-      title: 'Order Block Theory',
-      description: 'Pools ensuring on order imay materese. Stee then en order hesites, tradeables in order tules. Portal causing journey efer online.',
-      points: [
-        'Order block identification',
-        'Mitigation blocks and selloffs',
-        'ICT trading concepts',
-        'Advanced entry strategies'
-      ]
-    },
-    {
-      icon: '📡',
-      title: 'Indicator Theory & Application',
-      description: 'Theory behind hscaies, copentment, BOGS., support. to accompany gen sethers. Highly rntations etmet raabau.',
-      points: [
-        'Advanced indicator applications',
-        'Confluence with price action',
-        'BOGS methodology',
-        'Advanced trading system design'
-      ]
-    }
-  ]
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Banner Section */}
-      <div 
-        className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-32 px-4 overflow-hidden"
-        style={{
-          backgroundImage: 'url(/Dow-Theory.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        <div className="absolute inset-0 bg-black/60"></div>
-        
-        <div className="max-w-screen-2xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6 text-center">
-              <div>
-                <h1 className="text-5xl lg:text-6xl font-bold mb-4">
-                  Master the <span className="text-yellow-400">Art of Trading</span> with
-                </h1>
-                <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-                  Our Advanced Trading Course
-                </h2>
-              </div>
-
-              <p className="text-gray-200 text-lg leading-relaxed">
-                Gain professional-level trading skills by learning advanced theories like Elliott Wave, Gann, market structure, order blocks, liquidity, and risk management.
-              </p>
-
-              <div className="flex gap-4 justify-center">
-                <button
-                  onClick={handleEnrollNow}
-                  className="px-8 py-3 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold text-lg transition-all hover:shadow-lg hover:scale-105"
-                >
-                  Enroll Now
-                </button>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <Phone className="w-5 h-5" />
-                  <span className="font-semibold">+1-800-123-6789</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* What You Will Learn Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-blue-100 to-blue-50 py-16 px-4">
         <div className="max-w-screen-2xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            What You Will Learn <span className="text-teal-600">in Our Advanced Trading Course</span>
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-            Comprehensive advanced curriculum covering professional trading theories and strategies
-          </p>
+          <div className="text-center mb-12">
+            <h1 className="text-5xl lg:text-6xl font-bold text-blue-900 mb-2">
+              Beginner-Friendly Trading Education
+            </h1>
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-600 mb-6">
+              with Live Market Learning
+            </h2>
+            <p className="text-gray-700 text-lg max-w-3xl mx-auto mb-8">
+              Learn the fundamentals of trading through structured online & offline classes, live market sessions, and hands-on chart practice—designed specifically for beginners.
+            </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {learningTopics.map((topic, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100">
-                <div className="text-4xl mb-3">{topic.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{topic.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{topic.description}</p>
-                <ul className="space-y-2">
-                  {topic.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Live Sessions Section */}
-      <section 
-        className="py-16 px-4 relative overflow-hidden"
-        style={{
-          backgroundImage: 'url(/Dow-Theory.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'scroll'
-        }}
-      >
-        <div className="max-w-screen-2xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="text-center mb-8">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Live Advanced Market Sessions</h2>
-
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Apply advanced theories in real-time market sessions, analyzing live charts with professional guidance to master Elliott Wave, Gann theory, and advanced price action.
+            <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto mb-8">
+              <div className="text-left">
+                <p className="flex items-center gap-2 text-gray-700 mb-2">
+                  <span className="text-orange-500 font-bold">✓</span> Online & Classroom-Based Training
+                </p>
+                <p className="flex items-center gap-2 text-gray-700">
+                  <span className="text-orange-500 font-bold">✓</span> Live Market & Chart Sessions
                 </p>
               </div>
-
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-teal-500 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-bold text-gray-900">Real-Time Elliott & Gann Analysis</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-teal-500 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-bold text-gray-900">Practical Application of Advanced Concepts</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-teal-500 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-bold text-gray-900">Guided Live Trading</p>
-                  </div>
-                </li>
-              </ul>
+              <div className="text-left">
+                <p className="flex items-center gap-2 text-gray-700 mb-2">
+                  <span className="text-blue-600 font-bold">✓</span> Simple English, No Experience Needed
+                </p>
+                <p className="flex items-center gap-2 text-gray-700">
+                  <span className="text-blue-600 font-bold">✓</span> Small Batch Size for Personal Attention
+                </p>
+              </div>
             </div>
 
-            <div className="relative z-20"></div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={handleEnrollNow}
+                className="px-8 py-3 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg"
+              >
+                Enroll Now
+              </button>
+              <button
+                className="px-8 py-3 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2"
+              >
+                <Download className="w-5 h-5" />
+                Download Course Details
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="max-w-screen-2xl mx-auto text-center space-y-8">
-          <div>
-            <h2 className="text-5xl font-bold mb-4">
-              Elevate Your Trading Skills <span className="text-yellow-400">to a Professional Level</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Enroll in our advanced trading course and master the complex theories used by professional traders to consistently succeed in the markets.
-            </p>
+      {/* Structured Learning Path */}
+      <section className="py-16 px-4 bg-blue-50">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">
+            A Structured Learning Path for Serious Beginners
+          </h2>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="mb-4 flex justify-center"><GraduationCap className="w-16 h-16 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Beginner-First Approach</h3>
+            </div>
+            <div className="text-center">
+              <div className="mb-4 flex justify-center"><BarChart3 className="w-16 h-16 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Real Market Exposure</h3>
+            </div>
+            <div className="text-center">
+              <div className="mb-4 flex justify-center"><Users className="w-16 h-16 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Continuous Guidance</h3>
+            </div>
+            <div className="text-center">
+              <div className="mb-4 flex justify-center"><Target className="w-16 h-16 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Practical Learning Focus</h3>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Flexible Learning Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
+            Flexible Learning: Online & Offline Classes
+          </h2>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <span className="inline-block mr-2"><Laptop className="w-6 h-6 text-green-500 inline" /></span> Live Online Classes
+              </h3>
+              <div className="rounded-xl overflow-hidden shadow-lg h-64 bg-gray-200 flex items-center justify-center">
+                💻 Online Class Image
+              </div>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <span className="inline-block mr-2"><Building2 className="w-6 h-6 text-orange-500 inline" /></span> Offline Classroom Training
+              </h3>
+              <div className="rounded-xl overflow-hidden shadow-lg h-64 bg-gray-200 flex items-center justify-center">
+                🏢 Classroom Training Image
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Simple English Section */}
+      <section className="py-16 px-4 bg-white border-t border-b border-gray-200">
+        <div className="max-w-screen-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            Classes in Simple, Beginner-Friendly English
+          </h2>
+          <p className="text-gray-600 text-lg">
+            Easy to Understand Concepts with Practical Examples
+          </p>
+        </div>
+      </section>
+
+      {/* Beginner-Level Trading Concepts */}
+      <section className="py-16 px-4 bg-blue-50">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">
+            Beginner-Level Trading Concepts Covered
+          </h2>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="mb-3 flex justify-center"><BarChart3 className="w-12 h-12 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Candlestick Patterns</h3>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="mb-3 flex justify-center"><TrendingUp className="w-12 h-12 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Technical Indicators</h3>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="mb-3 flex justify-center"><TrendingDown className="w-12 h-12 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Trendlines Analysis</h3>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div className="mb-3 flex justify-center"><Target className="w-12 h-12 text-blue-600" /></div>
+              <h3 className="text-xl font-bold text-gray-900">Support & Resistance</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Live Market Sessions */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-blue-900 mb-2">
+            Live Market Sessions with Guided Explanations
+          </h2>
+          <p className="text-center text-gray-600 mb-12">
+            Learn to Read Charts & Analyze Markets in Real Time
+          </p>
+        </div>
+      </section>
+
+      {/* Hands-On Chart Learning */}
+      <section className="py-16 px-4 bg-blue-50">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-blue-900 mb-12">
+            Hands-On Chart Learning
+          </h2>
+
+          <div className="rounded-xl overflow-hidden shadow-lg h-64 bg-gray-300 flex items-center justify-center mb-8">
+            📊 Charts & Trading Screens
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-8 justify-center">
+            <div className="flex items-center gap-2 text-gray-700">
+              <CheckCircle className="w-6 h-6 text-green-500" />
+              <span className="font-semibold">Practical Practice to Identify</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-700">
+              <CheckCircle className="w-6 h-6 text-green-500" />
+              <span className="font-semibold">Identify Trends & Key Levels</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Doubt-Clearing Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
+            Doubt-Clearing & Small Batch Advantage
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-800 text-white rounded-xl p-6">
+              <p className="flex items-center gap-3 mb-3">
+                <CheckCircle className="w-6 h-6 text-green-400" />
+                <span>Live Doubt-Clearing Sessions</span>
+              </p>
+              <p className="flex items-center gap-3">
+                <CheckCircle className="w-6 h-6 text-green-400" />
+                <span>Ask Questions & Get Answers</span>
+              </p>
+            </div>
+            <div className="bg-blue-700 text-white rounded-xl p-6">
+              <p className="flex items-center gap-3 mb-3">
+                <CheckCircle className="w-6 h-6 text-white" />
+                <span>Limited Students Per Batch</span>
+              </p>
+              <p className="flex items-center gap-3">
+                <CheckCircle className="w-6 h-6 text-white" />
+                <span>Personal Attention & Small Groups</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-blue-100 to-blue-50">
+        <div className="max-w-screen-2xl mx-auto text-center">
+          <h2 className="text-5xl font-bold text-blue-900 mb-4">
+            Start Your Trading Education the Right Way
+          </h2>
+          <p className="text-xl text-gray-700 mb-8">
+            Build a Strong Foundation & Trade with Confidence.
+          </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={handleEnrollNow}
-              className="px-12 py-4 rounded-lg bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold text-lg transition-all hover:shadow-lg hover:scale-105"
+              className="px-12 py-4 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg transition-all hover:shadow-lg"
             >
               Enroll Now
             </button>
             <button
               onClick={handleContact}
-              className="px-12 py-4 rounded-lg border-2 border-white hover:bg-white/10 text-white font-bold text-lg transition-all"
+              className="px-12 py-4 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-bold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2"
             >
-              Get More Info
+              Talk to Our Team
+              <span>›</span>
             </button>
           </div>
         </div>

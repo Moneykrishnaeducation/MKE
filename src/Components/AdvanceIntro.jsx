@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, CheckCircle, Phone, Mail } from 'lucide-react'
+import { ArrowRight, CheckCircle, Phone, Mail, TrendingUp, Waves, BarChart3, Droplet, Package, Radio } from 'lucide-react'
 
 const AdvanceIntro = () => {
   const navigate = useNavigate()
@@ -15,7 +15,7 @@ const AdvanceIntro = () => {
 
   const learningTopics = [
     {
-      icon: '📊',
+      icon: TrendingUp,
       title: 'Market Structure & Price Theory',
       description: 'Master in Structure & Price Theory, mixing or arrangement in structure, price theory, and model. Psychology almost signify.',
       points: [
@@ -26,7 +26,7 @@ const AdvanceIntro = () => {
       ]
     },
     {
-      icon: '🌊',
+      icon: Waves,
       title: 'Elliott Wave Theory',
       description: 'Mastery awaiting rules and symmetric agreements. Methods consulting chart drafting. Expect and expect framed wave psychology framework.',
       points: [
@@ -37,7 +37,7 @@ const AdvanceIntro = () => {
       ]
     },
     {
-      icon: '📈',
+      icon: BarChart3,
       title: 'Gann Theory',
       description: 'Price time mix itself. Gann angles, and expect demitems from price action.',
       points: [
@@ -48,7 +48,7 @@ const AdvanceIntro = () => {
       ]
     },
     {
-      icon: '💧',
+      icon: Droplet,
       title: 'Supply & Demand Theory',
       description: 'Theoretical and practical understanding of supply zones and their role in market reversal and volatility.',
       points: [
@@ -59,7 +59,7 @@ const AdvanceIntro = () => {
       ]
     },
     {
-      icon: '📦',
+      icon: Package,
       title: 'Order Block Theory',
       description: 'Point-time opportunity and ordering blocks. Super source complex in-course structure. Starter ensure complex entry around.',
       points: [
@@ -70,7 +70,7 @@ const AdvanceIntro = () => {
       ]
     },
     {
-      icon: '📡',
+      icon: Radio,
       title: 'Liquidity & Stop Hunting Theory',
       description: 'Theory behind liquidity pools, turbulence. Part of these markets looking on strategies. Liquidity and more strategies.',
       points: [
@@ -140,9 +140,11 @@ const AdvanceIntro = () => {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {learningTopics.map((topic, idx) => (
+            {learningTopics.map((topic, idx) => {
+              const IconComponent = topic.icon
+              return (
               <div key={idx} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100">
-                <div className="text-4xl mb-3">{topic.icon}</div>
+                <div className="mb-3"><IconComponent className="w-10 h-10 text-teal-600" /></div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{topic.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{topic.description}</p>
                 <ul className="space-y-2">
@@ -154,7 +156,8 @@ const AdvanceIntro = () => {
                   ))}
                 </ul>
               </div>
-            ))}
+            )
+            })}
           </div>
         </div>
       </section>
@@ -208,8 +211,17 @@ const AdvanceIntro = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="max-w-screen-2xl mx-auto text-center space-y-8">
+      <section 
+        className="relative py-20 px-4 text-white overflow-hidden"
+        style={{
+          backgroundImage: 'url(/Contact.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'scroll'
+        }}
+      >
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="max-w-screen-2xl mx-auto text-center space-y-8 relative z-10">
           <div>
             <h2 className="text-5xl font-bold mb-4">
               Ready to Elevate Your Trading Skills?
