@@ -39,8 +39,8 @@ useEffect(() => {
     setLoadingRate(true);
     try {
       const url = "https://www.google.com/finance/quote/USD-INR";
-      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-      const res = await fetch(proxy);
+      const proxy = "https://corsproxy.io/?";
+      const res = await fetch(proxy + encodeURIComponent(url));
       if (!res.ok) throw new Error('Network response was not ok');
       const html = await res.text();
 
@@ -409,7 +409,7 @@ const reviews = [
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
                 <Link
-                  to="/courses/beginner"
+                  to="/courses/beginnerintro"
                   aria-label="Join course - start learning with MoneyKrishna"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
@@ -505,7 +505,7 @@ const reviews = [
                     
                     {/* Button */}
                     <Link
-                      to="/courses/beginner"
+                      to="/courses/beginnerintro"
                       className="inline-flex items-center gap-2 px-4 py-2  rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg hover:shadow-pink-500/50 hover:scale-110"
                     >
                       Claim Now
