@@ -6,8 +6,8 @@ import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
 const Home = () => {
-  const [usdPrice, setUsdPrice] = useState(null)
-  const [loadingRate, setLoadingRate] = useState(false)
+  // const [usdPrice, setUsdPrice] = useState(null)
+  // const [loadingRate, setLoadingRate] = useState(false)
   const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
@@ -33,57 +33,38 @@ const Home = () => {
     window.addEventListener('resize', updateHeroHeight)
     return () => window.removeEventListener('resize', updateHeroHeight)
   }, [])
-useEffect(() => {
-  let isMounted = true;
-  const fetchUsdInrRate = async () => {
-    setLoadingRate(true);
-    try {
-      const url = "https://www.google.com/finance/quote/USD-INR";
-      const proxy = "https://corsproxy.io/?";
-      const res = await fetch(proxy + encodeURIComponent(url));
-      if (!res.ok) throw new Error('Network response was not ok');
-      const html = await res.text();
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   const fetchUsdInrRate = async () => {
+  //     setLoadingRate(true);
+  //     try {
+  //       const res = await fetch(
+  //         "https://api.frankfurter.app/latest?from=USD&to=INR"
+  //       );
 
-      const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
-      let parsed = null;
-      const m = html.match(rateRegex);
-      if (m && m[1]) {
-        const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
-        parsed = parseFloat(raw);
-      }
-      if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
-        const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
-        if (loose && loose[1]) {
-          parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
-        }
-      }
-      if (parsed && !Number.isNaN(parsed) && parsed > 0) {
-        if (isMounted) setUsdPrice(parsed.toFixed(2));
-        return;
-      }
-    } catch (err) {
-      // Prefer using sharedUtils.showToast when available, otherwise log
-      try {
-        if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
-          sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
-        } else {
-          console.error('Failed to fetch USD-INR rate.', err);
-        }
-      } catch (e) {
-        console.error('Failed to fetch USD-INR rate.', err);
-      }
-    } finally {
-      setLoadingRate(false);
-    }
-  };
+  //       if (!res.ok) throw new Error("Network error");
 
-  fetchUsdInrRate();
-  const interval = setInterval(fetchUsdInrRate, 30000);
-  return () => {
-    isMounted = false;
-    clearInterval(interval);
-  };
-}, [])
+  //       const data = await res.json();
+  //       const rate = data?.rates?.INR;
+
+  //       if (!rate) throw new Error("Rate not found");
+
+  //       setUsdPrice(rate.toFixed(2));
+  //     } catch (err) {
+  //       console.error("Failed to fetch USD-INR rate", err);
+  //     } finally {
+  //       setLoadingRate(false);
+  //     }
+  //   };
+
+
+  //   fetchUsdInrRate();
+  //   const interval = setInterval(fetchUsdInrRate, 30000);
+  //   return () => {
+  //     isMounted = false;
+  //     clearInterval(interval);
+  //   };
+  // }, [])
 
 
   // Intersection Observer for scroll animations
@@ -153,48 +134,48 @@ useEffect(() => {
       setStatus("Something went wrong ❌");
     }
   };
-const reviews = [
-  {
-    name: "Arun Kumar",
-    role: "Student · Chennai",
-    text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
-  },
-  {
-    name: "Priya Sharma",
-    role: "Student · Coimbatore",
-    text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
-  },
-  {
-    name: "Vignesh R",
-    role: "Student · Madurai",
-    text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
-  },
-  {
-    name: "Sneha Patel",
-    role: "Student · Salem",
-    text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
-  },
-  {
-    name: "Rahul Verma",
-    role: "Student · Trichy",
-    text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
-  },
-  {
-    name: "Anitha S",
-    role: "Student · Tirunelveli",
-    text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
-  },
-  {
-    name: "Karthik M",
-    role: "Student · Erode",
-    text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
-  },
-  {
-    name: "Divya Lakshmi",
-    role: "Student · Thanjavur",
-    text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
-  }
-]
+  const reviews = [
+    {
+      name: "Arun Kumar",
+      role: "Student · Chennai",
+      text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
+    },
+    {
+      name: "Priya Sharma",
+      role: "Student · Coimbatore",
+      text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
+    },
+    {
+      name: "Vignesh R",
+      role: "Student · Madurai",
+      text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
+    },
+    {
+      name: "Sneha Patel",
+      role: "Student · Salem",
+      text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
+    },
+    {
+      name: "Rahul Verma",
+      role: "Student · Trichy",
+      text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
+    },
+    {
+      name: "Anitha S",
+      role: "Student · Tirunelveli",
+      text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
+    },
+    {
+      name: "Karthik M",
+      role: "Student · Erode",
+      text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
+    },
+    {
+      name: "Divya Lakshmi",
+      role: "Student · Thanjavur",
+      text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
+    }
+  ]
 
 
 
@@ -388,11 +369,11 @@ const reviews = [
       <div className="min-h-[200vh] relative" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
-        {/* Live USD Price */}
+        {/* Live USD Price
         <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/INR</p>
           <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
-        </div>
+        </div> */}
 
         {/* Content */}
         <div className="max-w-screen-2xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-28 flex items-center relative z-10" data-animate id="hero-section" role="banner" aria-labelledby="hero-heading" aria-describedby="hero-subheading" style={{ minHeight: heroMinHeight || '100vh' }}>
@@ -458,19 +439,19 @@ const reviews = [
                 {/* Card 4: Active Offers - Enhanced with Sparkles */}
                 <div className="relative group bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-md rounded-2xl p-6 text-center border border-pink-300/30 hover:border-pink-300/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-pink-500/40 hover:-translate-y-2 min-h-[160px] flex flex-col justify-center items-center">
                   {/* Sparkle particles - top left */}
-                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.5s ease-in-out infinite'}}></div>
-                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2s ease-in-out infinite 0.3s'}}></div>
-                  
+                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{ animation: 'sparkle 1.5s ease-in-out infinite' }}></div>
+                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{ animation: 'sparkle 2s ease-in-out infinite 0.3s' }}></div>
+
                   {/* Sparkle particles - top right */}
-                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.8s ease-in-out infinite 0.2s'}}></div>
-                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2.2s ease-in-out infinite 0.5s'}}></div>
-                  
+                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{ animation: 'sparkle 1.8s ease-in-out infinite 0.2s' }}></div>
+                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{ animation: 'sparkle 2.2s ease-in-out infinite 0.5s' }}></div>
+
                   {/* Animated gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-400/0 via-pink-300/10 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   {/* Pulsing glow effect - enhanced */}
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}></div>
-                  
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{ animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+
                   {/* Rotating border on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" style={{
                     background: 'conic-gradient(from 0deg, #fbbf24, #f59e0b, #fbbf24)',
@@ -480,7 +461,7 @@ const reviews = [
                     padding: '1px',
                     animation: 'rotate 4s linear infinite'
                   }}></div>
-                  
+
                   <div className="relative z-10">
                     {/* Limited Time Badge - Enhanced */}
                     <div className="inline-block min-w-5xl offer-badge-pulse">
@@ -492,17 +473,17 @@ const reviews = [
                     {/* Icon with glow and floating animation */}
                     <div className="flex justify-center">
                       <div className="relative floating-icon">
-                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{width: '60px', height: '60px', margin: '-15px'}}></div>
-                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))'}} />
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{ width: '60px', height: '60px', margin: '-15px' }}></div>
+                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{ filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))' }} />
                       </div>
                     </div>
-                    
+
                     {/* Main Value - Large and Bold */}
-                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{textShadow: '0 0 20px rgba(251, 191, 36, 0.3)'}}>60%+</p>
-                    
+                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{ textShadow: '0 0 20px rgba(251, 191, 36, 0.3)' }}>60%+</p>
+
                     {/* Subtext with emphasis */}
                     <p className="text-sm text-pink-100/95 font-bold tracking-wide mb-1">ACTIVE OFFERS</p>
-                    
+
                     {/* Button */}
                     <Link
                       to="/courses/beginnerintro"
