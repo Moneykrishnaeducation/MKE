@@ -7,18 +7,20 @@ import { BookOpen, TrendingUp, ShieldCheck, Users, Layers, LifeBuoy } from 'luci
 const testimonials = [
   {
     id: 1,
-    name: "Vivek",
+    name: "Ramesh K – Beginner Trader",
     program: "Trading Mentorship Program",
     image: "/user1.jpg",
-    text: `I did the TMP course from Elearnmarkets in 2021, almost 3.5 years back, and it has been a life-changing experience. Before that, I used to be like "I'll never look towards the stock market," but TMP has changed my mindset...`,
+    text: `I joined with zero knowledge. Classes were in simple English and live market sessions
+helped me understand charts clearly. Now I trade with confidence.`,
     rating: 5,
   },
   {
     id: 2,
-    name: "Shivam",
+    name: "Suresh M – Intermediate Trader",
     program: "Trading Mentorship Program",
     image: "/user2.jpg",
-    text: `I learned investing and trading in all the assets including equity and MCX. The journey was awesome. Before I enrolled for TMP, I used to invest or trade based on assumptions...`,
+    text: `I knew basics but lacked consistency. After this training, my entries and exits became
+clear and my overtrading reduced.`,
     rating: 5,
   },
   {
@@ -31,10 +33,11 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "Rahul",
+    name: "Arjun V – Working Professional",
     program: "Trading Mentorship Program",
     image: "/user4.png",
-    text: `Before joining TMP, there was a big struggle in my life related to stock market trading and investment. But this TMP program has helped me a lot...`,
+    text: `Small batch size and doubt clearing sessions made a huge difference. Real market
+learning is the biggest plus.`,
     rating: 4.5,
   },
 ];
@@ -98,23 +101,31 @@ const About = () => {
 
                   <h2 className="text-4xl font-bold mb-2">Company Overview</h2>
                   <p className="text-lg text-justify max-w-2xl">
-                    MoneyKrishna Education has been empowering traders and investors for over 4 years by delivering practical market knowledge, strategic insights, and hands-on learning in multi-asset trading and investing. We focus on building strong foundations, disciplined strategies, and long-term confidence in the financial markets.
-                  </p>
+                    Money Krishna Education is a leading trading institute based in Chennai, committed to
+helping individuals learn trading the right way through structured education and real
+market exposure. Since 2012, we have trained aspiring traders, working professionals,
+and experienced market participants to understand markets with clarity, discipline, and
+confidence.
+</p>
 
                   <h3 className="text-3xl font-semibold">Who We Are?</h3>
                   <p className="text-lg text-justify max-w-2xl">
-                    MoneyKrishna Education is founded by a group of experienced trading professionals and market enthusiasts who are passionate about financial education. We are committed to guiding our clients with transparency, integrity, and real-world expertise. Every step we take is focused on helping learners grow into confident and independent traders.
-                  </p>
+                    Money Krishna Education was founded by a group of experienced trading professionals and market enthusiasts passionate about financial education. We guide learners with transparency, integrity, and real-world expertise, focusing on developing confident and independent traders.</p>
 
-                  <h3 className="text-3xl font-semibold">Our Mission</h3>
+                  <h3 className="text-3xl font-semibold">What We Offer</h3>
                   <p className="text-lg text-justify max-w-2xl">
-                    Our mission is to provide fair, transparent, and high-quality financial education supported by modern tools and proven trading methodologies. We aim to become a trusted learning partner for every student by helping them understand the markets, manage risk, and trade with confidence.
-                  </p>
-
+                    Our programs cover Stock Market, Forex, and Options Trading, designed with a
+                    practical-first approach. We believe trading success comes from proper foundation, live
+market understanding, and continuous guidance—not from tips or shortcuts.</p>
                   <h3 className="text-3xl font-semibold">Our Vision</h3>
                   <p className="text-lg text-justify max-w-2xl">
-                    MoneyKrishna Education represents knowledge, confidence, and innovation. We strive to empower traders through structured education, advanced trading tools, and continuous learning opportunities—enabling them to make informed decisions and achieve long-term success in the financial markets.
-                  </p>
+                    To provide structured, practical trading education that empowers individuals to trade with discipline, knowledge, and confidence through real market exposure and continuous mentorship. </p>
+                  
+                  <h3 className="text-3xl font-semibold">Our Mission</h3>
+                  <p className="text-lg text-justify max-w-2xl">
+                    At Money Krishna Education, learning happens through live market sessions, hands-on
+chart practice, and mentor-led guidance, ensuring students gain real skills that can be
+applied in actual trading environments </p>
 
                 </div>
 
