@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight, Star, GraduationCap, Gift } from 'lucide-react'
+import { ArrowRight, BookOpen, TrendingUp, Zap, Lightbulb, Users, ChevronLeft, ChevronRight, Star, GraduationCap, Gift, CheckCircle } from 'lucide-react'
 import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
 const Home = () => {
-  // const [usdPrice, setUsdPrice] = useState(null)
-  // const [loadingRate, setLoadingRate] = useState(false)
+  const [usdPrice, setUsdPrice] = useState(null)
+  const [loadingRate, setLoadingRate] = useState(false)
   const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
@@ -33,38 +33,57 @@ const Home = () => {
     window.addEventListener('resize', updateHeroHeight)
     return () => window.removeEventListener('resize', updateHeroHeight)
   }, [])
-  // useEffect(() => {
-  //   let isMounted = true;
-  //   const fetchUsdInrRate = async () => {
-  //     setLoadingRate(true);
-  //     try {
-  //       const res = await fetch(
-  //         "https://api.frankfurter.app/latest?from=USD&to=INR"
-  //       );
+useEffect(() => {
+  let isMounted = true;
+  const fetchUsdInrRate = async () => {
+    setLoadingRate(true);
+    try {
+      const url = "https://www.google.com/finance/quote/USD-INR";
+      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+      const res = await fetch(proxy);
+      if (!res.ok) throw new Error('Network response was not ok');
+      const html = await res.text();
 
-  //       if (!res.ok) throw new Error("Network error");
+      const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
+      let parsed = null;
+      const m = html.match(rateRegex);
+      if (m && m[1]) {
+        const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
+        parsed = parseFloat(raw);
+      }
+      if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
+        const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
+        if (loose && loose[1]) {
+          parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
+        }
+      }
+      if (parsed && !Number.isNaN(parsed) && parsed > 0) {
+        if (isMounted) setUsdPrice(parsed.toFixed(2));
+        return;
+      }
+    } catch (err) {
+      // Prefer using sharedUtils.showToast when available, otherwise log
+      try {
+        if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
+          sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
+        } else {
+          console.error('Failed to fetch USD-INR rate.', err);
+        }
+      } catch (e) {
+        console.error('Failed to fetch USD-INR rate.', err);
+      }
+    } finally {
+      setLoadingRate(false);
+    }
+  };
 
-  //       const data = await res.json();
-  //       const rate = data?.rates?.INR;
-
-  //       if (!rate) throw new Error("Rate not found");
-
-  //       setUsdPrice(rate.toFixed(2));
-  //     } catch (err) {
-  //       console.error("Failed to fetch USD-INR rate", err);
-  //     } finally {
-  //       setLoadingRate(false);
-  //     }
-  //   };
-
-
-  //   fetchUsdInrRate();
-  //   const interval = setInterval(fetchUsdInrRate, 30000);
-  //   return () => {
-  //     isMounted = false;
-  //     clearInterval(interval);
-  //   };
-  // }, [])
+  fetchUsdInrRate();
+  const interval = setInterval(fetchUsdInrRate, 30000);
+  return () => {
+    isMounted = false;
+    clearInterval(interval);
+  };
+}, [])
 
 
   // Intersection Observer for scroll animations
@@ -134,48 +153,48 @@ const Home = () => {
       setStatus("Something went wrong ❌");
     }
   };
-  const reviews = [
-    {
-      name: "Arun Kumar",
-      role: "Student · Chennai",
-      text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
-    },
-    {
-      name: "Priya Sharma",
-      role: "Student · Coimbatore",
-      text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
-    },
-    {
-      name: "Vignesh R",
-      role: "Student · Madurai",
-      text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
-    },
-    {
-      name: "Sneha Patel",
-      role: "Student · Salem",
-      text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
-    },
-    {
-      name: "Rahul Verma",
-      role: "Student · Trichy",
-      text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
-    },
-    {
-      name: "Anitha S",
-      role: "Student · Tirunelveli",
-      text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
-    },
-    {
-      name: "Karthik M",
-      role: "Student · Erode",
-      text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
-    },
-    {
-      name: "Divya Lakshmi",
-      role: "Student · Thanjavur",
-      text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
-    }
-  ]
+const reviews = [
+  {
+    name: "Arun Kumar",
+    role: "Student · Chennai",
+    text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
+  },
+  {
+    name: "Priya Sharma",
+    role: "Student · Coimbatore",
+    text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
+  },
+  {
+    name: "Vignesh R",
+    role: "Student · Madurai",
+    text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
+  },
+  {
+    name: "Sneha Patel",
+    role: "Student · Salem",
+    text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
+  },
+  {
+    name: "Rahul Verma",
+    role: "Student · Trichy",
+    text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
+  },
+  {
+    name: "Anitha S",
+    role: "Student · Tirunelveli",
+    text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
+  },
+  {
+    name: "Karthik M",
+    role: "Student · Erode",
+    text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
+  },
+  {
+    name: "Divya Lakshmi",
+    role: "Student · Thanjavur",
+    text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
+  }
+]
 
 
 
@@ -369,8 +388,8 @@ const Home = () => {
       <div className="min-h-[200vh] relative" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
-        {/* Live USD Price
-        <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
+        {/* Live USD Price */}
+        {/* <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/INR</p>
           <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
         </div> */}
@@ -390,7 +409,7 @@ const Home = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
                 <Link
-                  to="/courses/beginnerintro"
+                  to="/courses/beginner"
                   aria-label="Join course - start learning with MoneyKrishna"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
@@ -439,19 +458,19 @@ const Home = () => {
                 {/* Card 4: Active Offers - Enhanced with Sparkles */}
                 <div className="relative group bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-md rounded-2xl p-6 text-center border border-pink-300/30 hover:border-pink-300/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-pink-500/40 hover:-translate-y-2 min-h-[160px] flex flex-col justify-center items-center">
                   {/* Sparkle particles - top left */}
-                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{ animation: 'sparkle 1.5s ease-in-out infinite' }}></div>
-                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{ animation: 'sparkle 2s ease-in-out infinite 0.3s' }}></div>
-
+                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.5s ease-in-out infinite'}}></div>
+                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2s ease-in-out infinite 0.3s'}}></div>
+                  
                   {/* Sparkle particles - top right */}
-                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{ animation: 'sparkle 1.8s ease-in-out infinite 0.2s' }}></div>
-                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{ animation: 'sparkle 2.2s ease-in-out infinite 0.5s' }}></div>
-
+                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.8s ease-in-out infinite 0.2s'}}></div>
+                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2.2s ease-in-out infinite 0.5s'}}></div>
+                  
                   {/* Animated gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-400/0 via-pink-300/10 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
+                  
                   {/* Pulsing glow effect - enhanced */}
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{ animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
-
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}></div>
+                  
                   {/* Rotating border on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" style={{
                     background: 'conic-gradient(from 0deg, #fbbf24, #f59e0b, #fbbf24)',
@@ -461,7 +480,7 @@ const Home = () => {
                     padding: '1px',
                     animation: 'rotate 4s linear infinite'
                   }}></div>
-
+                  
                   <div className="relative z-10">
                     {/* Limited Time Badge - Enhanced */}
                     <div className="inline-block min-w-5xl offer-badge-pulse">
@@ -473,20 +492,20 @@ const Home = () => {
                     {/* Icon with glow and floating animation */}
                     <div className="flex justify-center">
                       <div className="relative floating-icon">
-                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{ width: '60px', height: '60px', margin: '-15px' }}></div>
-                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{ filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))' }} />
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{width: '60px', height: '60px', margin: '-15px'}}></div>
+                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))'}} />
                       </div>
                     </div>
-
+                    
                     {/* Main Value - Large and Bold */}
-                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{ textShadow: '0 0 20px rgba(251, 191, 36, 0.3)' }}>60%+</p>
-
+                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{textShadow: '0 0 20px rgba(251, 191, 36, 0.3)'}}>60%+</p>
+                    
                     {/* Subtext with emphasis */}
                     <p className="text-sm text-pink-100/95 font-bold tracking-wide mb-1">ACTIVE OFFERS</p>
-
+                    
                     {/* Button */}
                     <Link
-                      to="/courses/beginnerintro"
+                      to="/courses/beginner"
                       className="inline-flex items-center gap-2 px-4 py-2  rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg hover:shadow-pink-500/50 hover:scale-110"
                     >
                       Claim Now
@@ -510,7 +529,190 @@ const Home = () => {
             </div>
           </div>
         </div>
+        {/* Pricing Section */}
+        <div
+          className="w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-16 md:py-20 relative z-10"
+          data-animate
+          id="pricing-section"
+        >
+          <div className="max-w-screen-2xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            {/* Section Heading */}
+            <h2
+              className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-white mb-3 sm:mb-4 heading
+            ${visibleSections["pricing-section"]
+                  ? "scroll-animate visible"
+                  : "scroll-animate"
+                }`}
+            >
+              Transparent Pricing
+            </h2>
+            
+            <p className={`text-center text-base sm:text-lg md:text-xl text-gray-300 mb-10 sm:mb-14 md:mb-16 max-w-2xl mx-auto px-2
+            ${visibleSections["pricing-section"]
+                  ? "scroll-animate visible"
+                  : "scroll-animate"
+                }`}>
+              Choose the plan that works best for your trading journey
+            </p>
 
+            {/* Pricing Cards Grid */}
+            <div className="grid gap-6 sm:gap-7 md:gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+              {/* Beginner Plan */}
+              <div
+                className={`bg-gradient-to-br from-slate-700 to-slate-800 border border-green-500/30 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
+              shadow-lg hover:shadow-2xl hover:border-green-500/60 hover:-translate-y-1 sm:hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["pricing-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.1s" }}
+              >
+                <div className="mb-3 sm:mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Beginner</h3>
+                  <p className="text-gray-400 text-xs sm:text-sm">Perfect to get started</p>
+                </div>
+                
+                <div className="my-6 sm:my-7 md:my-8">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-400 mb-1 sm:mb-2">
+                    ₹30,000
+                  </div>
+                  <p className="text-gray-400 text-xs sm:text-sm">for 3 months</p>
+                </div>
+
+                <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Foundation in forex trading</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Comprehensive video content</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Live trading sessions</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Email support</span>
+                  </li>
+                </ul>
+
+                <Link
+                  to="/courses/beginner"
+                  className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base font-bold transition-all duration-300"
+                >
+                  Enroll Now
+                </Link>
+              </div>
+
+              {/* Advance Plan - Featured */}
+              <div
+                className={`bg-gradient-to-br from-blue-600 to-blue-700 border border-blue-400/50 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
+              shadow-2xl hover:shadow-3xl hover:border-blue-400 hover:-translate-y-1 sm:hover:-translate-y-2
+              transition-all duration-300 ease-out relative md:scale-105
+              ${visibleSections["pricing-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.2s" }}
+              >
+                <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-slate-900 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
+                  Most Popular
+                </div>
+                
+                <div className="mb-3 sm:mb-4 mt-4 sm:mt-5">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Advance</h3>
+                  <p className="text-blue-100 text-xs sm:text-sm">With Trading Software</p>
+                </div>
+                
+                <div className="my-6 sm:my-7 md:my-8">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-300 mb-1 sm:mb-2">
+                    ₹1,50,000
+                  </div>
+                  <p className="text-blue-100 text-xs sm:text-sm">one time payment</p>
+                </div>
+
+                <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
+                    <span className="text-blue-50 text-sm sm:text-base">Everything in Beginner +</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
+                    <span className="text-blue-50 text-sm sm:text-base">Advanced trading strategies</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
+                    <span className="text-blue-50 text-sm sm:text-base">Professional trading software</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
+                    <span className="text-blue-50 text-sm sm:text-base">Personal mentor support</span>
+                  </li>
+                </ul>
+
+                <Link
+                  to="/courses/intermediate"
+                  className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-slate-900 text-sm sm:text-base font-bold transition-all duration-300"
+                >
+                  Enroll Now
+                </Link>
+              </div>
+
+              {/* Super Advance Plan */}
+              <div
+                className={`bg-gradient-to-br from-slate-700 to-slate-800 border border-purple-500/30 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
+              shadow-lg hover:shadow-2xl hover:border-purple-500/60 hover:-translate-y-1 sm:hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["pricing-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.3s" }}
+              >
+                <div className="mb-3 sm:mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Super Advance</h3>
+                  <p className="text-gray-400 text-xs sm:text-sm">Elite Trading Package</p>
+                </div>
+                
+                <div className="my-6 sm:my-7 md:my-8">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-400 mb-1 sm:mb-2">
+                    ₹10,00,000
+                  </div>
+                  <p className="text-gray-400 text-xs sm:text-sm">lifetime access</p>
+                </div>
+
+                <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Everything in Advance +</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Expert trading strategies</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Professional software + lifetime updates</span>
+                  </li>
+                  <li className="flex items-start gap-2 sm:gap-3">
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm sm:text-base">Lifetime 1-on-1 coaching</span>
+                  </li>
+                </ul>
+
+                <Link
+                  to="/courses/advanced"
+                  className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-sm sm:text-base font-bold transition-all duration-300"
+                >
+                  Enroll Now
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Features Grid - Full Width Background */}
         <div
           className="w-full bg-gray-100 py-20 relative z-10"
