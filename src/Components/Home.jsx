@@ -599,12 +599,15 @@ const reviews = [
                   </li>
                 </ul>
 
-                <Link
-                  to="/courses/beginner"
+                <button
+                  onClick={() => {
+                    const contactElement = document.getElementById('contact');
+                    contactElement?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base font-bold transition-all duration-300"
                 >
                   Enroll Now
-                </Link>
+                </button>
               </div>
 
               {/* Advance Plan - Featured */}
@@ -653,12 +656,15 @@ const reviews = [
                   </li>
                 </ul>
 
-                <Link
-                  to="/courses/intermediate"
+                <button
+                  onClick={() => {
+                    const contactElement = document.getElementById('contact');
+                    contactElement?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-slate-900 text-sm sm:text-base font-bold transition-all duration-300"
                 >
                   Enroll Now
-                </Link>
+                </button>
               </div>
 
               {/* Super Advance Plan */}
@@ -703,12 +709,15 @@ const reviews = [
                   </li>
                 </ul>
 
-                <Link
-                  to="/courses/advanced"
+                <button
+                  onClick={() => {
+                    const contactElement = document.getElementById('contact');
+                    contactElement?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-sm sm:text-base font-bold transition-all duration-300"
                 >
                   Enroll Now
-                </Link>
+                </button>
               </div>
             </div>
           </div>
