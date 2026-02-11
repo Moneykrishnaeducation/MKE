@@ -201,6 +201,12 @@ const reviews = [
   return (
     <>
       <style>{`
+        /* Professional typography */
+        .heading {
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+        }
+        
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
@@ -383,35 +389,56 @@ const reviews = [
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
+        /* Custom select styling */
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 1.5em 1.5em;
+          padding-right: 2.5rem;
+        }
+        select option {
+          background-color: #1e293b;
+          color: white;
+          padding: 0.5rem;
+        }
+        select option:checked {
+          background: linear-gradient(#16a34a, #16a34a);
+          background-color: #16a34a;
+          color: white;
+        }
       `}</style>
 
       <div className="min-h-[200vh] relative" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
         {/* Live USD Price */}
-        {/* <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
+        <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/INR</p>
           <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
-        </div> */}
+        </div>
 
         {/* Content */}
         <div className="max-w-screen-2xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-28 flex items-center relative z-10" data-animate id="hero-section" role="banner" aria-labelledby="hero-heading" aria-describedby="hero-subheading" style={{ minHeight: heroMinHeight || '100vh' }}>
           <div className="grid md:grid-cols-[1fr_0.9fr] gap-12 items-center justify-items-center w-full relative z-10">
             {/* Left Content */}
             <div className={`text-center md:text-left ${visibleSections['hero-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
-              <h1 id="hero-heading" className="text-3xl lg:text-5xl font-extrabold mb-4 leading-tight text-white">
-                Trade Confidently. Learn Practically.
+              <h1 id="hero-heading" className="text-5xl lg:text-6xl font-black mb-6 leading-tight text-white drop-shadow-lg">
+                Trade Confidently.<br />Learn Practically.
               </h1>
 
-              <p id="hero-subheading" className="text-lg text-white/90 mb-6 leading-relaxed max-w-xl mx-auto md:mx-0 animate-fade-in-up">
-                Practical forex trading courses, live sessions, and hands-on mentorship — designed to move you from theory to consistent results.
+              <p id="hero-subheading" className="text-xl lg:text-2xl text-white/95 mb-10 leading-relaxed max-w-2xl mx-auto md:mx-0 font-light tracking-wide animate-fade-in-up">
+                Master forex trading from basics to advanced strategies with live market sessions and expert mentorship.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start items-center">
                 <Link
                   to="/courses/beginner"
                   aria-label="Join course - start learning with MoneyKrishna"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-green-600 bg-white text-green-600 font-semibold hover:bg-green-600 hover:text-white transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-white bg-white text-green-600 font-bold text-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Start Free Trial
                 </Link>
@@ -420,9 +447,9 @@ const reviews = [
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Watch introduction video"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-green-600 font-bold text-lg hover:bg-green-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
-                  Watch Intro <ArrowRight className="w-4 h-4" />
+                  Watch Intro <ArrowRight className="w-5 h-5" />
                 </a>
               </div>
 
@@ -529,16 +556,17 @@ const reviews = [
             </div>
           </div>
         </div>
-        {/* Pricing Section */}
+
+{/* Pricing Section */}
         <div
-          className="w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-16 md:py-20 relative z-10"
+          className="w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 sm:py-16 md:py-20 relative z-10"
           data-animate
           id="pricing-section"
         >
           <div className="max-w-screen-2xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             {/* Section Heading */}
             <h2
-              className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-white mb-3 sm:mb-4 heading
+              className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-3 sm:mb-4 heading
             ${visibleSections["pricing-section"]
                   ? "scroll-animate visible"
                   : "scroll-animate"
@@ -547,7 +575,7 @@ const reviews = [
               Transparent Pricing
             </h2>
             
-            <p className={`text-center text-base sm:text-lg md:text-xl text-gray-300 mb-10 sm:mb-14 md:mb-16 max-w-2xl mx-auto px-2
+            <p className={`text-center text-base sm:text-lg md:text-xl text-gray-600 mb-10 sm:mb-14 md:mb-16 max-w-2xl mx-auto px-2
             ${visibleSections["pricing-section"]
                   ? "scroll-animate visible"
                   : "scroll-animate"
@@ -559,8 +587,8 @@ const reviews = [
             <div className="grid gap-6 sm:gap-7 md:gap-8 md:grid-cols-3 max-w-6xl mx-auto">
               {/* Beginner Plan */}
               <div
-                className={`bg-gradient-to-br from-slate-700 to-slate-800 border border-green-500/30 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
-              shadow-lg hover:shadow-2xl hover:border-green-500/60 hover:-translate-y-1 sm:hover:-translate-y-2
+                className={`bg-gradient-to-br from-green-50 to-green-100 border border-green-300 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
+              shadow-lg hover:shadow-2xl hover:border-green-400 hover:-translate-y-1 sm:hover:-translate-y-2
               transition-all duration-300 ease-out
               ${visibleSections["pricing-section"]
                     ? "scroll-animate-scale visible"
@@ -569,8 +597,8 @@ const reviews = [
                 style={{ transitionDelay: "0.1s" }}
               >
                 <div className="mb-3 sm:mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Beginner</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">Perfect to get started</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Beginner</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm">Perfect to get started</p>
                 </div>
                 
                 <div className="my-6 sm:my-7 md:my-8">
@@ -582,20 +610,20 @@ const reviews = [
 
                 <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Foundation in forex trading</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Foundation in forex trading</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Comprehensive video content</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Comprehensive video content</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Live trading sessions</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Live trading sessions</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Email support</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Email support</span>
                   </li>
                 </ul>
 
@@ -612,8 +640,8 @@ const reviews = [
 
               {/* Advance Plan - Featured */}
               <div
-                className={`bg-gradient-to-br from-blue-600 to-blue-700 border border-blue-400/50 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
-              shadow-2xl hover:shadow-3xl hover:border-blue-400 hover:-translate-y-1 sm:hover:-translate-y-2
+                className={`bg-gradient-to-br from-blue-100 to-cyan-100 border border-blue-400 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
+              shadow-2xl hover:shadow-3xl hover:border-blue-500 hover:-translate-y-1 sm:hover:-translate-y-2
               transition-all duration-300 ease-out relative md:scale-105
               ${visibleSections["pricing-section"]
                     ? "scroll-animate-scale visible"
@@ -621,13 +649,13 @@ const reviews = [
                   }`}
                 style={{ transitionDelay: "0.2s" }}
               >
-                <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-slate-900 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
+                <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
                   Most Popular
                 </div>
                 
                 <div className="mb-3 sm:mb-4 mt-4 sm:mt-5">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Advance</h3>
-                  <p className="text-blue-100 text-xs sm:text-sm">With Trading Software</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Advance</h3>
+                  <p className="text-blue-700 text-xs sm:text-sm">With Trading Software</p>
                 </div>
                 
                 <div className="my-6 sm:my-7 md:my-8">
@@ -639,20 +667,20 @@ const reviews = [
 
                 <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
-                    <span className="text-blue-50 text-sm sm:text-base">Everything in Beginner +</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-800 text-sm sm:text-base">Everything in Beginner +</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
-                    <span className="text-blue-50 text-sm sm:text-base">Advanced trading strategies</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-800 text-sm sm:text-base">Advanced trading strategies</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
-                    <span className="text-blue-50 text-sm sm:text-base">Professional trading software</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-800 text-sm sm:text-base">Professional trading software</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-300 flex-shrink-0 mt-0.5" />
-                    <span className="text-blue-50 text-sm sm:text-base">Personal mentor support</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-800 text-sm sm:text-base">Personal mentor support</span>
                   </li>
                 </ul>
 
@@ -669,8 +697,8 @@ const reviews = [
 
               {/* Super Advance Plan */}
               <div
-                className={`bg-gradient-to-br from-slate-700 to-slate-800 border border-purple-500/30 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
-              shadow-lg hover:shadow-2xl hover:border-purple-500/60 hover:-translate-y-1 sm:hover:-translate-y-2
+                className={`bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-300 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 text-center
+              shadow-lg hover:shadow-2xl hover:border-purple-400 hover:-translate-y-1 sm:hover:-translate-y-2
               transition-all duration-300 ease-out
               ${visibleSections["pricing-section"]
                     ? "scroll-animate-scale visible"
@@ -679,8 +707,8 @@ const reviews = [
                 style={{ transitionDelay: "0.3s" }}
               >
                 <div className="mb-3 sm:mb-4">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Super Advance</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm">Elite Trading Package</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Super Advance</h3>
+                  <p className="text-purple-600 text-xs sm:text-sm">Elite Trading Package</p>
                 </div>
                 
                 <div className="my-6 sm:my-7 md:my-8">
@@ -692,20 +720,20 @@ const reviews = [
 
                 <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Everything in Advance +</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Everything in Advance +</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Expert trading strategies</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Expert trading strategies</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Professional software + lifetime updates</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Professional software + lifetime updates</span>
                   </li>
                   <li className="flex items-start gap-2 sm:gap-3">
-                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">Lifetime 1-on-1 coaching</span>
+                    <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 text-sm sm:text-base">Lifetime 1-on-1 coaching</span>
                   </li>
                 </ul>
 
@@ -722,9 +750,10 @@ const reviews = [
             </div>
           </div>
         </div>
+
         {/* Features Grid - Full Width Background */}
         <div
-          className="w-full bg-gray-100 py-20 relative z-10"
+          className="w-full bg-blue-50 py-10 relative z-10"
           data-animate
           id="features-section"
         >
@@ -732,17 +761,25 @@ const reviews = [
 
             {/* Section Heading */}
             <h2
-              className={`text-4xl font-extrabold text-blue-900 mb-14 text-center
+              className={`text-5xl font-extrabold text-center text-gray-900 mb-6 heading
             ${visibleSections["features-section"]
                   ? "scroll-animate visible"
                   : "scroll-animate"
                 }`}
             >
-              Why Choose Us
+              Why Choose Our Trading Education?
             </h2>
+            
+            <p className={`text-center text-xl text-gray-600 mb-12 max-w-2xl mx-auto
+            ${visibleSections["features-section"]
+                  ? "scroll-animate visible"
+                  : "scroll-animate"
+                }`}>
+              Get comprehensive training designed specifically for traders like you
+            </p>
 
             {/* Features Grid */}
-            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
 
               {/* Feature Card 1 */}
               <div
@@ -759,10 +796,10 @@ const reviews = [
                   <BookOpen className="w-9 h-9 text-green-600" />
                 </div>
                 <h3 className="text-lg font-bold text-blue-900 mb-3">
-                  Structured Learning Paths
+                  Beginner-friendly Structured Learning Path
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Beginner to advanced forex & stock market courses with step-by-step guidance.
+                  Step-by-step guidance designed from basics to advanced concepts.
                 </p>
               </div>
 
@@ -781,10 +818,10 @@ const reviews = [
                   <TrendingUp className="w-9 h-9 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-bold text-blue-900 mb-3">
-                  Live Trading & Webinars
+                  Live Market & Real-time Chart Sessions
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Real-time market sessions with expert analysis and live Q&A.
+                  Learn trading with live market movements and expert analysis.
                 </p>
               </div>
 
@@ -803,10 +840,10 @@ const reviews = [
                   <Zap className="w-9 h-9 text-green-500" />
                 </div>
                 <h3 className="text-lg font-bold text-blue-900 mb-3">
-                  Practice Trading Zone
+                  Online & Classroom-based Training
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Trade in a risk-free environment and test proven strategies.
+                  Flexible learning options - choose what works best for you.
                 </p>
               </div>
 
@@ -825,10 +862,10 @@ const reviews = [
                   <Lightbulb className="w-9 h-9 text-blue-500" />
                 </div>
                 <h3 className="text-lg font-bold text-blue-900 mb-3">
-                  Smart Investment Hub
+                  Simple English – Easy to Understand
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Tools, insights, and tips to make better trading decisions.
+                  Complex concepts explained in simple, easy-to-understand language.
                 </p>
               </div>
 
@@ -847,10 +884,32 @@ const reviews = [
                   <Users className="w-9 h-9 text-green-700" />
                 </div>
                 <h3 className="text-lg font-bold text-blue-900 mb-3">
-                  Community & Mentorship
+                  Small Batch Size for Personal Attention
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Learn with a global trader community and expert mentorship.
+                  Limited class sizes ensure individualized guidance and focus.
+                </p>
+              </div>
+
+              {/* Feature Card 6 */}
+              <div
+                className={`bg-white border border-blue-100 rounded-xl p-8 text-center
+              shadow-md hover:shadow-2xl hover:-translate-y-2
+              transition-all duration-300 ease-out
+              ${visibleSections["features-section"]
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
+                style={{ transitionDelay: "0.6s" }}
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                  <GraduationCap className="w-9 h-9 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3">
+                  Continuous Doubt-clearing & Guidance
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Ongoing support and mentorship throughout your learning journey.
                 </p>
               </div>
 
@@ -858,64 +917,582 @@ const reviews = [
           </div>
         </div>
 
+        {/* Trading Education Section - Hero Banner */}
+        <div
+          className="w-full relative z-10 overflow-hidden"
+          data-animate
+          id="trading-education"
+        >
+          {/* Background with gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-white to-cyan-100"></div>
+          
+          {/* Animated background elements */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -mr-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
 
-        {/* Video Section with Content */}
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20" data-animate id="video-section">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className={`space-y-6 ${visibleSections['video-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
-              <h2 className="text-4xl font-bold text-white leading-tight">Master Trading with Expert Guidance</h2>
-              <p className="text-lg text-white/90">
-                Watch our comprehensive trading masterclass where experienced traders share proven strategies and market insights. Learn how to analyze charts, identify opportunities, and execute trades with confidence.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3 text-white">
-                  <span className="text-green-400 font-bold">✓</span>
-                  <span>Advanced charting techniques and pattern recognition</span>
-                </li>
-                <li className="flex items-start gap-3 text-white">
-                  <span className="text-green-400 font-bold">✓</span>
-                  <span>Risk management and position sizing strategies</span>
-                </li>
-                <li className="flex items-start gap-3 text-white">
-                  <span className="text-green-400 font-bold">✓</span>
-                  <span>Real-time trading scenarios and live examples</span>
-                </li>
-                <li className="flex items-start gap-3 text-white">
-                  <span className="text-green-400 font-bold">✓</span>
-                  <span>Professional trading psychology and discipline</span>
-                </li>
-              </ul>
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
+          {/* Main Content */}
+          <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className={`space-y-8 ${visibleSections['trading-education'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
+                <div>
+                  <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    Money Krishna<br />
+                    <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">Education</span>
+                  </h2>
+                  <p className="text-xl text-gray-700 font-semibold">
+                    Based in Chennai
+                  </p>
+                </div>
+
+                <div className="space-y-4 text-lg text-gray-800">
+                  <p className="font-semibold text-gray-900 text-xl">
+                    Structured Trading Education with Live Market Learning
+                  </p>
+                  <p className="text-gray-800">
+                    Designed for Beginners, Intermediate Traders & Experienced Professionals
+                  </p>
+                </div>
+
+                {/* Features Grid */}
+                <div className="grid grid-cols-2 gap-4 pt-4">
+                  <div className="bg-white/40 backdrop-blur-md rounded-lg p-4 border border-blue-300">
+                    <p className="text-sm text-gray-700 mb-1">Learning Format</p>
+                    <p className="text-gray-900 font-bold">Online & Offline</p>
+                  </div>
+                  <div className="bg-white/40 backdrop-blur-md rounded-lg p-4 border border-blue-300">
+                    <p className="text-sm text-gray-700 mb-1">Class Size</p>
+                    <p className="text-gray-900 font-bold">Small Batches</p>
+                  </div>
+                  <div className="bg-white/40 backdrop-blur-md rounded-lg p-4 border border-blue-300">
+                    <p className="text-sm text-gray-700 mb-1">Sessions</p>
+                    <p className="text-gray-900 font-bold">Live Markets</p>
+                  </div>
+                  <div className="bg-white/40 backdrop-blur-md rounded-lg p-4 border border-blue-300">
+                    <p className="text-sm text-gray-700 mb-1">Support</p>
+                    <p className="text-gray-900 font-bold">Expert Mentors</p>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const contactElement = document.getElementById('contact');
+                    if (contactElement) {
+                      contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-blue-600 text-white font-bold text-lg hover:bg-blue-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer w-fit"
+                >
+                  Enroll Now <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+
+              {/* Right Side - Icon & Stats */}
+              <div className={`flex justify-center items-center ${visibleSections['trading-education'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+                <div className="relative">
+                  {/* Large Background Circle */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-300/20 to-cyan-300/20 rounded-full blur-2xl w-80 h-80 mx-auto"></div>
+                  
+                  {/* Main Icon Circle */}
+                  <div className="relative w-80 h-80 bg-gradient-to-br from-blue-300 to-cyan-400 rounded-full flex items-center justify-center shadow-2xl">
+                    <BookOpen className="w-40 h-40 text-white" />
+                  </div>
+
+                  {/* Floating Stats Cards */}
+                  <div className="absolute -top-6 -right-6 bg-white rounded-lg p-6 shadow-xl">
+                    <p className="text-gray-700 text-sm font-medium">Students Trained</p>
+                    <p className="text-3xl font-bold text-gray-800">10K+</p>
+                  </div>
+
+                  <div className="absolute -bottom-6 -left-6 bg-white rounded-lg p-6 shadow-xl">
+                    <p className="text-gray-700 text-sm font-medium">Success Rate</p>
+                    <p className="text-3xl font-bold text-gray-800">95%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* What You Will Learn Section */}
+        <div
+          className="w-full bg-blue-50 py-24 relative z-10"
+          data-animate
+          id="curriculum-section"
+        >
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Section Heading */}
+            <h2
+              className={`text-5xl font-extrabold text-center text-gray-900 mb-6 heading
+              ${visibleSections["curriculum-section"]
+                    ? "scroll-animate visible"
+                    : "scroll-animate"
+                  }`}
+            >
+              What You Will Learn
+            </h2>
+            
+            <p className={`text-center text-xl text-gray-600 mb-16 max-w-2xl mx-auto
+            ${visibleSections["curriculum-section"]
+                  ? "scroll-animate visible"
+                  : "scroll-animate"
+                }`}>
+              Master essential trading skills across three key areas
+            </p>
+
+            {/* Three Column Grid */}
+            <div className="grid gap-12 md:grid-cols-3">
+
+              {/* Core Trading Concepts */}
+              <div
+                className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2
+                transition-all duration-300 ease-out border border-green-100
+                ${visibleSections["curriculum-section"]
+                      ? "scroll-animate-scale visible"
+                      : "scroll-animate-scale"
+                    }`}
+                style={{ transitionDelay: "0.1s" }}
               >
-                Learn More <ArrowRight className="w-5 h-5" />
-              </Link>
+                <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                  <BookOpen className="w-9 h-9 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900 mb-6">
+                  Core Trading Concepts
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Candlestick Patterns</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Technical Indicators</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Trendlines & Market Structure</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Support & Resistance Analysis</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Live Market Learning */}
+              <div
+                className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2
+                transition-all duration-300 ease-out border border-blue-100
+                ${visibleSections["curriculum-section"]
+                      ? "scroll-animate-scale visible"
+                      : "scroll-animate-scale"
+                    }`}
+                style={{ transitionDelay: "0.2s" }}
+              >
+                <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+                  <TrendingUp className="w-9 h-9 text-blue-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900 mb-6">
+                  Live Market Learning
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-blue-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Real-time chart reading</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-blue-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Market behavior understanding</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-blue-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Guided live trading sessions</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-blue-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Practical trade planning</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Hands-On Practice */}
+              <div
+                className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2
+                transition-all duration-300 ease-out border border-green-100
+                ${visibleSections["curriculum-section"]
+                      ? "scroll-animate-scale visible"
+                      : "scroll-animate-scale"
+                    }`}
+                style={{ transitionDelay: "0.3s" }}
+              >
+                <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
+                  <Zap className="w-9 h-9 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-blue-900 mb-6">
+                  Hands-On Practice
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Identify trends & key levels</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Entry, exit & stop-loss planning</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-slate-700">
+                    <span className="text-green-500 font-bold flex-shrink-0">●</span>
+                    <span className="font-medium">Risk & capital management basics</span>
+                  </li>
+                </ul>
+              </div>
+
             </div>
 
-            {/* Right Content - Video */}
-            <div className={`flex justify-center ${visibleSections['video-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
-              <div className="w-full aspect-video bg-black rounded-lg overflow-hidden shadow-xl">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&loop=1&playlist=6xxB3LsMhRI&si=M1txMgIEVcjR9o__"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen>
-                </iframe>
+          </div>
+        </div>
+
+        {/* Learning Modes Section - Hero Banner */}
+        <div
+          className="w-full relative z-10 overflow-hidden"
+          data-animate
+          id="learning-modes-section"
+        >
+          {/* Premium Gradient Background - Light Blue to Cyan */}
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50 to-purple-50"></div>
+          
+          {/* Premium Animated Blur Elements */}
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-200 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-float"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+          <div className="absolute top-1/3 right-0 w-64 h-64 bg-purple-200 rounded-full mix-blend-overlay filter blur-2xl opacity-20"></div>
+
+          {/* Main Content */}
+          <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Left Column - Content */}
+              <div className={`space-y-8 ${visibleSections['learning-modes-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
+                <div>
+                  <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    Choose Your<br />
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Learning Path</span>
+                  </h2>
+                  <p className="text-xl text-gray-700 font-semibold">
+                    Learn the way that works best for you
+                  </p>
+                </div>
+
+                {/* Two Learning Modes - Large Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Offline Classroom Card */}
+                  <div className="bg-gradient-to-br from-green-100 to-green-50 border border-green-400 rounded-2xl p-6 backdrop-blur-md hover:border-green-500 transition-all">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                        <BookOpen className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                          Offline Classroom
+                        </h3>
+                        <div className="space-y-2">
+                          <p className="text-gray-700 text-sm flex items-center gap-2 justify-center">
+                            <span className="text-green-600">✓</span>
+                            <span>Structured learning</span>
+                          </p>
+                          <p className="text-gray-700 text-sm flex items-center gap-2 justify-center">
+                            <span className="text-green-600">✓</span>
+                            <span>Face-to-face mentors</span>
+                          </p>
+                          <p className="text-gray-700 text-sm flex items-center gap-2 justify-center">
+                            <span className="text-green-600">✓</span>
+                            <span>Focused learning</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Live Online Classes Card */}
+                  <div className="bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-400 rounded-2xl p-6 backdrop-blur-md hover:border-blue-500 transition-all">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
+                        <TrendingUp className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                          Live Online Classes
+                        </h3>
+                        <div className="space-y-2">
+                          <p className="text-gray-700 text-sm flex items-center gap-2 justify-center">
+                            <span className="text-blue-600">✓</span>
+                            <span>Learn anywhere</span>
+                          </p>
+                          <p className="text-gray-700 text-sm flex items-center gap-2 justify-center">
+                            <span className="text-blue-600">✓</span>
+                            <span>Real-time interaction</span>
+                          </p>
+                          <p className="text-gray-700 text-sm flex items-center gap-2 justify-center">
+                            <span className="text-blue-600">✓</span>
+                            <span>Recorded sessions</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    const contactSection = document.getElementById("contact");
+                    if (contactSection) {
+                      e.preventDefault();
+                      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                  className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold text-lg hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer w-fit"
+                >
+                  Choose Your Mode <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+
+              {/* Right Column - Circular Icon Badge */}
+              <div className={`flex justify-center items-center ${visibleSections['learning-modes-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+                <div className="relative">
+                  {/* Background Glow Circle */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-full blur-2xl w-80 h-80 mx-auto"></div>
+                  
+                  {/* Main Circular Badge */}
+                  <div className="relative w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+                    <div className="text-center">
+                      <div className="inline-block mb-4">
+                        <div className="flex gap-4">
+                          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur flex items-center justify-center border border-white/30">
+                            <BookOpen className="w-8 h-8 text-white" />
+                          </div>
+                          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur flex items-center justify-center border border-white/30">
+                            <TrendingUp className="w-8 h-8 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-white font-bold text-2xl">Both Modes</p>
+                      <p className="text-white/80 text-sm mt-2">Offline & Online</p>
+                    </div>
+                  </div>
+
+                  {/* Floating Stat Cards */}
+                  <div className="absolute -top-4 -right-4 bg-white rounded-lg p-5 shadow-xl">
+                    <p className="text-indigo-900 text-xs font-bold">Students Enrolled</p>
+                    <p className="text-2xl font-bold text-indigo-600">10K+</p>
+                  </div>
+
+                  <div className="absolute -bottom-4 -left-4 bg-white rounded-lg p-5 shadow-xl">
+                    <p className="text-indigo-900 text-xs font-bold">Completion Rate</p>
+                    <p className="text-2xl font-bold text-indigo-600">98%</p>
+                  </div>
+
+                  <div className="absolute top-1/2 -right-16 bg-white rounded-lg p-4 shadow-xl">
+                    <p className="text-indigo-900 text-xs font-bold text-center">Flexibility</p>
+                    <p className="text-xl font-bold text-indigo-600 text-center">24/7</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Small Batch Advantage & Learning Outcome Section - Two Column */}
+        <div
+          className="w-full relative z-10 overflow-hidden"
+          data-animate
+          id="small-batch-section"
+        >
+          {/* Background with gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-50 via-white to-pink-50"></div>
+          
+          {/* Animated background elements */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -mr-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
+
+          {/* Main Content */}
+          <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div className={`space-y-8 ${visibleSections['small-batch-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
+                <div>
+                  <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    Why Our<br />
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Training Works</span>
+                  </h2>
+                </div>
+
+                {/* Features in two columns */}
+                <div className="space-y-8">
+                  {/* Small Batch Features */}
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+                        <Users className="w-5 h-5 text-white" />
+                      </div>
+                      Small Batches
+                    </h3>
+                    <div className="space-y-3 ml-13">
+                      <p className="text-gray-700 flex items-start gap-3">
+                        <span className="text-green-600 font-bold mt-0.5">✓</span>
+                        <span>Limited students per batch</span>
+                      </p>
+                      <p className="text-gray-700 flex items-start gap-3">
+                        <span className="text-green-600 font-bold mt-0.5">✓</span>
+                        <span>Personal attention for every learner</span>
+                      </p>
+                      <p className="text-gray-700 flex items-start gap-3">
+                        <span className="text-green-600 font-bold mt-0.5">✓</span>
+                        <span>Live doubt-clearing sessions</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Learning Outcome Features */}
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                        <TrendingUp className="w-5 h-5 text-white" />
+                      </div>
+                      Learning Outcomes
+                    </h3>
+                    <div className="space-y-3 ml-13">
+                      <p className="text-gray-700 flex items-start gap-3">
+                        <span className="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>Strong trading foundation</span>
+                      </p>
+                      <p className="text-gray-700 flex items-start gap-3">
+                        <span className="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>Clear chart reading skills</span>
+                      </p>
+                      <p className="text-gray-700 flex items-start gap-3">
+                        <span className="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>Confidence to trade live markets</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const contactElement = document.getElementById('contact');
+                    if (contactElement) {
+                      contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer w-fit"
+                >
+                  Start Learning Now <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
+
+              {/* Right Side - Visual Stats */}
+              <div className={`flex justify-center items-center ${visibleSections['small-batch-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+                <div className="relative w-full max-w-sm">
+                  {/* Background glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-2xl blur-3xl"></div>
+
+                  {/* Main Card */}
+                  <div className="relative bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 border border-blue-200">
+                    {/* Top stat */}
+                    <div className="text-center mb-8 pb-8 border-b border-blue-200">
+                      <p className="text-gray-600 text-sm font-medium mb-2">Success Stories</p>
+                      <p className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">10K+</p>
+                    </div>
+
+                    {/* Achievement cards */}
+                    <div className="space-y-4">
+                      <div className="bg-green-50 backdrop-blur rounded-lg p-4 border border-green-300">
+                        <p className="text-green-700 text-sm font-bold mb-1">Success Rate</p>
+                        <p className="text-2xl font-bold text-green-900">95%</p>
+                      </div>
+                      <div className="bg-blue-50 backdrop-blur rounded-lg p-4 border border-blue-300">
+                        <p className="text-blue-700 text-sm font-bold mb-1">Average Improvement</p>
+                        <p className="text-2xl font-bold text-blue-900">3x Growth</p>
+                      </div>
+                      <div className="bg-cyan-50 backdrop-blur rounded-lg p-4 border border-cyan-300">
+                        <p className="text-cyan-700 text-sm font-bold mb-1">Student Satisfaction</p>
+                        <p className="text-2xl font-bold text-cyan-900">4.9/5 ⭐</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        {/* Video Section with Content */}
+        <div className="w-full bg-gradient-to-b from-green-50 via-white to-blue-50 py-24 relative z-10" data-animate id="video-section">
+          <div className="max-w-screen-2xl mx-auto  p-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className={`space-y-6 ${visibleSections['video-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
+                <h2 className="text-5xl font-extrabold text-gray-900 leading-tight">Master Trading with Expert Guidance</h2>
+                <p className="text-lg text-gray-800">
+                  Watch our comprehensive trading masterclass where experienced traders share proven strategies and market insights. Learn how to analyze charts, identify opportunities, and execute trades with confidence.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-gray-800">
+                    <span className="text-green-600 font-bold">✓</span>
+                    <span>Advanced charting techniques and pattern recognition</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-800">
+                    <span className="text-green-600 font-bold">✓</span>
+                    <span>Risk management and position sizing strategies</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-800">
+                    <span className="text-green-600 font-bold">✓</span>
+                    <span>Real-time trading scenarios and live examples</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-800">
+                    <span className="text-green-600 font-bold">✓</span>
+                    <span>Professional trading psychology and discipline</span>
+                  </li>
+                </ul>
+                <Link
+                  to="/blog"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
+                >
+                  Learn More <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+
+              {/* Right Content - Video */}
+              <div className={`flex justify-center ${visibleSections['video-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+                <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-2 border-gradient hover:shadow-[0_0_40px_rgba(22,163,74,0.3)] transition-all duration-300 bg-black">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/6xxB3LsMhRI?autoplay=1&mute=1&loop=1&playlist=6xxB3LsMhRI&si=M1txMgIEVcjR9o__"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen>
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Customer Reviews Section */}
-        <div className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 py-16 relative z-10" data-animate id="reviews-section">
+        <div className="w-full bg-blue-50 py-24 relative z-10" data-animate id="reviews-section">
           <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className={`text-4xl font-bold text-slate-900 mb-2 text-center ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>What Our Students Say</h2>
-            <p className={`text-center text-slate-600 mb-12 text-lg ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Join thousands of successful traders who have transformed their trading journey with us</p>
+            <h2 className={`text-5xl font-extrabold text-slate-900 mb-3 text-center ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Proof That Our Training Works </h2>
+            <p className={`text-center text-slate-500 mb-16 text-lg font-medium ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>— Hear from Our Successful Students</p>
             <div className="relative overflow-hidden">
               <div
                 ref={reviewsScrollRef}
@@ -924,11 +1501,10 @@ const reviews = [
                 {[...reviews, ...reviews].map((review, index) => (
                   <div
                     key={index}
-                    className={`group bg-white/80 backdrop-blur-xl border border-slate-200/60 
-        rounded-2xl p-6 sm:p-8 w-80 sm:w-96 flex-shrink-0
-        shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)]
-        hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.25)]
-        transition-all duration-500
+                    className={`group bg-white border-l-4 border-green-600 
+        rounded-xl p-8 w-80 sm:w-96 flex-shrink-0
+        shadow-lg hover:shadow-2xl
+        hover:-translate-y-1 transition-all duration-300
         ${visibleSections['reviews-section']
                         ? 'scroll-animate-scale visible'
                         : 'scroll-animate-scale'
@@ -948,10 +1524,10 @@ const reviews = [
 
                     {/* Footer */}
                     <div className="border-t border-slate-200 pt-4">
-                      <p className="text-slate-900 font-semibold">
+                      <p className="text-slate-900 font-bold text-base">
                         {review.name}
                       </p>
-                      <p className="text-slate-500 text-sm">
+                      <p className="text-slate-500 text-sm font-medium">
                         {review.role}
                       </p>
                     </div>
@@ -959,99 +1535,161 @@ const reviews = [
                 ))}
               </div>
             </div>
-
-
           </div>
         </div>
 
-        {/* Contact Form Section */}
+        {/* Enrollment Form Section */}
         <div
-          className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-10"
+          className="w-full bg-gradient-to-br from-white via-blue-50 to-white py-20 relative z-10"
           id="contact"
         >
-          <div>
-            <h2 className="text-4xl font-bold text-white mb-6 text-center">
-              Get In Touch
-            </h2>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Content */}
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-5xl font-extrabold text-gray-900 mb-4 heading">
+                    Ready to Start?
+                  </h2>
+                  <p className="text-xl text-gray-700">
+                    Join thousands of successful traders today
+                  </p>
+                </div>
 
-            <form
-              className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-              onSubmit={handleSubmit}
-            >
-              {/* Hidden spam protection */}
-              <input type="checkbox" name="botcheck" className="hidden" />
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center flex-shrink-0 mt-1">
+                      <BookOpen className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">Expert Mentorship</h3>
+                      <p className="text-gray-700">Learn from experienced traders with years of market expertise</p>
+                    </div>
+                  </div>
 
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
+                      <TrendingUp className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">Proven Results</h3>
+                      <p className="text-gray-700">95% success rate with over 10K+ students trained</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center flex-shrink-0 mt-1">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">Small Batches</h3>
+                      <p className="text-gray-700">Personal attention and customized guidance for every learner</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Form */}
               <div>
-                <label className="block text-white font-semibold mb-2">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
-                  required
-                />
+                <form
+                  className="space-y-4 bg-white border border-gray-300 rounded-2xl p-8 shadow-lg"
+                  onSubmit={handleSubmit}
+                >
+                  {/* Hidden spam protection */}
+                  <input type="checkbox" name="botcheck" className="hidden" />
+
+                  {/* Two Column Inputs */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* Full Name */}
+                    <div>
+                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Full Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your name"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        required
+                      />
+                    </div>
+
+                    {/* Mobile Number */}
+                    <div>
+                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Mobile Number</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="10-digit number"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email and Experience in two columns */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {/* Email Address */}
+                    <div>
+                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        required
+                      />
+                    </div>
+
+                    {/* Experience Level */}
+                    <div>
+                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Experience Level</label>
+                      <select
+                        name="experience"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        required
+                      >
+                        <option value="">Select level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Experienced">Experienced</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Preferred Mode - Full Width */}
+                  <div>
+                    <label className="block text-gray-900 font-semibold mb-2 text-sm">Preferred Mode</label>
+                    <select
+                      name="mode"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                      required
+                    >
+                      <option value="">Select preferred mode</option>
+                      <option value="Online">Online</option>
+                      <option value="Offline">Offline</option>
+                    </select>
+                  </div>
+
+                  {/* CTA Button */}
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 text-lg rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 mt-6"
+                  >
+                    Get Free Counseling Call
+                  </button>
+
+                  {/* Trust Line */}
+                  <p className="text-center text-gray-600 text-xs">
+                    No spam. 100% privacy guaranteed.
+                  </p>
+
+                  {status && (
+                    <p className="text-center text-green-600 font-semibold mt-2 text-sm">
+                      {status}
+                    </p>
+                  )}
+                </form>
               </div>
-
-              <div>
-                <label className="block text-white font-semibold mb-2">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-white font-semibold mb-2">
-                  Phone (Optional)
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="+1 (555) 000-0000"
-                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-white font-semibold mb-2">Subject</label>
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="How can we help?"
-                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors"
-                  required
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="block text-white font-semibold mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  placeholder="Your message here..."
-                  rows="4"
-                  className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 backdrop-blur-md text-white placeholder-white/50 focus:outline-none focus:border-green-400 transition-colors resize-none"
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="md:col-span-2 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-green-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
-              >
-                Send Message
-              </button>
-
-              {status && (
-                <p className="md:col-span-2 text-center text-white mt-2">
-                  {status}
-                </p>
-              )}
-            </form>
+            </div>
           </div>
         </div>
       </div>
