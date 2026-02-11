@@ -25,7 +25,7 @@ clear and my overtrading reduced.`,
   },
   {
     id: 3,
-    name: "Sharmila",
+    name: "Sharmi P – Aspiring Trader",
     program: "Trading Mentorship Program",
     image: "/user3.jpg",
     text: `Before joining TMP, there was a big struggle in my life related to stock market trading and investment. But this TMP program has helped me a lot...`,
@@ -38,7 +38,7 @@ clear and my overtrading reduced.`,
     image: "/user4.png",
     text: `Small batch size and doubt clearing sessions made a huge difference. Real market
 learning is the biggest plus.`,
-    rating: 4.5,
+    rating: 4,
   },
 ];
 
@@ -87,7 +87,7 @@ const About = () => {
                     src="/user4.png"
                     alt="About"
                     className="w-full h-full object-cover"
-                  />
+                  />    
                   <div className="absolute right-0 top-0 h-full pointer-events-none" style={{ width: '6rem', background: 'linear-gradient(to left, rgba(14,165,233,0.22), rgba(14,165,233,0.08), transparent)' }} />
                 </div>
 
@@ -97,16 +97,16 @@ const About = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className="bg-slate-700 text-white p-12 flex flex-col justify-center space-y-6 animate-fade-in-up transition-transform duration-150 hover:scale-[1.01]">
+                <div className="bg-slate-700 text-white p-12 flex flex-col justify-center space-y-6 animate-fade-in-up transition-transform duration-150 ">
 
                   <h2 className="text-4xl font-bold mb-2">Company Overview</h2>
                   <p className="text-lg text-justify max-w-2xl">
                     Money Krishna Education is a leading trading institute based in Chennai, committed to
-helping individuals learn trading the right way through structured education and real
-market exposure. Since 2012, we have trained aspiring traders, working professionals,
-and experienced market participants to understand markets with clarity, discipline, and
-confidence.
-</p>
+                    helping individuals learn trading the right way through structured education and real
+                    market exposure. Since 2012, we have trained aspiring traders, working professionals,
+                    and experienced market participants to understand markets with clarity, discipline, and
+                    confidence.
+                    </p>
 
                   <h3 className="text-3xl font-semibold">Who We Are?</h3>
                   <p className="text-lg text-justify max-w-2xl">
@@ -116,16 +116,17 @@ confidence.
                   <p className="text-lg text-justify max-w-2xl">
                     Our programs cover Stock Market, Forex, and Options Trading, designed with a
                     practical-first approach. We believe trading success comes from proper foundation, live
-market understanding, and continuous guidance—not from tips or shortcuts.</p>
+                    market understanding, and continuous guidance not from tips or shortcuts.</p>
                   <h3 className="text-3xl font-semibold">Our Vision</h3>
                   <p className="text-lg text-justify max-w-2xl">
-                    To provide structured, practical trading education that empowers individuals to trade with discipline, knowledge, and confidence through real market exposure and continuous mentorship. </p>
+                    To provide structured, practical trading education that empowers individuals to trade with discipline, knowledge, 
+                    and confidence through real market exposure and continuous mentorship. </p>
                   
                   <h3 className="text-3xl font-semibold">Our Mission</h3>
                   <p className="text-lg text-justify max-w-2xl">
                     At Money Krishna Education, learning happens through live market sessions, hands-on
-chart practice, and mentor-led guidance, ensuring students gain real skills that can be
-applied in actual trading environments </p>
+                    chart practice, and mentor-led guidance, ensuring students gain real skills that can be
+                    applied in actual trading environments </p>
 
                 </div>
 
