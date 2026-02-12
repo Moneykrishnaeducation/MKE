@@ -16,7 +16,6 @@ import BeginnerIntro from './Components/BeginnerIntro'
 import Intermediate from './Components/Intermediate'
 import AdvanceCourse from './Components/AdvanceCourse'
 import AdvanceIntro from './Components/AdvanceIntro'
-import Careers from './Components/Careers'
 import Term from './Components/Term'
 import ScrollToTop from './Components/ScrollToTop'
 
