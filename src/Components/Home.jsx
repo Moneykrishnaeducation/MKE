@@ -24,7 +24,7 @@ const Home = () => {
         const total = headerHeight + topbarHeight
         // Use calc with px offset to ensure hero occupies remaining viewport
         setHeroMinHeight(`calc(100vh - ${total}px)`)
-      } catch  {
+      } catch {
         setHeroMinHeight(null)
       }
     }
@@ -33,62 +33,62 @@ const Home = () => {
     window.addEventListener('resize', updateHeroHeight)
     return () => window.removeEventListener('resize', updateHeroHeight)
   }, [])
-// useEffect(() => {
-//   let isMounted = true;
-//   const fetchUsdInrRate = async () => {
-//     setLoadingRate(true);
-//     try {
-//       const url = "https://www.google.com/finance/quote/USD-INR";
-//       const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-//       const res = await fetch(proxy);
-//       if (!res.ok) throw new Error('Network response was not ok');
-//       const html = await res.text();
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   const fetchUsdInrRate = async () => {
+  //     setLoadingRate(true);
+  //     try {
+  //       const url = "https://www.google.com/finance/quote/USD-INR";
+  //       const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+  //       const res = await fetch(proxy);
+  //       if (!res.ok) throw new Error('Network response was not ok');
+  //       const html = await res.text();
 
-//       const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
-//       let parsed = null;
-//       const m = html.match(rateRegex);
-//       if (m && m[1]) {
-//         const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
-//         parsed = parseFloat(raw);
-//       }
-//       if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
-//         const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
-//         if (loose && loose[1]) {
-//           parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
-//         }
-//       }
-//       if (parsed && !Number.isNaN(parsed) && parsed > 0) {
-//         if (isMounted) setUsdPrice(parsed.toFixed(2));
-//         return;
-//       }
-//     } catch (err) {
-//       // Prefer using sharedUtils.showToast when available, otherwise log
-//       try {
-//         if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
-//           sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
-//         } else {
-//           console.error('Failed to fetch USD-INR rate.', err);
-//         }
-//       } catch (e) {
-//         console.error('Failed to fetch USD-INR rate.', err);
-//       }
-//     } finally {
-//       setLoadingRate(false);
-//     }
-//   };
+  //       const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
+  //       let parsed = null;
+  //       const m = html.match(rateRegex);
+  //       if (m && m[1]) {
+  //         const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
+  //         parsed = parseFloat(raw);
+  //       }
+  //       if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
+  //         const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
+  //         if (loose && loose[1]) {
+  //           parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
+  //         }
+  //       }
+  //       if (parsed && !Number.isNaN(parsed) && parsed > 0) {
+  //         if (isMounted) setUsdPrice(parsed.toFixed(2));
+  //         return;
+  //       }
+  //     } catch (err) {
+  //       // Prefer using sharedUtils.showToast when available, otherwise log
+  //       try {
+  //         if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
+  //           sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
+  //         } else {
+  //           console.error('Failed to fetch USD-INR rate.', err);
+  //         }
+  //       } catch (e) {
+  //         console.error('Failed to fetch USD-INR rate.', err);
+  //       }
+  //     } finally {
+  //       setLoadingRate(false);
+  //     }
+  //   };
 
-//   fetchUsdInrRate();
-//   const interval = setInterval(fetchUsdInrRate, 30000);
-//   return () => {
-//     isMounted = false;
-//     clearInterval(interval);
-//   };
-// }, [])
+  //   fetchUsdInrRate();
+  //   const interval = setInterval(fetchUsdInrRate, 30000);
+  //   return () => {
+  //     isMounted = false;
+  //     clearInterval(interval);
+  //   };
+  // }, [])
 
 
 
   // Intersection Observer for scroll animations
-useEffect(() => {
+  useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       // rootMargin: '0px 0px -100px 0px'
@@ -122,9 +122,9 @@ useEffect(() => {
         // clear history state to avoid repeat
         try {
           window.history.replaceState({}, document.title)
-        } catch  {
+        } catch {
           // ignore - some browsers may throw if state is read-only
-         }
+        }
       }, 80)
     }
   }, [location])
@@ -156,48 +156,48 @@ useEffect(() => {
       setStatus("Something went wrong ❌");
     }
   };
-const reviews = [
-  {
-    name: "Arun Kumar",
-    role: "Student · Chennai",
-    text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
-  },
-  {
-    name: "Priya Sharma",
-    role: "Student · Coimbatore",
-    text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
-  },
-  {
-    name: "Vignesh R",
-    role: "Student · Madurai",
-    text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
-  },
-  {
-    name: "Sneha Patel",
-    role: "Student · Salem",
-    text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
-  },
-  {
-    name: "Rahul Verma",
-    role: "Student · Trichy",
-    text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
-  },
-  {
-    name: "Anitha S",
-    role: "Student · Tirunelveli",
-    text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
-  },
-  {
-    name: "Karthik M",
-    role: "Student · Erode",
-    text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
-  },
-  {
-    name: "Divya Lakshmi",
-    role: "Student · Thanjavur",
-    text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
-  }
-]
+  const reviews = [
+    {
+      name: "Arun Kumar",
+      role: "Student · Chennai",
+      text: "The concepts were explained very clearly with real-time market examples. It boosted my confidence in trading."
+    },
+    {
+      name: "Priya Sharma",
+      role: "Student · Coimbatore",
+      text: "Beginner-friendly and well structured. I finally understood technical analysis without confusion."
+    },
+    {
+      name: "Vignesh R",
+      role: "Student · Madurai",
+      text: "Practical sessions helped me apply strategies in live markets. Very useful and professional."
+    },
+    {
+      name: "Sneha Patel",
+      role: "Student · Salem",
+      text: "The mentor support and doubt-clearing sessions were excellent. Highly recommended for new traders."
+    },
+    {
+      name: "Rahul Verma",
+      role: "Student · Trichy",
+      text: "Risk management and psychology lessons changed the way I trade. Simple and effective teaching."
+    },
+    {
+      name: "Anitha S",
+      role: "Student · Tirunelveli",
+      text: "Well-paced sessions with real examples. It helped me avoid common beginner mistakes."
+    },
+    {
+      name: "Karthik M",
+      role: "Student · Erode",
+      text: "The strategies are easy to follow and practical. Perfect balance between theory and execution."
+    },
+    {
+      name: "Divya Lakshmi",
+      role: "Student · Thanjavur",
+      text: "A complete learning experience. From basics to advanced concepts, everything was covered clearly."
+    }
+  ]
 
 
 
@@ -439,7 +439,10 @@ const reviews = [
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start items-center">
                 <Link
-                  to="/courses/beginner"
+                  onClick={() => {
+                    const contactElement = document.getElementById('contact');
+                    contactElement?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   aria-label="Join course - start learning with MoneyKrishna"
                   className="inline-flex items-center gap-3 px-4 md:px-8 py-2  md:py-4 rounded-full border-2 border-white bg-white text-green-600 font-bold text-sm md:text-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
@@ -488,19 +491,19 @@ const reviews = [
                 {/* Card 4: Active Offers - Enhanced with Sparkles */}
                 <div className="relative group bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-md rounded-2xl p-6 text-center border border-pink-300/30 hover:border-pink-300/60 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-pink-500/40 hover:-translate-y-2 min-h-[160px] flex flex-col justify-center items-center">
                   {/* Sparkle particles - top left */}
-                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.5s ease-in-out infinite'}}></div>
-                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2s ease-in-out infinite 0.3s'}}></div>
-                  
+                  <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{ animation: 'sparkle 1.5s ease-in-out infinite' }}></div>
+                  <div className="absolute top-4 left-6 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{ animation: 'sparkle 2s ease-in-out infinite 0.3s' }}></div>
+
                   {/* Sparkle particles - top right */}
-                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{animation: 'sparkle 1.8s ease-in-out infinite 0.2s'}}></div>
-                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{animation: 'sparkle 2.2s ease-in-out infinite 0.5s'}}></div>
-                  
+                  <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-0 group-hover:opacity-100 animate-pulse" style={{ animation: 'sparkle 1.8s ease-in-out infinite 0.2s' }}></div>
+                  <div className="absolute top-6 right-2 w-1 h-1 bg-yellow-200 rounded-full opacity-0 group-hover:opacity-75 animate-pulse" style={{ animation: 'sparkle 2.2s ease-in-out infinite 0.5s' }}></div>
+
                   {/* Animated gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-400/0 via-pink-300/10 to-rose-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   {/* Pulsing glow effect - enhanced */}
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}></div>
-                  
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-pink-400 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" style={{ animation: 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}></div>
+
                   {/* Rotating border on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" style={{
                     background: 'conic-gradient(from 0deg, #fbbf24, #f59e0b, #fbbf24)',
@@ -510,7 +513,7 @@ const reviews = [
                     padding: '1px',
                     animation: 'rotate 4s linear infinite'
                   }}></div>
-                  
+
                   <div className="relative z-10">
                     {/* Limited Time Badge - Enhanced */}
                     <div className="inline-block min-w-5xl offer-badge-pulse">
@@ -522,20 +525,23 @@ const reviews = [
                     {/* Icon with glow and floating animation */}
                     <div className="flex justify-center">
                       <div className="relative floating-icon">
-                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{width: '60px', height: '60px', margin: '-15px'}}></div>
-                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))'}} />
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300" style={{ width: '60px', height: '60px', margin: '-15px' }}></div>
+                        <Gift className="w-4 h-4 text-yellow-200 drop-shadow-lg relative z-10 group-hover:scale-125 transition-transform duration-300" style={{ filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.6))' }} />
                       </div>
                     </div>
-                    
+
                     {/* Main Value - Large and Bold */}
-                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{textShadow: '0 0 20px rgba(251, 191, 36, 0.3)'}}>60%+</p>
-                    
+                    <p className="text-md sm:text-2xl font-black bg-gradient-to-r from-yellow-200 via-pink-200 to-rose-200 bg-clip-text text-transparent " style={{ textShadow: '0 0 20px rgba(251, 191, 36, 0.3)' }}>60%+</p>
+
                     {/* Subtext with emphasis */}
                     <p className="text-sm text-pink-100/95 font-bold tracking-wide mb-1">ACTIVE OFFERS</p>
-                    
+
                     {/* Button */}
                     <Link
-                      to="/courses/beginner"
+                      onClick={() => {
+                        const contactElement = document.getElementById('contact');
+                        contactElement?.scrollIntoView({ behavior: 'smooth' });
+                      }}
                       className="inline-flex items-center gap-2 px-4 py-2  rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold hover:from-pink-600 hover:to-rose-600 transition-all shadow-lg hover:shadow-pink-500/50 hover:scale-110"
                     >
                       Claim Now
@@ -560,7 +566,7 @@ const reviews = [
           </div>
         </div>
 
-{/* Pricing Section */}
+        {/* Pricing Section */}
         <div
           className="w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 sm:py-16 md:py-20 relative z-10"
           data-animate
@@ -577,12 +583,12 @@ const reviews = [
             >
               Transparent Pricing
             </h2>
-            
+
             <p className={`text-center text-base sm:text-lg md:text-xl text-gray-600 mb-10 sm:mb-14 md:mb-16 max-w-2xl mx-auto px-2
             ${visibleSections["pricing-section"]
-                  ? "scroll-animate visible"
-                  : "scroll-animate"
-                }`}>
+                ? "scroll-animate visible"
+                : "scroll-animate"
+              }`}>
               Choose the plan that works best for your trading journey
             </p>
 
@@ -603,12 +609,12 @@ const reviews = [
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Beginner</h3>
                   <p className="text-gray-600 text-xs sm:text-sm">Perfect to get started</p>
                 </div>
-                
+
                 <div className="my-6 sm:my-7 md:my-8">
                   <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-green-400 mb-1 sm:mb-2">
                     ₹30,000
                   </div>
-                  <p className="text-gray-400 text-xs sm:text-sm">for 3 months</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">for 3 months</p>
                 </div>
 
                 <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
@@ -652,17 +658,17 @@ const reviews = [
                   }`}
                 style={{ transitionDelay: "0.2s" }}
               >
-                <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
+                <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 bg-blue-700 text-gray-200 px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
                   Most Popular
                 </div>
-                
+
                 <div className="mb-3 sm:mb-4 mt-4 sm:mt-5">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Advance</h3>
                   <p className="text-blue-700 text-xs sm:text-sm">With Trading Software</p>
                 </div>
-                
+
                 <div className="my-6 sm:my-7 md:my-8">
-                  <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-yellow-300 mb-1 sm:mb-2">
+                  <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-blue-700 mb-1 sm:mb-2">
                     ₹1,50,000
                   </div>
                   <p className="text-blue-100 text-xs sm:text-sm">one time payment</p>
@@ -692,7 +698,7 @@ const reviews = [
                     const contactElement = document.getElementById('contact');
                     contactElement?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-slate-900 text-sm sm:text-base font-bold transition-all duration-300"
+                  className="w-full inline-block px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-slate-100 text-sm sm:text-base font-bold transition-all duration-300"
                 >
                   Enroll Now
                 </button>
@@ -713,12 +719,12 @@ const reviews = [
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">Super Advance</h3>
                   <p className="text-purple-600 text-xs sm:text-sm">Elite Trading Package</p>
                 </div>
-                
+
                 <div className="my-6 sm:my-7 md:my-8">
                   <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-purple-400 mb-1 sm:mb-2">
                     ₹10,00,000
                   </div>
-                  <p className="text-gray-400 text-xs sm:text-sm">lifetime access</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">lifetime access</p>
                 </div>
 
                 <ul className="text-left mb-6 sm:mb-7 md:mb-8 space-y-2 sm:space-y-3">
@@ -772,12 +778,12 @@ const reviews = [
             >
               Why Choose Our Trading Education?
             </h2>
-            
+
             <p className={`text-center text-xl text-gray-600 mb-12 max-w-2xl mx-auto
             ${visibleSections["features-section"]
-                  ? "scroll-animate visible"
-                  : "scroll-animate"
-                }`}>
+                ? "scroll-animate visible"
+                : "scroll-animate"
+              }`}>
               Get comprehensive training designed specifically for traders like you
             </p>
 
@@ -928,7 +934,7 @@ const reviews = [
         >
           {/* Background with gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-white to-cyan-100"></div>
-          
+
           {/* Animated background elements */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -mr-48"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
@@ -998,7 +1004,7 @@ const reviews = [
                 <div className="relative">
                   {/* Large Background Circle */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-300/20 to-cyan-300/20 rounded-full blur-2xl w-80 h-80 mx-auto"></div>
-                  
+
                   {/* Main Icon Circle */}
                   <div className="relative w-80 h-80 bg-gradient-to-br from-blue-300 to-cyan-400 rounded-full flex items-center justify-center shadow-2xl">
                     <BookOpen className="w-40 h-40 text-white" />
@@ -1032,18 +1038,18 @@ const reviews = [
             <h2
               className={`text-5xl font-extrabold text-center text-gray-900 mb-6 heading
               ${visibleSections["curriculum-section"]
-                    ? "scroll-animate visible"
-                    : "scroll-animate"
-                  }`}
+                  ? "scroll-animate visible"
+                  : "scroll-animate"
+                }`}
             >
               What You Will Learn
             </h2>
-            
+
             <p className={`text-center text-xl text-gray-600 mb-16 max-w-2xl mx-auto
             ${visibleSections["curriculum-section"]
-                  ? "scroll-animate visible"
-                  : "scroll-animate"
-                }`}>
+                ? "scroll-animate visible"
+                : "scroll-animate"
+              }`}>
               Master essential trading skills across three key areas
             </p>
 
@@ -1055,9 +1061,9 @@ const reviews = [
                 className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2
                 transition-all duration-300 ease-out border border-green-100
                 ${visibleSections["curriculum-section"]
-                      ? "scroll-animate-scale visible"
-                      : "scroll-animate-scale"
-                    }`}
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
                 style={{ transitionDelay: "0.1s" }}
               >
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
@@ -1091,9 +1097,9 @@ const reviews = [
                 className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2
                 transition-all duration-300 ease-out border border-blue-100
                 ${visibleSections["curriculum-section"]
-                      ? "scroll-animate-scale visible"
-                      : "scroll-animate-scale"
-                    }`}
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
                 style={{ transitionDelay: "0.2s" }}
               >
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
@@ -1127,9 +1133,9 @@ const reviews = [
                 className={`bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2
                 transition-all duration-300 ease-out border border-green-100
                 ${visibleSections["curriculum-section"]
-                      ? "scroll-animate-scale visible"
-                      : "scroll-animate-scale"
-                    }`}
+                    ? "scroll-animate-scale visible"
+                    : "scroll-animate-scale"
+                  }`}
                 style={{ transitionDelay: "0.3s" }}
               >
                 <div className="w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
@@ -1167,7 +1173,7 @@ const reviews = [
         >
           {/* Premium Gradient Background - Light Blue to Cyan */}
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50 to-purple-50"></div>
-          
+
           {/* Premium Animated Blur Elements */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-cyan-200 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-float"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
@@ -1268,7 +1274,7 @@ const reviews = [
                 <div className="relative">
                   {/* Background Glow Circle */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-full blur-2xl w-80 h-80 mx-auto"></div>
-                  
+
                   {/* Main Circular Badge */}
                   <div className="relative w-80 h-80 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
                     <div className="text-center">
@@ -1316,7 +1322,7 @@ const reviews = [
         >
           {/* Background with gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-purple-50 via-white to-pink-50"></div>
-          
+
           {/* Animated background elements */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -mr-48"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
@@ -1543,61 +1549,76 @@ const reviews = [
 
         {/* Enrollment Form Section */}
         <div
-          className="w-full bg-gradient-to-br from-white via-blue-50 to-white py-20 relative z-10"
+          className="w-full bg-white py-20 relative z-10 overflow-hidden"
           id="contact"
         >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Column - Content */}
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-5xl font-extrabold text-gray-900 mb-4 heading">
-                    Ready to Start?
-                  </h2>
-                  <p className="text-xl text-gray-700">
-                    Join thousands of successful traders today
-                  </p>
-                </div>
+          {/* Animated decorative shapes */}
+          <div className="absolute top-10 right-10 w-48 h-48 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full blur-3xl opacity-60"></div>
+          <div className="absolute bottom-20 left-0 w-64 h-64 bg-gradient-to-tr from-blue-200 to-cyan-300 rounded-full blur-3xl opacity-60"></div>
 
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center flex-shrink-0 mt-1">
-                      <BookOpen className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">Expert Mentorship</h3>
-                      <p className="text-gray-700">Learn from experienced traders with years of market expertise</p>
-                    </div>
-                  </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            {/* Header Section */}
+            <div className="text-center mb-16">
+              <div className="inline-block mb-4">
+                <span className="text-6xl">🚀</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4 heading">
+                Transform Your Trading Skills Today
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Unlock your potential with personalized guidance from market experts
+              </p>
+            </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0 mt-1">
-                      <TrendingUp className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">Proven Results</h3>
-                      <p className="text-gray-700">95% success rate with over 10K+ students trained</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center flex-shrink-0 mt-1">
-                      <Users className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">Small Batches</h3>
-                      <p className="text-gray-700">Personal attention and customized guidance for every learner</p>
-                    </div>
+            {/* Benefits Carousel */}
+            <div className="grid md:grid-cols-3 gap-8 mb-20">
+              {/* Benefit 1 */}
+              <div className="transform hover:scale-105 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-3xl p-8 border-2 border-emerald-200 hover:border-emerald-400 transition-colors">
+                  <div className="text-5xl mb-4">📚</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Expert Mentorship</h3>
+                  <p className="text-gray-700">Learn from experienced traders with years of market expertise</p>
+                  <div className="mt-4 flex items-center gap-2 text-emerald-600 font-semibold">
+                    <span>→</span> Start Learning
                   </div>
                 </div>
               </div>
 
-              {/* Right Column - Form */}
-              <div>
-                <form
-                  className="space-y-4 bg-white border border-gray-300 rounded-2xl p-8 shadow-lg"
-                  onSubmit={handleSubmit}
-                >
+              {/* Benefit 2 */}
+              <div className="transform hover:scale-105 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-blue-50 to-sky-50 rounded-3xl p-8 border-2 border-blue-200 hover:border-blue-400 transition-colors">
+                  <div className="text-5xl mb-4">📈</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Proven Results</h3>
+                  <p className="text-gray-700">95% success rate with over 10K+ students trained</p>
+                  <div className="mt-4 flex items-center gap-2 text-blue-600 font-semibold">
+                    <span>→</span> See Success Stories
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefit 3 */}
+              <div className="transform hover:scale-105 transition-transform duration-300">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 border-2 border-purple-200 hover:border-purple-400 transition-colors">
+                  <div className="text-5xl mb-4">👥</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Small Batches</h3>
+                  <p className="text-gray-700">Personal attention and customized guidance for every learner</p>
+                  <div className="mt-4 flex items-center gap-2 text-purple-600 font-semibold">
+                    <span>→</span> Get Personalized
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Form Section with gradient background */}
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-gradient-to-br from-white via-blue-50 to-white rounded-4xl p-10 border-3 border-gray-200 shadow-2xl">
+                {/* Form Header */}
+                <div className="text-center mb-10">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-2">Unlock Your Trading Potential</h3>
+                  <p className="text-gray-600">Get your free personalized counseling call in minutes</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-5">
                   {/* Hidden spam protection */}
                   <input type="checkbox" name="botcheck" className="hidden" />
 
@@ -1605,92 +1626,105 @@ const reviews = [
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Full Name */}
                     <div>
-                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Full Name</label>
+                      <label className="block text-gray-900 font-bold mb-2 text-sm">👤 Full Name</label>
                       <input
                         type="text"
                         name="name"
-                        placeholder="Your name"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        placeholder="Enter your full name"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium"
                         required
                       />
                     </div>
 
                     {/* Mobile Number */}
                     <div>
-                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Mobile Number</label>
+                      <label className="block text-gray-900 font-bold mb-2 text-sm">📱 Mobile Number</label>
                       <input
                         type="tel"
                         name="phone"
                         placeholder="10-digit number"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium"
                         required
                       />
                     </div>
                   </div>
 
-                  {/* Email and Experience in two columns */}
+                  {/* Email and Experience */}
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Email Address */}
                     <div>
-                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Email Address</label>
+                      <label className="block text-gray-900 font-bold mb-2 text-sm">📧 Email Address</label>
                       <input
                         type="email"
                         name="email"
                         placeholder="your@email.com"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium"
                         required
                       />
                     </div>
 
                     {/* Experience Level */}
                     <div>
-                      <label className="block text-gray-900 font-semibold mb-2 text-sm">Experience Level</label>
+                      <label className="block text-gray-900 font-bold mb-2 text-sm">🎯 Experience Level</label>
                       <select
                         name="experience"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium cursor-pointer"
                         required
                       >
-                        <option value="">Select level</option>
-                        <option value="Beginner">Beginner</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Experienced">Experienced</option>
+                        <option value="" className="bg-white">Select your level</option>
+                        <option value="Beginner" className="bg-white">Beginner</option>
+                        <option value="Intermediate" className="bg-white">Intermediate</option>
+                        <option value="Experienced" className="bg-white">Experienced</option>
                       </select>
                     </div>
                   </div>
 
                   {/* Preferred Mode - Full Width */}
                   <div>
-                    <label className="block text-gray-900 font-semibold mb-2 text-sm">Preferred Mode</label>
+                    <label className="block text-gray-900 font-bold mb-2 text-sm">💻 Preferred Learning Mode</label>
                     <select
                       name="mode"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium cursor-pointer"
                       required
                     >
-                      <option value="">Select preferred mode</option>
-                      <option value="Online">Online</option>
-                      <option value="Offline">Offline</option>
+                      <option value="" className="bg-white">Choose your preference</option>
+                      <option value="Online" className="bg-white">Online</option>
+                      <option value="Offline" className="bg-white">Offline</option>
                     </select>
                   </div>
 
                   {/* CTA Button */}
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 text-lg rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 mt-6"
+                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-4 text-lg rounded-2xl hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 mt-8 relative overflow-hidden group"
                   >
-                    Get Free Counseling Call
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Get Free Counseling Call ✨
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
 
                   {/* Trust Line */}
-                  <p className="text-center text-gray-600 text-xs">
-                    No spam. 100% privacy guaranteed.
-                  </p>
+                  <div className="text-center pt-4">
+                    <p className="text-gray-600 text-sm">
+                      ✓ No spam • 100% secure • Instant response
+                    </p>
+                  </div>
 
                   {status && (
-                    <p className="text-center text-green-600 font-semibold mt-2 text-sm">
-                      {status}
-                    </p>
+                    <div className="bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-emerald-300 rounded-xl p-4 text-center">
+                      <p className="text-emerald-700 font-bold text-sm">
+                        ✅ {status}
+                      </p>
+                    </div>
                   )}
                 </form>
+              </div>
+
+              {/* Bottom CTA */}
+              <div className="text-center mt-8">
+                <p className="text-gray-700 font-semibold mb-3">Still have questions?</p>
+                <p className="text-gray-600">Chat with our team on WhatsApp or call us directly</p>
               </div>
             </div>
           </div>
