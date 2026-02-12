@@ -1438,7 +1438,7 @@ const reviews = [
 
 
         {/* Video Section with Content */}
-        <div className="w-full bg-gradient-to-b from-green-50 via-white to-blue-50 py-24 relative z-10" data-animate id="video-section">
+        <div className="w-full overflow-hidden bg-gradient-to-b from-green-50 via-white to-blue-50 py-24 relative z-10" data-animate id="video-section">
           <div className="w-full mx-auto  p-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
