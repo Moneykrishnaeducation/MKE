@@ -399,7 +399,7 @@ const TopNav = () => {
             </Link>
             <button
               className="mobile-nav-link text-left"
-              onClick={() => { handleContactClick(); setMobileMenuOpen(false) }}
+              onClick={(e) => { handleContactClick(e); setMobileMenuOpen(false) }}
             >
               Contact
             </button>

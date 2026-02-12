@@ -1329,10 +1329,10 @@ const Home = () => {
 
           {/* Main Content */}
           <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-02 lg:gap-16 ">
               {/* Left Content */}
-              <div className={`space-y-8 ${visibleSections['small-batch-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
-                <div>
+              <div className={`space-y-6 md:space-y-8 flex flex-col items-center ${visibleSections['small-batch-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
+                <div className=' w-full lg:w-3/4 '>
                   <h2 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
                     Why Our<br />
                     <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Training Works</span>
@@ -1340,50 +1340,50 @@ const Home = () => {
                 </div>
 
                 {/* Features in two columns */}
-                <div className="space-y-8">
+                <div className="space-y-6 ps-6 lg:ps-20 md:space-y-8 w-full">
                   {/* Small Batch Features */}
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
-                        <Users className="w-5 h-5 text-white" />
+                  <div className="space-y-3 md:space-y-4 px-3 md:px-5">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 flex items-center gap-2 md:gap-3">
+                      <div className="w-8 md:w-10 h-8 md:h-10 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                        <Users className="w-4 md:w-5 h-4 md:h-5 text-white" />
                       </div>
                       Small Batches
                     </h3>
-                    <div className="space-y-3 ml-13">
-                      <p className="text-gray-700 flex items-start gap-3">
-                        <span className="text-green-600 font-bold mt-0.5">✓</span>
+                    <div className="space-y-2 md:space-y-3 pl-10 md:pl-13">
+                      <p className="text-sm md:text-base text-gray-700 flex items-start gap-2 md:gap-3">
+                        <span className="text-green-600 font-bold mt-0.5 flex-shrink-0">✓</span>
                         <span>Limited students per batch</span>
                       </p>
-                      <p className="text-gray-700 flex items-start gap-3">
-                        <span className="text-green-600 font-bold mt-0.5">✓</span>
+                      <p className="text-sm md:text-base text-gray-700 flex items-start gap-2 md:gap-3">
+                        <span className="text-green-600 font-bold mt-0.5 flex-shrink-0">✓</span>
                         <span>Personal attention for every learner</span>
                       </p>
-                      <p className="text-gray-700 flex items-start gap-3">
-                        <span className="text-green-600 font-bold mt-0.5">✓</span>
+                      <p className="text-sm md:text-base text-gray-700 flex items-start gap-2 md:gap-3">
+                        <span className="text-green-600 font-bold mt-0.5 flex-shrink-0">✓</span>
                         <span>Live doubt-clearing sessions</span>
                       </p>
                     </div>
                   </div>
 
                   {/* Learning Outcome Features */}
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
-                        <TrendingUp className="w-5 h-5 text-white" />
+                  <div className="space-y-3 md:space-y-4 px-3 md:px-5">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 flex items-center gap-2 md:gap-3">
+                      <div className="w-8 md:w-10 h-8 md:h-10 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+                        <TrendingUp className="w-4 md:w-5 h-4 md:h-5 text-white" />
                       </div>
                       Learning Outcomes
                     </h3>
-                    <div className="space-y-3 ml-13">
-                      <p className="text-gray-700 flex items-start gap-3">
-                        <span className="text-blue-600 font-bold mt-0.5">✓</span>
+                    <div className="space-y-2 md:space-y-3 pl-10 md:pl-13">
+                      <p className="text-sm md:text-base text-gray-700 flex items-start gap-2 md:gap-3">
+                        <span className="text-blue-600 font-bold mt-0.5 flex-shrink-0">✓</span>
                         <span>Strong trading foundation</span>
                       </p>
-                      <p className="text-gray-700 flex items-start gap-3">
-                        <span className="text-blue-600 font-bold mt-0.5">✓</span>
+                      <p className="text-sm md:text-base text-gray-700 flex items-start gap-2 md:gap-3">
+                        <span className="text-blue-600 font-bold mt-0.5 flex-shrink-0">✓</span>
                         <span>Clear chart reading skills</span>
                       </p>
-                      <p className="text-gray-700 flex items-start gap-3">
-                        <span className="text-blue-600 font-bold mt-0.5">✓</span>
+                      <p className="text-sm md:text-base text-gray-700 flex items-start gap-2 md:gap-3">
+                        <span className="text-blue-600 font-bold mt-0.5 flex-shrink-0">✓</span>
                         <span>Confidence to trade live markets</span>
                       </p>
                     </div>
@@ -1400,39 +1400,39 @@ const Home = () => {
                       contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer w-fit"
+                  className="inline-flex items-center gap-2 md:gap-3 mt-6 md:mt-8 px-6 md:px-10 py-2.5 md:py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-sm md:text-base lg:text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer w-fit"
                 >
-                  Start Learning Now <ArrowRight className="w-5 h-5" />
+                  Start Learning Now <ArrowRight className="w-4 md:w-5 h-4 md:h-5" />
                 </a>
               </div>
 
               {/* Right Side - Visual Stats */}
-              <div className={`flex justify-center items-center ${visibleSections['small-batch-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
+              <div className={`flex justify-center w-full items-center ${visibleSections['small-batch-section'] ? 'scroll-animate-right visible' : 'scroll-animate-right'}`}>
                 <div className="relative w-full max-w-sm">
                   {/* Background glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-2xl blur-3xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-xl md:rounded-2xl blur-3xl"></div>
 
                   {/* Main Card */}
-                  <div className="relative bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 border border-blue-200">
+                  <div className="relative bg-gradient-to-br from-white to-blue-50 rounded-xl md:rounded-2xl p-5 md:p-8 border border-blue-200">
                     {/* Top stat */}
-                    <div className="text-center mb-8 pb-8 border-b border-blue-200">
-                      <p className="text-gray-600 text-sm font-medium mb-2">Success Stories</p>
-                      <p className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">10K+</p>
+                    <div className="text-center mb-5 md:mb-8 pb-5 md:pb-8 border-b border-blue-200">
+                      <p className="text-gray-600 text-xs md:text-sm font-medium mb-1 md:mb-2">Success Stories</p>
+                      <p className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">10K+</p>
                     </div>
 
                     {/* Achievement cards */}
-                    <div className="space-y-4">
-                      <div className="bg-green-50 backdrop-blur rounded-lg p-4 border border-green-300">
-                        <p className="text-green-700 text-sm font-bold mb-1">Success Rate</p>
-                        <p className="text-2xl font-bold text-green-900">95%</p>
+                    <div className="space-y-3 md:space-y-4">
+                      <div className="bg-green-50 backdrop-blur rounded-lg p-3 md:p-4 border border-green-300">
+                        <p className="text-green-700 text-xs md:text-sm font-bold mb-0.5 md:mb-1">Success Rate</p>
+                        <p className="text-xl md:text-2xl font-bold text-green-900">95%</p>
                       </div>
-                      <div className="bg-blue-50 backdrop-blur rounded-lg p-4 border border-blue-300">
-                        <p className="text-blue-700 text-sm font-bold mb-1">Average Improvement</p>
-                        <p className="text-2xl font-bold text-blue-900">3x Growth</p>
+                      <div className="bg-blue-50 backdrop-blur rounded-lg p-3 md:p-4 border border-blue-300">
+                        <p className="text-blue-700 text-xs md:text-sm font-bold mb-0.5 md:mb-1">Average Improvement</p>
+                        <p className="text-xl md:text-2xl font-bold text-blue-900">3x Growth</p>
                       </div>
-                      <div className="bg-cyan-50 backdrop-blur rounded-lg p-4 border border-cyan-300">
-                        <p className="text-cyan-700 text-sm font-bold mb-1">Student Satisfaction</p>
-                        <p className="text-2xl font-bold text-cyan-900">4.9/5 ⭐</p>
+                      <div className="bg-cyan-50 backdrop-blur rounded-lg p-3 md:p-4 border border-cyan-300">
+                        <p className="text-cyan-700 text-xs md:text-sm font-bold mb-0.5 md:mb-1">Student Satisfaction</p>
+                        <p className="text-xl md:text-2xl font-bold text-cyan-900">4.9/5 ⭐</p>
                       </div>
                     </div>
                   </div>
@@ -1549,182 +1549,155 @@ const Home = () => {
 
         {/* Enrollment Form Section */}
         <div
-          className="w-full bg-white py-20 relative z-10 overflow-hidden"
+          className="w-full bg-gradient-to-br from-white via-blue-50 to-white px-4 md:px-8 py-12 md:py-20 relative z-10 scroll-mt-[8vh]"
           id="contact"
         >
-          {/* Animated decorative shapes */}
-          <div className="absolute top-10 right-10 w-48 h-48 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full blur-3xl opacity-60"></div>
-          <div className="absolute bottom-20 left-0 w-64 h-64 bg-gradient-to-tr from-blue-200 to-cyan-300 rounded-full blur-3xl opacity-60"></div>
+          <div className="mx-auto px-4 space-y-8 md:space-y-6 lg:px-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
+              {/* Left Column - Content */}
+              <div className="space-y-6 md:space-y-8">
+                <div>
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-3 md:mb-4 heading">
+                    Ready to Start?
+                  </h2>
+                  <p className="text-base md:text-lg lg:text-xl text-gray-700">
+                    Join thousands of successful traders today
+                  </p>
+                </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-            {/* Header Section */}
-            <div className="text-center mb-16">
-              <div className="inline-block mb-4">
-                <span className="text-6xl">🚀</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4 heading">
-                Transform Your Trading Skills Today
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Unlock your potential with personalized guidance from market experts
-              </p>
-            </div>
+                <div className="space-y-3 md:space-y-4">
+                  <div className="group flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg hover:bg-emerald-50 transition-colors duration-300">
+                    <div className="w-10 md:w-12 h-10 md:h-12 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 flex items-center justify-center flex-shrink-0 mt-1 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                      <BookOpen className="w-5 md:w-6 h-5 md:h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors duration-300">Expert Mentorship</h3>
+                      <p className="text-sm md:text-base text-gray-700">Learn from experienced traders with years of market expertise</p>
+                    </div>
+                  </div>
 
-            {/* Benefits Carousel */}
-            <div className="grid md:grid-cols-3 gap-8 mb-20">
-              {/* Benefit 1 */}
-              <div className="transform hover:scale-105 transition-transform duration-300">
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-3xl p-8 border-2 border-emerald-200 hover:border-emerald-400 transition-colors">
-                  <div className="text-5xl mb-4">📚</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Expert Mentorship</h3>
-                  <p className="text-gray-700">Learn from experienced traders with years of market expertise</p>
-                  <div className="mt-4 flex items-center gap-2 text-emerald-600 font-semibold">
-                    <span>→</span> Start Learning
+                  <div className="group flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg hover:bg-blue-50 transition-colors duration-300">
+                    <div className="w-10 md:w-12 h-10 md:h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center flex-shrink-0 mt-1 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                      <TrendingUp className="w-5 md:w-6 h-5 md:h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">Proven Results</h3>
+                      <p className="text-sm md:text-base text-gray-700">95% success rate with over 10K+ students trained</p>
+                    </div>
+                  </div>
+
+                  <div className="group flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg hover:bg-purple-50 transition-colors duration-300">
+                    <div className="w-10 md:w-12 h-10 md:h-12 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center flex-shrink-0 mt-1 group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                      <Users className="w-5 md:w-6 h-5 md:h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors duration-300">Small Batches</h3>
+                      <p className="text-sm md:text-base text-gray-700">Personal attention and customized guidance for every learner</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Benefit 2 */}
-              <div className="transform hover:scale-105 transition-transform duration-300">
-                <div className="bg-gradient-to-br from-blue-50 to-sky-50 rounded-3xl p-8 border-2 border-blue-200 hover:border-blue-400 transition-colors">
-                  <div className="text-5xl mb-4">📈</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Proven Results</h3>
-                  <p className="text-gray-700">95% success rate with over 10K+ students trained</p>
-                  <div className="mt-4 flex items-center gap-2 text-blue-600 font-semibold">
-                    <span>→</span> See Success Stories
-                  </div>
-                </div>
-              </div>
-
-              {/* Benefit 3 */}
-              <div className="transform hover:scale-105 transition-transform duration-300">
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 border-2 border-purple-200 hover:border-purple-400 transition-colors">
-                  <div className="text-5xl mb-4">👥</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Small Batches</h3>
-                  <p className="text-gray-700">Personal attention and customized guidance for every learner</p>
-                  <div className="mt-4 flex items-center gap-2 text-purple-600 font-semibold">
-                    <span>→</span> Get Personalized
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Form Section with gradient background */}
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-gradient-to-br from-white via-blue-50 to-white rounded-4xl p-10 border-3 border-gray-200 shadow-2xl">
-                {/* Form Header */}
-                <div className="text-center mb-10">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-2">Unlock Your Trading Potential</h3>
-                  <p className="text-gray-600">Get your free personalized counseling call in minutes</p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Right Column - Form */}
+              <div>
+                <form
+                  className="space-y-3 md:space-y-4 bg-gradient-to-br from-white to-blue-50 border-2 border-gray-200 rounded-xl md:rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                  onSubmit={handleSubmit}
+                >
                   {/* Hidden spam protection */}
                   <input type="checkbox" name="botcheck" className="hidden" />
 
                   {/* Two Column Inputs */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     {/* Full Name */}
                     <div>
-                      <label className="block text-gray-900 font-bold mb-2 text-sm">👤 Full Name</label>
+                      <label className="block text-gray-900 font-semibold mb-2 text-xs md:text-sm">Full Name</label>
                       <input
                         type="text"
                         name="name"
-                        placeholder="Enter your full name"
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium"
+                        placeholder="Your name"
+                        className="w-full px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm"
                         required
                       />
                     </div>
 
                     {/* Mobile Number */}
                     <div>
-                      <label className="block text-gray-900 font-bold mb-2 text-sm">📱 Mobile Number</label>
+                      <label className="block text-gray-900 font-semibold mb-2 text-xs md:text-sm">Mobile Number</label>
                       <input
                         type="tel"
                         name="phone"
                         placeholder="10-digit number"
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium"
+                        className="w-full px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm"
                         required
                       />
                     </div>
                   </div>
 
-                  {/* Email and Experience */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  {/* Email and Experience in two columns */}
+                  <div className="grid grid-cols-1 gap-3 md:gap-4">
                     {/* Email Address */}
                     <div>
-                      <label className="block text-gray-900 font-bold mb-2 text-sm">📧 Email Address</label>
+                      <label className="block text-gray-900 font-semibold mb-2 text-xs md:text-sm">Email Address</label>
                       <input
                         type="email"
                         name="email"
                         placeholder="your@email.com"
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium"
+                        className="w-full px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm"
                         required
                       />
                     </div>
 
                     {/* Experience Level */}
                     <div>
-                      <label className="block text-gray-900 font-bold mb-2 text-sm">🎯 Experience Level</label>
+                      <label className="block text-gray-900 font-semibold mb-2 text-xs md:text-sm">Experience Level</label>
                       <select
                         name="experience"
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium cursor-pointer"
+                        className="w-full px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm"
                         required
                       >
-                        <option value="" className="bg-white">Select your level</option>
-                        <option value="Beginner" className="bg-white">Beginner</option>
-                        <option value="Intermediate" className="bg-white">Intermediate</option>
-                        <option value="Experienced" className="bg-white">Experienced</option>
+                        <option value="">Select level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Experienced">Experienced</option>
                       </select>
                     </div>
                   </div>
 
                   {/* Preferred Mode - Full Width */}
                   <div>
-                    <label className="block text-gray-900 font-bold mb-2 text-sm">💻 Preferred Learning Mode</label>
+                    <label className="block text-gray-900 font-semibold mb-2 text-xs md:text-sm">Preferred Mode</label>
                     <select
                       name="mode"
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl bg-white text-gray-900 focus:outline-none focus:border-emerald-500 focus:bg-emerald-50 transition-all text-sm font-medium cursor-pointer"
+                      className="w-full px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-sm"
                       required
                     >
-                      <option value="" className="bg-white">Choose your preference</option>
-                      <option value="Online" className="bg-white">Online</option>
-                      <option value="Offline" className="bg-white">Offline</option>
+                      <option value="">Select preferred mode</option>
+                      <option value="Online">Online</option>
+                      <option value="Offline">Offline</option>
                     </select>
                   </div>
 
                   {/* CTA Button */}
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-4 text-lg rounded-2xl hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 mt-8 relative overflow-hidden group"
+                    className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white font-bold py-2 md:py-3 text-sm md:text-lg rounded-lg hover:from-blue-700 hover:via-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 mt-4 md:mt-6 relative overflow-hidden group"
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      Get Free Counseling Call ✨
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10">Get Free Counseling Call</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
                   </button>
 
                   {/* Trust Line */}
-                  <div className="text-center pt-4">
-                    <p className="text-gray-600 text-sm">
-                      ✓ No spam • 100% secure • Instant response
-                    </p>
-                  </div>
+                  <p className="text-center text-gray-600 text-xs">
+                    No spam. 100% privacy guaranteed.
+                  </p>
 
                   {status && (
-                    <div className="bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-emerald-300 rounded-xl p-4 text-center">
-                      <p className="text-emerald-700 font-bold text-sm">
-                        ✅ {status}
-                      </p>
-                    </div>
+                    <p className="text-center text-green-600 font-semibold mt-2 text-xs md:text-sm">
+                      {status}
+                    </p>
                   )}
                 </form>
-              </div>
-
-              {/* Bottom CTA */}
-              <div className="text-center mt-8">
-                <p className="text-gray-700 font-semibold mb-3">Still have questions?</p>
-                <p className="text-gray-600">Chat with our team on WhatsApp or call us directly</p>
               </div>
             </div>
           </div>
