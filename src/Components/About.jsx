@@ -1,6 +1,7 @@
 
 import React from 'react';
 import bgImg from '../assets/bg_img.jpg'
+import bgImg1 from '../assets/aa.jpg'
 import { BookOpen, TrendingUp, ShieldCheck, Users, Layers, LifeBuoy } from 'lucide-react';
 
 // Remove imports for missing images. Only use images that exist.
@@ -48,7 +49,7 @@ const About = () => {
   return (
     <>
       {/* Hero Section with Home.jsx style */}
-      <div className="relative flex flex-col text-center items-center py-28 w-full justify-center" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+      <div className="relative flex flex-col text-center items-center py-28 w-full justify-center" style={{ backgroundImage: `url(${bgImg1})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
         {/* <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'none', WebkitBackdropFilter: 'none', transform: 'scale(1.02)'}} aria-hidden="true"></div>
         Overlay for better text visibility (gradient + btc image)
         <div
@@ -136,164 +137,8 @@ const About = () => {
             </div>
           </div>
 
-          <br></br><br></br>
-          <div className="col-span-full flex justify-center items-center">
-            <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-fade-in-up truncate whitespace-nowrap"></h1>
-          </div>
-
-          <div className="col-span-full">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-              <div className="flex flex-col gap-4 h-full">
-                <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <BookOpen size={28} className="text-yellow-500" />
-                    </div>
-                    <h3 className="text-yellow-600 text-2xl font-semibold">Practical Market Education</h3>
-                  </div>
-                  <p className="text-white text-xl mt-2 text-justify">We focus on real-world trading concepts, not just theory. Our courses are designed around live market behavior, proven strategies, and practical application.</p>
-                </div>
-
-                <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <TrendingUp size={28} className="text-yellow-500" />
-                    </div>
-                    <h3 className="text-yellow-600 text-2xl font-semibold">Trader-Focused Learning</h3>
-                  </div>
-                  <p className="text-white text-xl mt-2 text-justify">Our programs are built for beginners to advanced traders, with clear explanations, step-by-step guidance, and continuous mentor support to make learning simple and effective.</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-4 h-full">
-                <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <ShieldCheck size={28} className="text-yellow-500" />
-                    </div>
-                    <h3 className="text-yellow-600 text-2xl font-semibold">Safe &amp; Transparent Learning</h3>
-                  </div>
-                  <p className="text-white text-xl mt-2 text-justify">We provide a secure, ethical, and transparent educational platform where students can learn trading concepts with confidence and clarity.</p>
-                </div>
-
-                <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Users size={28} className="text-yellow-500" />
-                    </div>
-                    <h3 className="text-yellow-600 text-2xl font-semibold">Expert-Led Mentorship</h3>
-                  </div>
-                  <p className="text-white text-xl mt-2 text-justify">Learn directly from experienced market professionals who share practical insights, risk management techniques, and disciplined trading approaches.</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-4 h-full">
-                <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Layers size={28} className="text-yellow-500" />
-                    </div>
-                    <h3 className="text-yellow-600 text-2xl font-semibold">Structured &amp; Progressive Curriculum</h3>
-                  </div>
-                  <p className="text-white text-xl mt-2 text-justify">Our curriculum is carefully structured—from basics to advanced strategies—ensuring smooth learning progression and strong foundational knowledge.</p>
-                </div>
-
-                <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                  <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <LifeBuoy size={28} className="text-yellow-500" />
-                    </div>
-                    <h3 className="text-yellow-600 text-2xl font-semibold">Continuous Support &amp; Growth</h3>
-                  </div>
-                  <p className="text-white text-xl mt-2 text-justify">We believe learning never stops. Our students receive ongoing guidance, updates, and market insights to help them grow consistently in their trading journey.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <div>
-
-                <br></br><br></br>
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 w-full">
-                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <ShieldCheck size={28} className="text-amber-400" />
-                    </div>
-                    <h5 className="text-yellow-600 text-2xl font-semibold">Institutional Credibility</h5>
-                    <p className="text-white text-xl mt-2">Registered and operating in compliance with applicable educational and business regulations.</p>
-                  </div>
-
-                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Layers size={28} className="text-amber-400" />
-                    </div>
-                    <h5 className="text-yellow-600 text-2xl font-semibold">Client Data Protection</h5>
-                    <p className="text-white text-xl  mt-2">Clients' funds are kept separate from operational accounts for added protection.</p>
-                  </div>
-
-                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Users size={28} className="text-amber-400" />
-                    </div>
-                    <h5 className="text-yellow-600 text-2xl font-semibold">Trusted Payment Partners</h5>
-                    <p className="text-white text-xl mt-2">We maintain partnerships with tier-1 banks to secure payment and custody services.</p>
-                  </div>
-
-                  <div className="bg-black/10 border border-slate-700 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] transition transform hover:-translate-y-1 hover:shadow-lg hover:bg-white/10 cursor-pointer">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <LifeBuoy size={28} className="text-amber-400" />
-                    </div>
-                    <h5 className="text-yellow-600 text-2xl font-semibold">Advanced Encryption</h5>
-                    <p className="text-white text-xl mt-2">Modern encryption protocols protect communications and transactions.</p>
-                  </div>
-                </div>
-                <br></br>
-                <div>
-
-                  <div>
-                    <p className="text-xl mb-4 text-white text-justify"><span className="text-amber-300 font-semibold shadow-animate">MoneyKrishna Education</span> proudly supports learners from across the globe, delivering high-quality financial and professional education to students worldwide. We follow strict ethical and data-protection standards because safeguarding our students’ information and learning journey is our top priority. We are committed to providing a trusted, transparent, and reliable educational environment for every learner.</p>
-                  </div>
-                </div>
-                {/* <div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 ">
-                    {[ '/trader.png', '/trades.png', '/ai.png', '/Forex-Trading.jpg' ].map((src, i) => (
-                      <div key={i} className="overflow-hidden rounded-lg bg-black/5 hover:scale-105 transform transition-transform duration-200">
-                        <img src={src} alt={`gallery-${i}`} className="w-full h-28 sm:h-32 object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
-              </div>
-
-            </div>
-          </div>
+          
         </div>
-        <section className="mt-12">
-          <div className="bg-white max-w-14xl z-1000 mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ position: 'relative', zIndex: 60, filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
-            <h2 className="text-4xl font-semibold text-center mb-2">MoneyKrishna Education Success Stories</h2>
-            <p className="text-center text-xl text-black w-full mb-8">Discover what our Client's have to say about their learning experience and why they trust our platform.</p>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {testimonials.map((item) => (
-                <article key={item.id} className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" style={{ filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
-                  <div className="h-44 md:h-52 w-full overflow-hidden" style={{ filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
-                    <img src={item.image} alt={`${item.name} photo`} className="w-full h-full object-cover" style={{ filter: 'none', WebkitFilter: 'none' }} />
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <p className="text-slate-700 italic flex-1">“{item.text}”</p>
-                    <div className="mt-6 flex items-center justify-between">
-                      <div>
-                        <h4 className="text-lg font-medium">{item.name}</h4>
-                        <span className="text-sm text-slate-500">{item.program}</span>
-                      </div>
-                      <div className="text-amber-400 text-lg">{"★".repeat(item.rating)}</div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Gradient text style for headings */}
         <style>{`
@@ -356,6 +201,193 @@ const About = () => {
             }
           `}</style>
       </div>
+      <br></br>
+      <div className="mx-4 md:mx-8" style={{ background: '#f4f8ff', borderRadius: '18px', boxShadow: '0 2px 16px 0 rgba(14, 165, 233, 0.04)', padding: '32px 0' }}>
+        <style>{`
+          /* Card hover effect for About grid */
+          .about-card-hover {
+            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), background 0.25s;
+            background: #fff;
+            border: 1px solid #e3eaf5;
+            box-shadow: 0 2px 8px 0 rgba(14, 165, 233, 0.04);
+          }
+          .about-card-hover:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.10), 0 2px 8px 0 rgba(14, 165, 233, 0.10);
+            background: #f4f8ff;
+            z-index: 2;
+            border-color: #b6d4f7;
+          }
+        `}</style>
+        <div className="col-span-full flex justify-center items-center bg-white w-full">
+            <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2 p-6 animate-fade-in-up truncate whitespace-nowrap">Marketing-Friendly</h1>
+          </div>
+
+          <div className="col-span-full w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch bg-transparent text-black" style={{ margin: '0', padding: '0' }}>
+              <div className="flex flex-col gap-8 h-full">
+                <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                  <div className="flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <BookOpen size={28} className="text-green-500" />
+                    </div>
+                    <h3 className="text-blue-700 text-2xl font-semibold">Practical Market Education</h3>
+                  </div>
+                  <p className="text-black text-xl mt-2 text-justify">We focus on real-world trading concepts, not just theory. Our courses are designed around live market behavior, proven strategies, and practical application.</p>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                  <div className="flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <TrendingUp size={28} className="text-green-500" />
+                    </div>
+                    <h3 className="text-blue-700 text-2xl font-semibold">Trader-Focused Learning</h3>
+                  </div>
+                  <p className="text-black text-xl mt-2 text-justify">Our programs are built for beginners to advanced traders, with clear explanations, step-by-step guidance, and continuous mentor support to make learning simple and effective.</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-8 h-full">
+                <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                  <div className="flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <ShieldCheck size={28} className="text-green-500" />
+                    </div>
+                    <h3 className="text-blue-700 text-2xl font-semibold">Safe &amp; Transparent Learning</h3>
+                  </div>
+                  <p className="text-black text-xl mt-2 text-justify">We provide a secure, ethical, and transparent educational platform where students can learn trading concepts with confidence and clarity.</p>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                  <div className="flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <Users size={28} className="text-green-500" />
+                    </div>
+                    <h3 className="text-blue-700 text-2xl font-semibold">Expert-Led Mentorship</h3>
+                  </div>
+                  <p className="text-black text-xl mt-2 text-justify">Learn directly from experienced market professionals who share practical insights, risk management techniques, and disciplined trading approaches.</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-8 h-full">
+                <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                  <div className="flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <Layers size={28} className="text-green-500" />
+                    </div>
+                    <h3 className="text-blue-700 text-2xl font-semibold">Structured &amp; Progressive Curriculum</h3>
+                  </div>
+                  <p className="text-black text-xl mt-2 text-justify">Our curriculum is carefully structured—from basics to advanced strategies—ensuring smooth learning progression and strong foundational knowledge.</p>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                  <div className="flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <LifeBuoy size={28} className="text-green-500" />
+                    </div>
+                    <h3 className="text-blue-700 text-2xl font-semibold">Continuous Support &amp; Growth</h3>
+                  </div>
+                  <p className="text-black text-xl mt-2 text-justify">We believe learning never stops. Our students receive ongoing guidance, updates, and market insights to help them grow consistently in their trading journey.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-span-full">
+              <div>
+
+                <br></br><br></br>
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 w-full p-4 mx-4 md:mx-8 bg-white text-black rounded-xl shadow-md">
+                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <ShieldCheck size={28} className="text-green-500" />
+                    </div>
+                    <h5 className="text-blue-700 text-2xl font-semibold">Institutional Credibility</h5>
+                    <p className="text-black text-xl mt-2">Registered and operating in compliance with applicable educational and business regulations.</p>
+                  </div>
+
+                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <Layers size={28} className="text-green-500" />
+                    </div>
+                    <h5 className="text-blue-700 text-2xl font-semibold">Client Data Protection</h5>
+                    <p className="text-black text-xl  mt-2">Clients' funds are kept separate from operational accounts for added protection.</p>
+                  </div>
+
+                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <Users size={28} className="text-green-500" />
+                    </div>
+                    <h5 className="text-blue-700 text-2xl font-semibold">Trusted Payment Partners</h5>
+                    <p className="text-black text-xl mt-2">We maintain partnerships with tier-1 banks to secure payment and custody services.</p>
+                  </div>
+
+                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
+                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
+                      <LifeBuoy size={28} className="text-green-500" />
+                    </div>
+                    <h5 className="text-blue-700 text-2xl font-semibold">Advanced Encryption</h5>
+                    <p className="text-black text-xl mt-2">Modern encryption protocols protect communications and transactions.</p>
+                  </div>
+                  <h1></h1>
+                </div>
+                <br></br>
+                <div>
+                <br></br>
+                  <div>
+                    <p className="text-xl mb-4 text-black text-justify"><span className="text-blue-700 font-semibold shadow-animate">MoneyKrishna Education</span> proudly supports learners from across the globe, delivering high-quality financial and professional education to students worldwide. We follow strict ethical and data-protection standards because safeguarding our students’ information and learning journey is our top priority. We are committed to providing a trusted, transparent, and reliable educational environment for every learner.</p>
+                  </div>
+                </div>
+                {/* <div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 ">
+                    {[ '/trader.png', '/trades.png', '/ai.png', '/Forex-Trading.jpg' ].map((src, i) => (
+                      <div key={i} className="overflow-hidden rounded-lg bg-black/5 hover:scale-105 transform transition-transform duration-200">
+                        <img src={src} alt={`gallery-${i}`} className="w-full h-28 sm:h-32 object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div> */}
+              </div>
+
+            </div>
+          </div>
+      </div>
+
+       <section className="mt-12">
+         <style>{`
+           .testimonial-card-hover {
+             transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1);
+           }
+           .testimonial-card-hover:hover {
+             transform: translateY(-8px) scale(1.03);
+             box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.10), 0 2px 8px 0 rgba(14, 165, 233, 0.10);
+             z-index: 2;
+           }
+         `}</style>
+          <div className="bg-white max-w-14xl z-1000 mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ position: 'relative', zIndex: 60, filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
+            <h2 className="text-6xl font-semibold text-center mb-2">MoneyKrishna Education Success Stories</h2>
+            <p className="text-center text-xl text-black w-full mb-8">Discover what our Client's have to say about their learning experience and why they trust our platform.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {testimonials.map((item) => (
+                <article key={item.id} className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col testimonial-card-hover" style={{ filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
+                  <div className="h-44 md:h-52 w-full overflow-hidden" style={{ filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
+                    <img src={item.image} alt={`${item.name} photo`} className="w-full h-full object-cover" style={{ filter: 'none', WebkitFilter: 'none' }} />
+                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <p className="text-slate-700 italic flex-1">“{item.text}”</p>
+                    <div className="mt-6 flex items-center justify-between">
+                      <div>
+                        <h4 className="text-lg font-medium">{item.name}</h4>
+                        <span className="text-sm text-slate-500">{item.program}</span>
+                      </div>
+                      <div className="text-amber-400 text-lg">{"★".repeat(item.rating)}</div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
 
     </>
