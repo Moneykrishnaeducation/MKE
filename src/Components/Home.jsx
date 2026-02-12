@@ -24,7 +24,7 @@ const Home = () => {
         const total = headerHeight + topbarHeight
         // Use calc with px offset to ensure hero occupies remaining viewport
         setHeroMinHeight(`calc(100vh - ${total}px)`)
-      } catch (e) {
+      } catch  {
         setHeroMinHeight(null)
       }
     }
@@ -122,7 +122,9 @@ useEffect(() => {
         // clear history state to avoid repeat
         try {
           window.history.replaceState({}, document.title)
-        } catch (e) { }
+        } catch  {
+          // ignore - some browsers may throw if state is read-only
+         }
       }, 80)
     }
   }, [location])
@@ -603,7 +605,7 @@ const reviews = [
                 </div>
                 
                 <div className="my-6 sm:my-7 md:my-8">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-400 mb-1 sm:mb-2">
+                  <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-green-400 mb-1 sm:mb-2">
                     ₹30,000
                   </div>
                   <p className="text-gray-400 text-xs sm:text-sm">for 3 months</p>
@@ -660,7 +662,7 @@ const reviews = [
                 </div>
                 
                 <div className="my-6 sm:my-7 md:my-8">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-300 mb-1 sm:mb-2">
+                  <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-yellow-300 mb-1 sm:mb-2">
                     ₹1,50,000
                   </div>
                   <p className="text-blue-100 text-xs sm:text-sm">one time payment</p>
@@ -713,7 +715,7 @@ const reviews = [
                 </div>
                 
                 <div className="my-6 sm:my-7 md:my-8">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-400 mb-1 sm:mb-2">
+                  <div className="text-4xl lg:text-5xl md:text-3xl font-bold text-purple-400 mb-1 sm:mb-2">
                     ₹10,00,000
                   </div>
                   <p className="text-gray-400 text-xs sm:text-sm">lifetime access</p>
