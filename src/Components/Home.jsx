@@ -940,7 +940,7 @@ const Home = () => {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
 
           {/* Main Content */}
-          <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="relative z-10 w-full mx-auto px-4 lg:px-20 lg:px-8 py-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className={`space-y-8 ${visibleSections['trading-education'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
@@ -1028,7 +1028,7 @@ const Home = () => {
 
         {/* What You Will Learn Section */}
         <div
-          className="w-full bg-blue-50 py-24 relative z-10"
+          className="w-full bg-blue-50 lg:px-20 py-24 relative z-10"
           data-animate
           id="curriculum-section"
         >
@@ -1180,7 +1180,7 @@ const Home = () => {
           <div className="absolute top-1/3 right-0 w-64 h-64 bg-purple-200 rounded-full mix-blend-overlay filter blur-2xl opacity-20"></div>
 
           {/* Main Content */}
-          <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="relative z-10 w-full mx-auto px-4 lg:px-20 lg:px-8 py-24">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left Column - Content */}
               <div className={`space-y-8 ${visibleSections['learning-modes-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
@@ -1444,7 +1444,7 @@ const Home = () => {
 
 
         {/* Video Section with Content */}
-        <div className="w-full overflow-hidden bg-gradient-to-b from-green-50 via-white to-blue-50 py-24 relative z-10" data-animate id="video-section">
+        <div className="w-full overflow-hidden bg-gradient-to-b from-green-50 via-white to-blue-50 lg:px-20 py-24 relative z-10" data-animate id="video-section">
           <div className="w-full mx-auto  p-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
@@ -1552,7 +1552,7 @@ const Home = () => {
           className="w-full bg-gradient-to-br from-white via-blue-50 to-white px-4 md:px-8 py-12 md:py-20 relative z-10 scroll-mt-[8vh]"
           id="contact"
         >
-          <div className="mx-auto px-4 space-y-8 md:space-y-6 lg:px-2">
+          <div className="mx-auto lg:px-20 space-y-8 md:space-y-6 lg:px-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center">
               {/* Left Column - Content */}
               <div className="space-y-6 md:space-y-8">
