@@ -10,3 +10,5 @@ deployment:
     - rm -rf /home/h6idadn88wrk/public_html/*
     - echo "Copying build files"
     - cp -r dist/* /home/h6idadn88wrk/public_html/
+    - echo "Setting up SPA routing"
+    - cp .htaccess /home/h6idadn88wrk/public_html/.htaccess
