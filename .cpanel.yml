@@ -1,0 +1,16 @@
+---
+deployment:
+  tasks:
+    - echo "Starting cPanel deployment"
+    - export NODE_ENV=production
+    - echo "Installing dependencies"
+    - npm ci --silent
+    - echo "Building project"
+    - npm run build
+    - echo "Deploying built files to public_html"
+    - rm -rf ~/public_html/* || true
+    - cp -r dist/* ~/public_html/ || true
+
+hooks:
+  build:
+    - run: npm run build
