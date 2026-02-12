@@ -1,7 +1,7 @@
 
 import React from 'react';
-import bgImg from '../assets/bg_img.jpg'
-import bgImg1 from '../assets/aa.jpg'
+import bgImg from '../assets/bg.jpg'
+
 import { BookOpen, TrendingUp, ShieldCheck, Users, Layers, LifeBuoy } from 'lucide-react';
 
 // Remove imports for missing images. Only use images that exist.
@@ -49,98 +49,117 @@ const About = () => {
   return (
     <>
       {/* Hero Section with Home.jsx style */}
-      <div className="relative flex flex-col text-center items-center py-28 w-full justify-center" style={{ backgroundImage: `url(${bgImg1})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-        {/* <div className="absolute inset-0 z-0 bg-black/60" style={{backdropFilter: 'none', WebkitBackdropFilter: 'none', transform: 'scale(1.02)'}} aria-hidden="true"></div>
-        Overlay for better text visibility (gradient + btc image)
-        <div
-          className="absolute inset-0 z-10 bg-cover bg-center"
-          style={{backgroundImage: `linear-gradient(135deg, rgba(192, 228, 205, 0.22), rgba(187, 224, 241, 0.22)), url('/bg_img.jpg')`, filter: 'none', WebkitFilter: 'none', transform: 'scale(1.02)'}}
-          aria-hidden="true"
-        ></div>
-        <div className="relative z-20 w-full sm:px-10 lg:px-4 py-25 flex flex-col items-center justify-center text-center"> */}
-        <h1 className="text-8xl md:text-10xl font-bold text-white mb-4 animate-fade-in-up cursor-pointer">
-          About
-        </h1>
-
-        <p className=" text-white text-2xl max-w-5xl mx-auto animate-fade-in-up">Empowering traders and investors with expert education, actionable strategies, and a supportive community for financial success.</p>
-        {/* </div> */}
+      <div className="relative flex flex-col text-center items-center py-28 w-full justify-center overflow-hidden" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+        {/* Blurred background overlay */}
+        <div className="absolute inset-0 z-0 backdrop-blur-md" aria-hidden="true"></div>
+        {/* Content stays above the blur */}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center text-center">
+          <h1 className="text-8xl md:text-10xl font-bold text-white mb-4 animate-fade-in-up cursor-pointer">
+            About
+          </h1>
+          <p className="text-white text-2xl max-w-5xl mx-auto animate-fade-in-up">Empowering traders and investors with expert education, actionable strategies, and a supportive community for financial success.</p>
+        </div>
       </div>
 
 
       {/* Main Section with Home.jsx overlay style */}
-      <div id="about-section" className="relative" style={{ backgroundImage: `url(${bgImg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
-        <div className="absolute inset-0 z-0 bg-black/60"></div>
-        {/* Overlay for better text visibility, like Home.jsx */}
-
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-10"></div>
-        <div className="relative mx-0 z-20 w-full p-4 sm:px-6 lg:px-8 py-8">
-          <div className="absolute inset-0 z-0 rounded-lg pointer-events-none" style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(243, 242, 242, 0.02))', backdropFilter: 'none', WebkitBackdropFilter: 'none' }} aria-hidden="true" />
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-8">
+      <div id="about-section" className="w-full bg-white py-12">
+        <div className="w-full flex justify-center items-center">
+          <div className="w-full max-w-7xl px-4 md:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-2xl" style={{ minHeight: '420px' }}>
             {/* About Grids */}
 
             {/* Individual Grids - Who We Are (two-column: image left, text right) */}
-            <div className="col-span-full">
-              <div className="relative grid grid-cols-1 md:grid-cols-2 min-h-[650px] rounded-lg overflow-hidden shadow-xl">
-
-                {/* Image Section */}
-                <div className="relative w-full h-full">
-                  <img
-                    src="/user4.png"
-                    alt="About"
-                    className="w-full h-full object-cover"
-                  />    
-                  <div className="absolute right-0 top-0 h-full pointer-events-none" style={{ width: '6rem', background: 'linear-gradient(to left, rgba(14,165,233,0.22), rgba(14,165,233,0.08), transparent)' }} />
-                </div>
-
-                {/* Center separator (visible on md+) */}
-                <div className="hidden md:block absolute left-1/2 top-0 h-full w-8 pointer-events-none -translate-x-1/2 flex items-center justify-center">
-                  <div style={{ width: '2px', height: '86%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(255,255,255,0.03), rgba(0,0,0,0.45))', borderRadius: '2px', boxShadow: '0 0 30px rgba(0,0,0,0.45)' }} />
-                </div>
-
-                {/* Content Section */}
-                <div className="bg-slate-700 text-white p-12 flex flex-col justify-center space-y-6 animate-fade-in-up transition-transform duration-150 ">
-
-                  <h2 className="text-4xl font-bold mb-2">Company Overview</h2>
-                  <p className="text-lg text-justify max-w-2xl">
-                    Money Krishna Education is a leading trading institute based in Chennai, committed to
-                    helping individuals learn trading the right way through structured education and real
-                    market exposure. Since 2012, we have trained aspiring traders, working professionals,
-                    and experienced market participants to understand markets with clarity, discipline, and
-                    confidence.
-                    </p>
-
-                  <h3 className="text-3xl font-semibold">Who We Are?</h3>
-                  <p className="text-lg text-justify max-w-2xl">
-                    Money Krishna Education was founded by a group of experienced trading professionals and market enthusiasts passionate about financial education. We guide learners with transparency, integrity, and real-world expertise, focusing on developing confident and independent traders.</p>
-
-                  <h3 className="text-3xl font-semibold">What We Offer</h3>
-                  <p className="text-lg text-justify max-w-2xl">
-                    Our programs cover Stock Market, Forex, and Options Trading, designed with a
-                    practical-first approach. We believe trading success comes from proper foundation, live
-                    market understanding, and continuous guidance not from tips or shortcuts.</p>
-                  <h3 className="text-3xl font-semibold">Our Vision</h3>
-                  <p className="text-lg text-justify max-w-2xl">
-                    To provide structured, practical trading education that empowers individuals to trade with discipline, knowledge, 
-                    and confidence through real market exposure and continuous mentorship. </p>
-                  
-                  <h3 className="text-3xl font-semibold">Our Mission</h3>
-                  <p className="text-lg text-justify max-w-2xl">
-                    At Money Krishna Education, learning happens through live market sessions, hands-on
-                    chart practice, and mentor-led guidance, ensuring students gain real skills that can be
-                    applied in actual trading environments </p>
-
-                </div>
-
+            {/* Left: Text Content */}
+            <div className="flex flex-col justify-center items-start space-y-6 w-full">
+              <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                Company Overview
+              
+                
+              </h2>
+              <div className="space-y-6">
+                <p className="text-2xl text-gray-700 max-w-4xl text-justify" style={{ fontFamily: 'Inter, sans-serif' }}>
+                 Money Krishna Education is a leading trading institute based in Chennai, committed to helping individuals learn trading the right way through structured education and real market exposure. Since 2012, we have trained aspiring traders, working professionals, and experienced market participants to understand markets with clarity, discipline, and confidence. </p>
+                
               </div>
-
-
+            </div>
+            {/* Right: Image */}
+            <div className="flex justify-center mt-10 items-center w-140 h-full">
+              <img
+                src="/user4.png"
+                alt="Team discussion"
+                className="rounded-2xl object-cover"
+                style={{ width: '500px', maxWidth: '100%', aspectRatio: '10/6', minHeight: 450 }}
+              />
             </div>
           </div>
 
+          <div className="w-full max-w-7xl px-4 md:px-8 mt-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div>
+                <div className="flex flex-col items-center mt-4 mb-4">
+                  <img src="/public/info.png" alt="Deep ETP Expertise Icon" className="mb-2" style={{ width: 50, height: 50 }} />
+                  <h3 className="text-6xl font-bold text-blue-900 ">Who We Are?</h3>
+                </div>
+                <p className="text-2xl text-gray-700 leading-relaxed text-center text-justify" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  Money Krishna Education was founded by a group of experienced trading professionals and market enthusiasts passionate about financial education. We guide learners with transparency, integrity, and real-world expertise, focusing on developing confident and independent traders.
+                </p>
+              </div>
+              <div>
+                <div className="flex flex-col items-center mt-4 mb-4">
+                  <img src="/public/pro.png" alt="What We Offer Icon" className="mb-2" style={{ width: 50, height: 50 }} />
+                  <h3 className="text-6xl font-bold text-blue-900 ">What We Offer</h3>
+                </div>
+                <p className="text-2xl text-gray-700 leading-relaxed text-center text-justify" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  Our programs cover Stock Market, Forex, and Options Trading, designed with a practical-first approach. We believe trading success comes from proper foundation, live market understanding, and continuous guidance—not from tips or shortcuts.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mission Section - matches screenshot */}
+          <section className="w-full mt-20 ">
+            <div className=" max-w-7xl mx-auto">
+              <h2 className="text-5xl md:text-6xl font-bold text-center mb-6" style={{ color: '#e53935', fontFamily: 'Montserrat, sans-serif' }}>Our Mission</h2>
+              <p className="text-center text-2xl text-gray-700 mb-12 max-w-4xl mx-auto" style={{ fontFamily: 'Inter, sans-serif' }}>
+                At Money Krishna Education, learning happens through live market sessions, hands-on chart practice, and mentor-led guidance, ensuring students gain real skills that can be applied in actual trading environments
+                </p>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-8 group">
+                <div className="about-card-hover bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center p-8 animate-fade-in-up cursor-pointer">
+                  <div className="mb-4 flex items-center justify-center rounded-full bg-white shadow-lg" style={{ width: 64, height: 64 }}>
+                    <img src="/client.png" alt="Deep ETP Expertise Icon" style={{ width: 48, height: 48 }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-center mb-2">Deep ETP Expertise</h3>
+                </div>
+                <div className="about-card-hover bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center p-8 animate-fade-in-up cursor-pointer">
+                  <div className="mb-4 flex items-center justify-center rounded-full bg-white shadow-lg" style={{ width: 64, height: 64 }}>
+                    <img src="/cloud.png" alt="Cutting Edge Technology Icon" style={{ width: 48, height: 48, display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-center mb-2">Cutting Edge Technology</h3>
+                </div>
+                <div className="about-card-hover bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center p-8 animate-fade-in-up cursor-pointer">
+                  <div className="mb-4 flex items-center justify-center rounded-full bg-white shadow-lg" style={{ width: 64, height: 64 }}>
+                    <img src="/risk.png" alt="Risk Management Focus Icon" style={{ width: 48, height: 48, display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-center mb-2">Risk Management Focus</h3>
+                </div>
+                <div className="about-card-hover bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center p-8 animate-fade-in-up cursor-pointer">
+                  <div className="mb-4 flex items-center justify-center rounded-full bg-white shadow-lg" style={{ width: 64, height: 64 }}>
+                    <img src="/team.png" alt="Strong Team Driven Culture Icon" className="mb-4" style={{ width: 48, height: 48 }} />
+                  </div>
+                  <h3 className="text-xl font-semibold text-center mb-2">Strong Team Driven Culture</h3>
+                </div>
+              </div>
+            </div>
+          </section>
+      </div>
+          </div>
+
           
-        </div>
+        
 
         {/* Gradient text style for headings */}
+        {/* Ensure all fragments/tags are closed above this line */}
         <style>{`
             .gradient-text {
               background: linear-gradient(135deg, #16a34a, #0ea5e9, #16a34a, #0ea5e9);
@@ -200,8 +219,8 @@ const About = () => {
               }
             }
           `}</style>
-      </div>
-      <br></br>
+     
+     
       <div className="mx-4 md:mx-8" style={{ background: '#f4f8ff', borderRadius: '18px', boxShadow: '0 2px 16px 0 rgba(14, 165, 233, 0.04)', padding: '32px 0' }}>
         <style>{`
           /* Card hover effect for About grid */
@@ -218,9 +237,86 @@ const About = () => {
             z-index: 2;
             border-color: #b6d4f7;
           }
+
+          /* Testimonial card hover effect */
+          .testimonial-card-hover {
+            transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1);
+          }
+          .testimonial-card-hover:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.10), 0 2px 8px 0 rgba(14, 165, 233, 0.10);
+            z-index: 2;
+          }
         `}</style>
-        <div className="col-span-full flex justify-center items-center bg-white w-full">
-            <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-2 p-6 animate-fade-in-up truncate whitespace-nowrap">Marketing-Friendly</h1>
+
+
+        <h1 className="text-4xl md:text-6xl font-bold gradient-text text-center p-4 animate-fade-in-up truncate whitespace-nowrap">Marketing-Friendly</h1>
+        
+        <div className="w-full py-6 px-2 md:px-0 flex justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-6 w-full max-w-10xl">
+            <div className="about-card-hover flex flex-col items-center border border-slate-200 rounded-xl shadow-lg p-8 bg-white cursor-pointer">
+              <BookOpen size={36} className="text-blue-600 mb-2" />
+              <span className="text-slate-700 font-semibold text-sm md:text-base text-center">Practical Market Education</span>
+            </div>
+            <div className="about-card-hover flex flex-col items-center border border-slate-200 rounded-xl shadow-lg p-8 bg-white cursor-pointer">
+              <TrendingUp size={36} className="text-green-600 mb-2" />
+              <span className="text-slate-700 font-semibold text-sm md:text-base text-center">Trader-Focused Learning</span>
+            </div>
+            <div className="about-card-hover flex flex-col items-center border border-slate-200 rounded-xl shadow-lg p-8 bg-white cursor-pointer">
+              <ShieldCheck size={36} className="text-blue-600 mb-2" />
+              <span className="text-slate-700 font-semibold text-sm md:text-base text-center">Safe & Transparent Learning</span>
+            </div>
+            <div className="about-card-hover flex flex-col items-center border border-slate-200 rounded-xl shadow-lg p-8 bg-white cursor-pointer">
+              <Users size={36} className="text-blue-600 mb-2" />
+              <span className="text-slate-700 font-semibold text-sm md:text-base text-center">Expert-Led Mentorship</span>
+            </div>
+            <div className="about-card-hover flex flex-col items-center border border-slate-200 rounded-xl shadow-lg p-8 bg-white cursor-pointer">
+              <Layers size={36} className="text-green-600 mb-2" />
+              <span className="text-slate-700 font-semibold text-sm md:text-base text-center">Structured & Progressive Curriculum</span>
+            </div>
+            <div className="about-card-hover flex flex-col items-center border border-slate-200 rounded-xl shadow-lg p-8 bg-white cursor-pointer">
+              <LifeBuoy size={36} className="text-green-600 mb-2" />
+              <span className="text-slate-700 font-semibold text-sm md:text-base text-center">Continuous Support & Growth</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 w-full p-4 mx-4 mt-10 md:mx-0 text-black rounded-xl" style={{ background: 'linear-gradient(135deg, #e0e7ef 0%, #cfd8e3 100%)', backgroundImage: 'url(https://www.transparenttextures.com/patterns/symphony.png)' }}>
+          {/* Card styles inspired by screenshot */}
+          <div className="about-card-hover rounded-xl p-6 w-full flex flex-col items-center text-center flex-1 min-h-[220px] shadow-lg bg-white/90 border border-slate-300 cursor-pointer" style={{ boxShadow: '0 4px 16px 0 rgba(30, 64, 175, 0.10)' }}>
+            <div className="p-3 rounded-full bg-blue-700 mb-3 flex items-center justify-center" style={{ width: 56, height: 56 }}>
+              <ShieldCheck size={32} className="text-white" />
+            </div>
+            <h5 className="text-blue-800 text-xl font-bold mb-2">Institutional Credibility</h5>
+            <p className="text-slate-700 text-base">Registered and operating in compliance with applicable educational and business regulations.</p>
+          </div>
+
+          <div className="about-card-hover rounded-xl p-6 w-full flex flex-col items-center text-center flex-1 min-h-[220px] shadow-lg bg-white/90 border border-slate-300 cursor-pointer" style={{ boxShadow: '0 4px 16px 0 rgba(30, 64, 175, 0.10)' }}>
+            <div className="p-3 rounded-full bg-blue-700 mb-3 flex items-center justify-center" style={{ width: 56, height: 56 }}>
+              <Layers size={32} className="text-white" />
+            </div>
+            <h5 className="text-blue-800 text-xl font-bold mb-2">Client Data Protection</h5>
+            <p className="text-slate-700 text-base">Clients' funds are kept separate from operational accounts for added protection.</p>
+          </div>
+
+          <div className="about-card-hover rounded-xl p-6 w-full flex flex-col items-center text-center flex-1 min-h-[220px] shadow-lg bg-white/90 border border-slate-300 cursor-pointer" style={{ boxShadow: '0 4px 16px 0 rgba(30, 64, 175, 0.10)' }}>
+            <div className="p-3 rounded-full bg-blue-700 mb-3 flex items-center justify-center" style={{ width: 56, height: 56 }}>
+              <Users size={32} className="text-white" />
+            </div>
+            <h5 className="text-blue-800 text-xl font-bold mb-2">Trusted Payment Partners</h5>
+            <p className="text-slate-700 text-base">We maintain partnerships with tier-1 banks to secure payment and custody services.</p>
+          </div>
+
+          <div className="about-card-hover rounded-xl p-6 w-full flex flex-col items-center text-center flex-1 min-h-[220px] shadow-lg bg-white/90 border border-slate-300 cursor-pointer" style={{ boxShadow: '0 4px 16px 0 rgba(30, 64, 175, 0.10)' }}>
+            <div className="p-3 rounded-full bg-blue-700 mb-3 flex items-center justify-center" style={{ width: 56, height: 56 }}>
+              <LifeBuoy size={32} className="text-white" />
+            </div>
+            <h5 className="text-blue-800 text-xl font-bold mb-2">Advanced Encryption</h5>
+            <p className="text-slate-700 text-base">Modern encryption protocols protect communications and transactions.</p>
+          </div>
+        </div>
+        {/* <div className="col-span-full flex justify-center items-center bg-white w-full">
+            <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-2 p-6 animate-fade-in-up truncate whitespace-nowrap">Marketing-Friendly</h1>
           </div>
 
           <div className="col-span-full w-full">
@@ -228,8 +324,8 @@ const About = () => {
               <div className="flex flex-col gap-8 h-full">
                 <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
                   <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <BookOpen size={28} className="text-green-500" />
+                    <div className="p-3 rounded-full bg-gradient-to-br from-blue-100 via-green-100 to-cyan-100 shadow-lg mb-3 border border-blue-200">
+                      <BookOpen size={28} className="text-blue-600" />
                     </div>
                     <h3 className="text-blue-700 text-2xl font-semibold">Practical Market Education</h3>
                   </div>
@@ -238,8 +334,8 @@ const About = () => {
 
                 <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
                   <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <TrendingUp size={28} className="text-green-500" />
+                    <div className="p-3 rounded-full bg-gradient-to-br from-blue-100 via-green-100 to-cyan-100 shadow-lg mb-3 border border-blue-200">
+                      <TrendingUp size={28} className="text-blue-600" />
                     </div>
                     <h3 className="text-blue-700 text-2xl font-semibold">Trader-Focused Learning</h3>
                   </div>
@@ -250,8 +346,8 @@ const About = () => {
               <div className="flex flex-col gap-8 h-full">
                 <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
                   <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <ShieldCheck size={28} className="text-green-500" />
+                    <div className="p-3 rounded-full bg-gradient-to-br from-blue-100 via-green-100 to-cyan-100 shadow-lg mb-3 border border-blue-200">
+                      <ShieldCheck size={28} className="text-blue-600" />
                     </div>
                     <h3 className="text-blue-700 text-2xl font-semibold">Safe &amp; Transparent Learning</h3>
                   </div>
@@ -260,8 +356,8 @@ const About = () => {
 
                 <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
                   <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Users size={28} className="text-green-500" />
+                    <div className="p-3 rounded-full bg-gradient-to-br from-blue-100 via-green-100 to-cyan-100 shadow-lg mb-3 border border-blue-200">
+                      <Users size={28} className="text-blue-600" />
                     </div>
                     <h3 className="text-blue-700 text-2xl font-semibold">Expert-Led Mentorship</h3>
                   </div>
@@ -272,8 +368,8 @@ const About = () => {
               <div className="flex flex-col gap-8 h-full">
                 <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
                   <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Layers size={28} className="text-green-500" />
+                    <div className="p-3 rounded-full bg-gradient-to-br from-blue-100 via-green-100 to-cyan-100 shadow-lg mb-3 border border-blue-200">
+                      <Layers size={28} className="text-blue-600" />
                     </div>
                     <h3 className="text-blue-700 text-2xl font-semibold">Structured &amp; Progressive Curriculum</h3>
                   </div>
@@ -282,61 +378,20 @@ const About = () => {
 
                 <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
                   <div className="flex flex-col items-center">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <LifeBuoy size={28} className="text-green-500" />
+                    <div className="p-3 rounded-full bg-gradient-to-br from-blue-100 via-green-100 to-cyan-100 shadow-lg mb-3 border border-blue-200">
+                      <LifeBuoy size={28} className="text-blue-600" />
                     </div>
                     <h3 className="text-blue-700 text-2xl font-semibold">Continuous Support &amp; Growth</h3>
                   </div>
-                  <p className="text-black text-xl mt-2 text-justify">We believe learning never stops. Our students receive ongoing guidance, updates, and market insights to help them grow consistently in their trading journey.</p>
+                  <p className="text-black text-xl mt-2 text-justify">Weearning never stops. Our students receive ongoing guidance, updates, and market insights to help them grow consistently in their trading journey.</p>
                 </div>
               </div>
             </div>
 
-            <div className="col-span-full">
-              <div>
+            
+          </div> */}
 
-                <br></br><br></br>
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 w-full p-4 mx-4 md:mx-8 bg-white text-black rounded-xl shadow-md">
-                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <ShieldCheck size={28} className="text-green-500" />
-                    </div>
-                    <h5 className="text-blue-700 text-2xl font-semibold">Institutional Credibility</h5>
-                    <p className="text-black text-xl mt-2">Registered and operating in compliance with applicable educational and business regulations.</p>
-                  </div>
 
-                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Layers size={28} className="text-green-500" />
-                    </div>
-                    <h5 className="text-blue-700 text-2xl font-semibold">Client Data Protection</h5>
-                    <p className="text-black text-xl  mt-2">Clients' funds are kept separate from operational accounts for added protection.</p>
-                  </div>
-
-                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <Users size={28} className="text-green-500" />
-                    </div>
-                    <h5 className="text-blue-700 text-2xl font-semibold">Trusted Payment Partners</h5>
-                    <p className="text-black text-xl mt-2">We maintain partnerships with tier-1 banks to secure payment and custody services.</p>
-                  </div>
-
-                  <div className="bg-white border border-slate-200 rounded-lg p-5 w-full flex flex-col items-center text-center flex-1 min-h-[220px] about-card-hover cursor-pointer text-black">
-                    <div className="p-3 rounded-full bg-white/10 shadow-md mb-3">
-                      <LifeBuoy size={28} className="text-green-500" />
-                    </div>
-                    <h5 className="text-blue-700 text-2xl font-semibold">Advanced Encryption</h5>
-                    <p className="text-black text-xl mt-2">Modern encryption protocols protect communications and transactions.</p>
-                  </div>
-                  <h1></h1>
-                </div>
-                <br></br>
-                <div>
-                <br></br>
-                  <div>
-                    <p className="text-xl mb-4 text-black text-justify"><span className="text-blue-700 font-semibold shadow-animate">MoneyKrishna Education</span> proudly supports learners from across the globe, delivering high-quality financial and professional education to students worldwide. We follow strict ethical and data-protection standards because safeguarding our students’ information and learning journey is our top priority. We are committed to providing a trusted, transparent, and reliable educational environment for every learner.</p>
-                  </div>
-                </div>
                 {/* <div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 ">
                     {[ '/trader.png', '/trades.png', '/ai.png', '/Forex-Trading.jpg' ].map((src, i) => (
@@ -347,12 +402,6 @@ const About = () => {
                   </div>
                 </div> */}
               </div>
-
-            </div>
-          </div>
-      </div>
-
-
 
        <section className="mt-12">
          <style>{`
@@ -369,7 +418,7 @@ const About = () => {
             <h2 className="text-6xl font-semibold text-center mb-2">MoneyKrishna Education Success Stories</h2>
             <p className="text-center text-xl text-black w-full mb-8">Discover what our Client's have to say about their learning experience and why they trust our platform.</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-4">
               {testimonials.map((item) => (
                 <article key={item.id} className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col testimonial-card-hover" style={{ filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
                   <div className="h-44 md:h-52 w-full overflow-hidden" style={{ filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
@@ -392,8 +441,13 @@ const About = () => {
         </section>
 
 
+      </div>
+
     </>
   );
-};
+}
+
 
 export default About;
+
+
