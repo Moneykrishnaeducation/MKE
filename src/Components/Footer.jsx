@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="w-full bg-gray-200 text-slate-800 z-10" role="contentinfo">
       <div className="max-w-screen-xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-6">
           <div className="md:col-span-4">
             <div className="flex items-center gap-3 mb-4">
               <Link to="/" className="inline-flex items-center gap-3 rounded" aria-label="Money Krishna Education home">
@@ -81,7 +81,7 @@ const Footer = () => {
             <address className="not-italic space-y-3 text-gray-600">
               <div className="flex items-center gap-2">
                 <Mail className="w-5 h-5 min-w-[16px] text-blue-400" aria-hidden />
-                <a href="mailto:moneykrishnaeducation@gmail.com" className="hover:underline rounded">moneykrishnaeducation@gmail.com</a>
+                <a href="mailto:moneykrishnaeducation@gmail.com" className="hover:underline  rounded">moneykrishnaeducation@gmail.com</a>
               </div>
 
               <div className="flex items-center gap-2">

@@ -367,7 +367,7 @@ const TopNav = () => {
                   >
                     Beginner
                   </Link>
-                  <Link 
+                  {/* <Link 
                     to="/courses/intermediate" 
                     className="dropdown-item"
                     onClick={() => {
@@ -376,7 +376,7 @@ const TopNav = () => {
                     }}
                   >
                     Intermediate
-                  </Link>
+                  </Link> */}
                   <Link 
                     to="/courses/advanceintro" 
                     className="dropdown-item"

@@ -34,10 +34,10 @@ const Blog = () => {
     ]
 
     return (
-        <main className="bg-[url('/src/assets/bg_img.jpg')]  bg-cover bg-center bg-fixed p-5 space-y-10">
+        <main className="bg-[url('/src/assets/bg_img.jpg')]  bg-cover bg-center bg-fixed py-5 space-y-10">
 
             {/* Cards */}
-            <div className="grid gap-20 md:grid-cols-2 mx-10 lg:grid-cols-3">
+            <div className="grid gap-20 md:grid-cols-2 mx-4 md:mx-10 lg:grid-cols-3">
                 {blogSections.map(({ img, link, content, description }) => (
                     <Link
                         key={content}
@@ -68,7 +68,7 @@ const Blog = () => {
             {/* Achievements Section */}
             <div className="mt-16">
                 <h2 className="text-3xl font-bold text-center text-white mb-12 drop-shadow-lg">Achievements & Awards</h2>
-                <div className="grid gap-8 md:grid-cols-2 mx-10 lg:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-2 mx-4 md:mx-10 lg:grid-cols-3">
                     {achievements.map(({ img, title, subtitle, description }) => (
                         <div
                             key={title}

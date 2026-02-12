@@ -6,8 +6,8 @@ import bgImg from '../assets/bg_img.webp'
 import sirImg from '../assets/sir.png'
 
 const Home = () => {
-  const [usdPrice, setUsdPrice] = useState(null)
-  const [loadingRate, setLoadingRate] = useState(false)
+  // const [usdPrice, setUsdPrice] = useState(null)
+  // const [loadingRate, setLoadingRate] = useState(false)
   const [visibleSections, setVisibleSections] = useState({})
   const reviewsScrollRef = useRef(null)
   const location = useLocation()
@@ -33,64 +33,65 @@ const Home = () => {
     window.addEventListener('resize', updateHeroHeight)
     return () => window.removeEventListener('resize', updateHeroHeight)
   }, [])
-useEffect(() => {
-  let isMounted = true;
-  const fetchUsdInrRate = async () => {
-    setLoadingRate(true);
-    try {
-      const url = "https://www.google.com/finance/quote/USD-INR";
-      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-      const res = await fetch(proxy);
-      if (!res.ok) throw new Error('Network response was not ok');
-      const html = await res.text();
+// useEffect(() => {
+//   let isMounted = true;
+//   const fetchUsdInrRate = async () => {
+//     setLoadingRate(true);
+//     try {
+//       const url = "https://www.google.com/finance/quote/USD-INR";
+//       const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+//       const res = await fetch(proxy);
+//       if (!res.ok) throw new Error('Network response was not ok');
+//       const html = await res.text();
 
-      const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
-      let parsed = null;
-      const m = html.match(rateRegex);
-      if (m && m[1]) {
-        const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
-        parsed = parseFloat(raw);
-      }
-      if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
-        const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
-        if (loose && loose[1]) {
-          parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
-        }
-      }
-      if (parsed && !Number.isNaN(parsed) && parsed > 0) {
-        if (isMounted) setUsdPrice(parsed.toFixed(2));
-        return;
-      }
-    } catch (err) {
-      // Prefer using sharedUtils.showToast when available, otherwise log
-      try {
-        if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
-          sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
-        } else {
-          console.error('Failed to fetch USD-INR rate.', err);
-        }
-      } catch (e) {
-        console.error('Failed to fetch USD-INR rate.', err);
-      }
-    } finally {
-      setLoadingRate(false);
-    }
-  };
+//       const rateRegex = /<div[^>]*class=["'][^"']*YMlKec[^"']*fxKbKc[^"']*["'][^>]*>\s*([^<\s][^<]*)\s*<\/div>/i;
+//       let parsed = null;
+//       const m = html.match(rateRegex);
+//       if (m && m[1]) {
+//         const raw = m[1].trim().replace('₹', '').replace(/,/g, '');
+//         parsed = parseFloat(raw);
+//       }
+//       if (!parsed || Number.isNaN(parsed) || parsed <= 0) {
+//         const loose = html.match(/>(₹?[0-9.,]+)<\/div>/);
+//         if (loose && loose[1]) {
+//           parsed = parseFloat(loose[1].replace('₹', '').replace(/,/g, ''));
+//         }
+//       }
+//       if (parsed && !Number.isNaN(parsed) && parsed > 0) {
+//         if (isMounted) setUsdPrice(parsed.toFixed(2));
+//         return;
+//       }
+//     } catch (err) {
+//       // Prefer using sharedUtils.showToast when available, otherwise log
+//       try {
+//         if (typeof sharedUtils !== 'undefined' && typeof sharedUtils.showToast === 'function') {
+//           sharedUtils.showToast("Failed to fetch USD-INR rate.", "error");
+//         } else {
+//           console.error('Failed to fetch USD-INR rate.', err);
+//         }
+//       } catch (e) {
+//         console.error('Failed to fetch USD-INR rate.', err);
+//       }
+//     } finally {
+//       setLoadingRate(false);
+//     }
+//   };
 
-  fetchUsdInrRate();
-  const interval = setInterval(fetchUsdInrRate, 30000);
-  return () => {
-    isMounted = false;
-    clearInterval(interval);
-  };
-}, [])
+//   fetchUsdInrRate();
+//   const interval = setInterval(fetchUsdInrRate, 30000);
+//   return () => {
+//     isMounted = false;
+//     clearInterval(interval);
+//   };
+// }, [])
+
 
 
   // Intersection Observer for scroll animations
-  useEffect(() => {
+useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      // rootMargin: '0px 0px -100px 0px'
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -416,21 +417,21 @@ const reviews = [
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-blue-50/30 to-cyan-50/30 z-0"></div>
         {/* Live USD Price */}
-        <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
+        {/* <div className="absolute top-4 right-8 bg-white bg-opacity-90 px-3 py-1 rounded-lg shadow-lg z-20 animate-float">
           <p className="text-slate-600 text-xs font-medium">USD/INR</p>
           <p className="text-green-600 text-sm text-center font-bold">{usdPrice}</p>
-        </div>
+        </div> */}
 
         {/* Content */}
-        <div className="max-w-screen-2xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-28 flex items-center relative z-10" data-animate id="hero-section" role="banner" aria-labelledby="hero-heading" aria-describedby="hero-subheading" style={{ minHeight: heroMinHeight || '100vh' }}>
-          <div className="grid md:grid-cols-[1fr_0.9fr] gap-12 items-center justify-items-center w-full relative z-10">
+        <div className="w-full min-h-screen mx-auto px-4 sm:px-6 lg:px-8 md:py-28 py-10 flex items-center relative z-10" data-animate id="hero-section" role="banner" aria-labelledby="hero-heading" aria-describedby="hero-subheading" style={{ minHeight: heroMinHeight || '100vh' }}>
+          <div className="grid md:grid-cols-[1fr_1fr] gap-12 items-center justify-items-center w-full relative z-10">
             {/* Left Content */}
             <div className={`text-center md:text-left ${visibleSections['hero-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
-              <h1 id="hero-heading" className="text-5xl lg:text-6xl font-black mb-6 leading-tight text-white drop-shadow-lg">
+              <h1 id="hero-heading" className="md:text-5xl text-4xl lg:text-6xl font-black mb-6 leading-tight text-white drop-shadow-lg">
                 Trade Confidently.<br />Learn Practically.
               </h1>
 
-              <p id="hero-subheading" className="text-xl lg:text-2xl text-white/95 mb-10 leading-relaxed max-w-2xl mx-auto md:mx-0 font-light tracking-wide animate-fade-in-up">
+              <p id="hero-subheading" className="md:text-xl text-sm  lg:text-2xl text-white/95 mb-10 leading-relaxed max-w-2xl mx-auto md:mx-0 font-light tracking-wide animate-fade-in-up">
                 Master forex trading from basics to advanced strategies with live market sessions and expert mentorship.
               </p>
 
@@ -438,7 +439,7 @@ const reviews = [
                 <Link
                   to="/courses/beginner"
                   aria-label="Join course - start learning with MoneyKrishna"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-white bg-white text-green-600 font-bold text-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-3 px-4 md:px-8 py-2  md:py-4 rounded-full border-2 border-white bg-white text-green-600 font-bold text-sm md:text-lg hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Start Free Trial
                 </Link>
@@ -447,7 +448,7 @@ const reviews = [
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Watch introduction video"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-green-600 font-bold text-lg hover:bg-green-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
+                  className="inline-flex items-center gap-3 px-4 md:px-8 py-2 md:py-4 rounded-full bg-white text-green-600 font-bold text-sm md:text-lg hover:bg-green-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 animate-scale-in"
                 >
                   Watch Intro <ArrowRight className="w-5 h-5" />
                 </a>
@@ -547,7 +548,7 @@ const reviews = [
               <img
                 src={sirImg}
                 alt="Trading Chart"
-                className="w-full h-full object-cover"
+                className="md:w-full w-115 h-115 md:h-full object-cover"
                 style={{
                   WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
                   maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
@@ -563,7 +564,7 @@ const reviews = [
           data-animate
           id="pricing-section"
         >
-          <div className="max-w-screen-2xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="w-full mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             {/* Section Heading */}
             <h2
               className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-3 sm:mb-4 heading
@@ -757,7 +758,7 @@ const reviews = [
           data-animate
           id="features-section"
         >
-          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Section Heading */}
             <h2
@@ -931,7 +932,7 @@ const reviews = [
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
 
           {/* Main Content */}
-          <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className={`space-y-8 ${visibleSections['trading-education'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
@@ -1023,7 +1024,7 @@ const reviews = [
           data-animate
           id="curriculum-section"
         >
-          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Section Heading */}
             <h2
@@ -1171,7 +1172,7 @@ const reviews = [
           <div className="absolute top-1/3 right-0 w-64 h-64 bg-purple-200 rounded-full mix-blend-overlay filter blur-2xl opacity-20"></div>
 
           {/* Main Content */}
-          <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left Column - Content */}
               <div className={`space-y-8 ${visibleSections['learning-modes-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
@@ -1319,7 +1320,7 @@ const reviews = [
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-48"></div>
 
           {/* Main Content */}
-          <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               {/* Left Content */}
               <div className={`space-y-8 ${visibleSections['small-batch-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
@@ -1436,7 +1437,7 @@ const reviews = [
 
         {/* Video Section with Content */}
         <div className="w-full bg-gradient-to-b from-green-50 via-white to-blue-50 py-24 relative z-10" data-animate id="video-section">
-          <div className="max-w-screen-2xl mx-auto  p-4 sm:px-6 lg:px-8">
+          <div className="w-full mx-auto  p-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className={`space-y-6 ${visibleSections['video-section'] ? 'scroll-animate-left visible' : 'scroll-animate-left'}`}>
@@ -1490,7 +1491,7 @@ const reviews = [
 
         {/* Customer Reviews Section */}
         <div className="w-full bg-blue-50 py-24 relative z-10" data-animate id="reviews-section">
-          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className={`text-5xl font-extrabold text-slate-900 mb-3 text-center ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>Proof That Our Training Works </h2>
             <p className={`text-center text-slate-500 mb-16 text-lg font-medium ${visibleSections['reviews-section'] ? 'scroll-animate visible' : 'scroll-animate'}`}>— Hear from Our Successful Students</p>
             <div className="relative overflow-hidden">
