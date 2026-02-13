@@ -98,8 +98,8 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               <div>
                 <div className="flex flex-col items-center mt-4 mb-4">
-                  <img src="/public/info.png" alt="Deep ETP Expertise Icon" className="mb-2" style={{ width: 50, height: 50 }} />
-                  <h3 className="text-6xl font-bold text-blue-900 ">Who We Are?</h3>
+                  <Users size={36} className="text-blue-600 mb-2" />
+                  <h3 className="text-6xl font-bold text-blue-600 ">Who We Are?</h3>
                 </div>
                 <p className="text-2xl text-gray-700 leading-relaxed text-center text-justify" style={{ fontFamily: 'Inter, sans-serif' }}>
                   Money Krishna Education was founded by a group of experienced trading professionals and market enthusiasts passionate about financial education. We guide learners with transparency, integrity, and real-world expertise, focusing on developing confident and independent traders.
@@ -107,8 +107,8 @@ const About = () => {
               </div>
               <div>
                 <div className="flex flex-col items-center mt-4 mb-4">
-                  <img src="/public/pro.png" alt="What We Offer Icon" className="mb-2" style={{ width: 50, height: 50 }} />
-                  <h3 className="text-6xl font-bold text-blue-900 ">What We Offer</h3>
+                  <Layers size={36} className="text-blue-600 mb-2" />
+                  <h3 className="text-6xl font-bold text-blue-600 ">What We Offer</h3>
                 </div>
                 <p className="text-2xl text-gray-700 leading-relaxed text-center text-justify" style={{ fontFamily: 'Inter, sans-serif' }}>
                   Our programs cover Stock Market, Forex, and Options Trading, designed with a practical-first approach. We believe trading success comes from proper foundation, live market understanding, and continuous guidance—not from tips or shortcuts.
