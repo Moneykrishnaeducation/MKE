@@ -180,12 +180,12 @@ const TopNav = () => {
             <Mail className="w-4 h-4" />
             <span className="text-xs">moneykrishnaeducation@gmail.com</span>
           </div>
-          <div className="flex items-center gap-4">
+<div className="flex items-center gap-4">
             <a 
               href="https://www.facebook.com/moneykrishna.education/" 
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon hover:text-green-400 transition-colors"
+              className="social-icon text-blue-700 hover:text-blue-700 transition-colors"
               title="Facebook"
             >
               <Facebook className="w-5 h-5" />
@@ -193,7 +193,9 @@ const TopNav = () => {
 
             <a 
               href="https://www.linkedin.com/company/money-krishna-education/" 
-              className="social-icon hover:text-green-400 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon text-blue-400 hover:text-blue-400 transition-colors"
               title="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
@@ -202,7 +204,7 @@ const TopNav = () => {
               href="https://www.instagram.com/moneykrishnaeducation/" 
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon hover:text-green-400 transition-colors"
+              className="social-icon text-pink-500 hover:text-blue-300 transition-colors"
               title="Instagram"
             >
               <Instagram className="w-5 h-5" />
@@ -211,7 +213,7 @@ const TopNav = () => {
               href="https://www.youtube.com/@money_krishna" 
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon hover:text-green-400 transition-colors"
+              className="social-icon text-red-700 hover:text-red-700 transition-colors"
               title="YouTube"
             >
               <Youtube className="w-5 h-5" />

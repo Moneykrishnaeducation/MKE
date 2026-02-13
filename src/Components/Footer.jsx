@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo of MKE.webp'
 import { Facebook, Instagram,  Mail, Phone, MapPin, Linkedin } from 'lucide-react'
 
-const Icon = ({ children }) => (
-  <span className="w-8 h-8 inline-flex items-center justify-center rounded-full bg-teal-600 text-white" aria-hidden="true" role="img">{children}</span>
+const Icon = ({ children, bgColor }) => (
+  <span className={`w-8 h-8 inline-flex items-center justify-center rounded-full text-white ${bgColor} transition-transform duration-300 hover:scale-110 hover:-translate-y-1`} aria-hidden="true" role="img">{children}</span>
 )
 
 const Footer = () => {
@@ -23,7 +23,7 @@ const Footer = () => {
             <ul className="flex gap-3 mt-6" role="list" aria-label="Social links">
               <li>
                 <a href="https://www.facebook.com/moneykrishna.education/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded " aria-label="Facebook">
-                  <Icon>
+                  <Icon bgColor="bg-[#1877F2]">
                     <Facebook className="w-4 h-4" aria-hidden="true" />
                   </Icon>
                   <span className="sr-only">Facebook</span>
@@ -31,7 +31,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="https://www.instagram.com/moneykrishnaeducation/" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded " aria-label="Instagram">
-                  <Icon>
+                  <Icon bgColor="bg-[#E4405F]">
                     <Instagram className="w-4 h-4" aria-hidden="true" />
                   </Icon>
                   <span className="sr-only">Instagram</span>
@@ -39,7 +39,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="https://www.linkedin.com/company/money-krishna-education/" className="hover:opacity-90 rounded " aria-label="Linkedin">
-                  <Icon>
+                  <Icon bgColor="bg-[#0A66C2]">
                     <Linkedin className="w-4 h-4" aria-hidden="true" />
                   </Icon>
                   <span className="sr-only">Linkedin</span>
@@ -47,7 +47,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="https://wa.me/919500074778" target="_blank" rel="noopener noreferrer" className="hover:opacity-90 rounded " aria-label="WhatsApp">
-                  <Icon>
+                  <Icon bgColor="bg-[#25D366]">
                     <Phone className="w-4 h-4" aria-hidden="true" />
                   </Icon>
                   <span className="sr-only">WhatsApp</span>
