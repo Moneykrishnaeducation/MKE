@@ -84,12 +84,12 @@ const About = () => {
               </div>
             </div>
             {/* Right: Image */}
-            <div className="flex justify-center mt-10 items-center w-140 h-full">
+            <div className="flex justify-center items-center mt-10 w-full h-full">
               <img
                 src="/user4.png"
                 alt="Team discussion"
-                className="rounded-2xl object-cover"
-                style={{ width: '500px', maxWidth: '100%', aspectRatio: '10/6', minHeight: 450 }}
+                className="rounded-2xl object-cover w-full max-w-md md:max-w-xl lg:max-w-2xl"
+                style={{ aspectRatio: '10/6', minHeight: 200 }}
               />
             </div>
           </div>
@@ -415,7 +415,7 @@ const About = () => {
            }
          `}</style>
           <div className="bg-white max-w-14xl z-1000 mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ position: 'relative', zIndex: 60, filter: 'none', WebkitFilter: 'none', backdropFilter: 'none', WebkitBackdropFilter: 'none' }}>
-            <h2 className="text-6xl font-semibold text-center mb-2">MoneyKrishna Education Success Stories</h2>
+            <h2 className="text-3xl md:text-5xl font-semibold text-center mb-2">MoneyKrishna Education Success Stories</h2>
             <p className="text-center text-xl text-black w-full mb-8">Discover what our Client's have to say about their learning experience and why they trust our platform.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-4">

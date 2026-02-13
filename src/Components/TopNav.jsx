@@ -404,7 +404,7 @@ const TopNav = () => {
               Contact
             </button>
             <Link 
-              to="/disclaimer" 
+              to="/policies" 
               className="mobile-nav-link"
               onClick={() => setMobileMenuOpen(false)}
             >
