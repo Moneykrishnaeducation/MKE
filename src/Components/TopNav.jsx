@@ -295,7 +295,7 @@ const TopNav = () => {
               Contact
             </a>
             <Link 
-              to="/disclaimer" 
+              to="/policies" 
               className="text-slate-700 font-medium hover:text-green-600 transition-colors"
             >
               Policies
